@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Internet and Intranet | Agrim Paneru</title>
+<meta name="keywords" content="DL, AI, Python, PyTorch">
+<meta name="description" content="Internet and Intranet">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/prtfoio/blog/i-and-i/">
+<link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/blog/i-and-i/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/blog/i-and-i/">
+  <meta property="og:site_name" content="Agrim Paneru">
+  <meta property="og:title" content="Internet and Intranet">
+  <meta property="og:description" content="Internet and Intranet">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:tag" content="DL">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="PyTorch">
+    <meta property="og:image" content="http://localhost:1313/blog/face-landmarks-detection/cover.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/blog/face-landmarks-detection/cover.jpg">
+<meta name="twitter:title" content="Internet and Intranet">
+<meta name="twitter:description" content="Internet and Intranet">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs",
+      "item": "http://localhost:1313/prtfoio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Internet and Intranet",
+      "item": "http://localhost:1313/prtfoio/blog/i-and-i/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Internet and Intranet",
+  "name": "Internet and Intranet",
+  "description": "Internet and Intranet",
+  "keywords": [
+    "DL", "AI", "Python", "PyTorch"
+  ],
+  "articleBody": "I AND I CHAPTER 1 Definition of Autonomous System (AS): An Autonomous System (AS) is a collection of IP networks and routers that operate under the control of a single administrative entity and share a unified routing policy.\nIt is identified by a globally unique number called an Autonomous System Number (ASN), which is used in routing protocols to distinguish it from other ASes. IANA oversees the global IP allocation,AS no allocation,rootzone mgmt in DNS and Internet numbers.Internet numbers include IP address,AS numbers,Protocol Numbers*(Protocol 6: TCP)* ,Port Numbers.\nFunctions Of IANA: IP Address Allocation: Allocates IP address blocks to regional internet registries (RIRs).\nDNS Root Zone Management: Manages the DNS root zone, ensuring the stability of the domain name system.\nProtocol Parameter Assignment: Maintains protocol numbers and parameters as defined by technical standards (e.g., port numbers).\nManagement of Internet Numbers: Coordinates globally unique identifiers, such as Autonomous System Numbers (ASNs).\nDNS Root Zone Management\nThe DNS Root Zone Management refers to the administration and oversight of the root zone of the Domain Name System (DNS), which is the highest level of the hierarchical DNS system. The root zone is crucial for the operation of the entire internet’s domain name resolution system.\nWhat is the DNS Root Zone?\nThe DNS Root Zone is essentially the starting point of the DNS hierarchy. It contains information about the top-level domain (TLD) servers, such as:\nCountry Code TLDs (ccTLDs): e.g., .uk for the United Kingdom, .jp for Japan. Special-purpose TLDs: e.g., .int for international organizations. Generic TLDs (gTLDs): e.g., .com, .org, .net, .edu, and newer ones like .tech, .xyz. ICANN’s Role:\nNon-profit organization overseeing global domain name system (DNS) and IP address allocation. ICANN\nEnsures stability, security, and interoperability of the internet. Key Functions of ICANN: DNS Management: Coordinates the DNS to ensure domain names are mapped correctly to IP addresses.\nTLD Management: Oversees Top-Level Domains (TLDs) like .com, .org, .net, and country-specific domains.\nIP Address Allocation: Manages global distribution of IP addresses through IANA (Internet Assigned Numbers Authority).\nRoot Zone Management: Updates and maintains the DNS root zone file, essential for routing domain queries.\nRegistrar Accreditation: Accredits domain registrars to ensure they follow standards for domain registration.\nSecurity and Stability: Works to ensure the security and resiliency of the internet’s DNS infrastructure.\nHierarchy of IANA Regional Internet Registries (RIRs) IANA allocates IP address blocks to Regional Internet Registries (RIRs). There are five RIRs, each serving a specific geographic region:\nARIN (American Registry for Internet Numbers) – North America. RIPE NCC (Réseaux IP Européens Network Coordination Centre) – Europe, the Middle East, and Central Asia. APNIC (Asia Pacific Network Information Centre) – Asia-Pacific region. LACNIC (Latin America and Caribbean Network Information Centre) – Latin America and the Caribbean. AFRINIC (African Network Information Centre) – Africa. Role of RIRs: RIRs distribute IP address blocks to Internet Service Providers (ISPs) and large network operators within their regions. National Internet Registry Works under the umbrella of RIR and allocates the IP numbers at national level within specified Countries or economic unit.\nNIR operate through ASIA Pacific region Under APNIC.\nNIR operating are CNNIC(China internet network information center),JPNIC(Japan network information center).\nLIR A Local Internet Registry (LIR) is an organization, typically an Internet Service Provider (ISP) or a large enterprise, that is authorized by a Regional Internet Registry (RIR) to manage and distribute IP address blocks within a specific region. LIRs receive IP address allocations from RIRs and then sub-allocate these addresses to customers or internal networks, ensuring that internet addresses are efficiently distributed within their service area. In addition to managing IP address assignments, LIRs may also handle reverse DNS management, routing policy implementation, and support the IPv6 adoption process.\nISP\nAn Internet Service Provider (ISP) is a company or organization that provides individuals and businesses with access to the internet.Mercantile first internet company of nepal.\nISP ISPs operate at different levels based on their role in providing internet services. The main levels of ISPs are:\n1. Tier 1 ISPs: Definition: These are the top-level ISPs that own and operate the backbone infrastructure of the internet. They have direct access to the global internet backbone and can exchange traffic with other Tier 1 providers without paying for it. Roles: They provide internet access to other ISPs and manage large-scale internet infrastructure, ensuring the flow of data between regions and countries.\nOwns and operates global internet backbone infrastructure. Exchanges traffic directly with other Tier 1 ISPs without paying. Provides direct access to the global internet. Has large-scale, highly redundant global infrastructure. Example: AT\u0026T, NTT Communications, and Level 3 Communications. 2. Tier 2 ISPs: Definition: These ISPs have access to the internet backbone through peering agreements with Tier 1 ISPs, but they also purchase bandwidth from Tier 1 providers. Roles: Tier 2 ISPs serve as intermediaries, providing internet access to smaller ISPs or businesses and offering more localized or regional services.\nOperates on a regional or national level. Purchases bandwidth from Tier 1 ISPs for global access. Peers with other Tier 2 ISPs for additional connectivity. Serves as an intermediary between Tier 1 and Tier 3 ISPs. Example: Comcast, , and Vodafone. 3. Tier 3 ISPs: Definition: These ISPs are smaller, usually local or regional, and rely on Tier 1 and Tier 2 ISPs for internet connectivity. Role: Tier 3 ISPs provide internet services directly to consumers, businesses, or smaller networks. They typically do not own extensive infrastructure and may provide broadband, DSL, or fiber internet.\nFocuses on local or regional internet service provision. Relies on Tier 1 and Tier 2 ISPs for global internet access. Provides broadband or fiber-optic connections to end-users. Has limited infrastructure focused on last-mile connectivity.(last mile provider) Example: Local cable providers or small regional internet companies. To operate the backbone infrastructure means to own, manage, and control the core network systems that form the foundation of the internet.\nQ.N) How to ISP interconnect? ISPs are connected through various methods that ensure efficient data flow across the internet. Peering agreements allow ISPs to exchange traffic directly with each other without payment, especially between Tier 1 ISPs, which form the backbone of the internet, and Tier 2 ISPs. Tier 2 and Tier 3 ISPs, often without the infrastructure to connect directly to the global network, typically enter transit relationships, where they pay Tier 1 ISPs for bandwidth to access the internet. Additionally, ISPs interconnect through fiber-optic cables, both undersea for global connectivity and land-based for regional and national traffic. Internet Exchange Points (IXPs) also facilitate these connections by providing physical locations where multiple ISPs can meet and exchange traffic\nInternet Backbone The internet backbone infrastructure refers to the high-speed, high-capacity network of fiber-optic cables, data centers, routers, and switches that form the core of the internet. This infrastructure connects different Internet Service Providers (ISPs), regions, and countries, facilitating global communication and data transfer. The backbone is responsible for carrying vast amounts of data across long distances, ensuring that the internet is fast, reliable, and scalable.\nNecessities of Internet Backbone Infrastructure: Global Connectivity: Enables seamless communication and access to content across different regions and countries. Example: Undersea cables linking continents, such as the SEA-ME-WE 3 cable. High-Speed Data Transfer: Facilitates fast transmission of large data volumes with minimal delay. Example: Fiber-optic cables enabling smooth streaming of HD and 4K content on platforms like Netflix. Scalability: Allows the internet to grow and handle increasing demand as more devices and users come online. Redundancy and Reliability: Provides alternative routes to ensure the internet remains operational even if one part of the network fails. Chapter 2 IP Definition The Internet Protocol (IP) is a set of rules that allows computers and other devices to communicate over the Internet. It ensures that information sent from one device reaches the correct destination by using a unique set of numbers known as IP addresses\nLayers of TCP/IP\nApplication layer The application layer provides the way for the user to communicate with the system. Any service running on the host machine that provides the user interface is using the application layer.\nAccessing web pages, sending emails ,resolving domain name are examples of application layer.\nDNS, FTP, HTTP/HTTPS, SMTP, POP, SNMP, DHCP, SSH \u0026 TELNET\nTransport Layer The transport layer communicates with the application layer and receives data from it. After receiving the data from the application layer, the transport layer divides the data into segments and assigns a sequence number to each segment.\nThe transport layer uses TCP and UDP protocols for the communication of data. TCP is used for connection-oriented service and UDP is used for connectionless service. Instead of TCP and UDP, the transport layer also uses SCTP (Stream Control Transmission Protocol) for VoIP calls. SCTP combines the features of both TCP and UDP. Internet Layer Internet Protocol (IP) address is used to provide logical transmission of data over a network using best-effort delivery(best-effort delivery means that the IP is not providing any error detecting mechanism) at the Internet layer.\nThe Internet layer describes protocols for communication which are ARP (Address Resolution Protocol), RARP (Reverse Address Resolution Protocol), ICMP (Internet Control Message Protocol), and IGMP (Internet Group Message Protocol).\nNetwork Access Layer The network access layer is a combination of the data link layer and the physical layer. It provides the functionality of both the data link layer and the physical layer. The network access layer works based on the MAC address. It creates the frame and converts it into a stream of bits for machine-understandable language.\nThe network access layer receives packets from the Internet layer and converts them into frames, then bits, for machine-readable transmission. It defines the data transmission format across network media. IPV4 HEADER FORMAT IPv4 is a connectionless protocol used for packet-switched networks.IPv4 uses 32-bit addresses.\nIt has Unicast, broadcast, and multicast style of addresses. IPv4 supports VLSM (Virtual Length Subnet Mask). IPv4 uses the Post Address Resolution Protocol to map to the MAC address. RIP may be a routing protocol supported by the routed daemon\n1. Version (4 bits) Specifies the version of the Internet Protocol. For IPv4, this value is always 4.\n2. IHL (Internet Header Length, 4 bits) Defines the length of the IPv4 header in 32-bit words. The minimum value is 5 (20 bytes), and the maximum is 15 (60 bytes).\n3. Type of Service (ToS) / DSCP (8 bits) Indicates the quality of service for the packet, such as low delay, high throughput, or reliability. It can be used for prioritizing certain packets.\n4. Total Length (16 bits) Represents the total size of the packet (header + data) in bytes. The maximum value is 65,535 bytes.\n5. Identification (16 bits) A unique identifier for the packet, used to reassemble fragmented packets at the destination.\n6. Flags (3 bits) Controls fragmentation:\nBit 0: Reserved (always 0). Bit 1 (DF): Don’t Fragment. Bit 2 (MF): More Fragments (indicates more fragments follow). 7. Fragment Offset (13 bits) Specifies the position of a fragment relative to the beginning of the original packet.\n8. Time to Live (TTL, 8 bits) Limits the packet’s lifetime to prevent infinite loops. It’s decremented by one at each hop; the packet is discarded when TTL reaches 0.\n9. Protocol (8 bits) Indicates the protocol used in the data portion of the packet. For example:\n1: ICMP 6: TCP 17: UDP 10. Header Checksum (16 bits) Used to detect errors in the IPv4 header.\n11. Source Address (32 bits) The IP address of the sender.\n12. Destination Address (32 bits) The IP address of the recipient.\n13. Options (variable length) Optional field for additional features like security, timestamps, or record route. It makes the header size variable.\nLimitations of IPv4 header Limited Address Space: IPv4’s 32-bit addressing supports only about 4.3 billion unique IPs, insufficient for the modern internet. Lack of Security Features: IPv4 lacks built-in encryption or authentication, making it vulnerable to spoofing and other attacks. Variable Header Size: The IPv4 header size (20–60 bytes) complicates processing due to optional fields. Limited Quality of Service (QoS): The ToS field is inadequate for prioritizing modern network traffic. Fragmentation Overhead: Fragmentation at routers adds processing overhead and increases packet loss risks. Processing Overhead: Header checksum calculations introduce delays in high-speed networks. IPV6 HEADER The IPv6 header is a part of the information sent over the internet. It’s always 40 bytes long and includes details like where data should go and how it should get there. IPv6 is designed to replace IPv4, offering a much larger address space and improved features.\nVersion (4-bits) It shows the version of the internet protocol we used, i.e. 0110 Traffic Class (8-bits) This is an 8-bit field in which 8 bits are divided into two parts. The most significant 6-bit is for the type of service so that the router will get to know about what services need to be provided to the given packet. And for Explicit Congestion Notification (ECN), the least significant 2-bit is used. Flow Label (20-bits) This 20-bit is required for maintaining the sequential flow of packets related to a particular communication. This field is also helpful in avoiding the reordering of packets. The source labels the sequence to help the router so that it can identify that a particular packet is related to a specific flow of data. It is generally used for real or streaming media. Payload Length (16-bits) This field is used to help the router know how much information is stored in the payload of a particular packet. Next Header (8-bits) This field is used to represent the type of extension header or if the extension header is not present then it shows the Upper Layer PDU. The value for Upper Layer PDU is the same as that of values in IPv4. Hop Limit (8-bits) Hop limit is a field in a header that stops the header from going into an infinite loop in the network. It works the same as that of TTL in IPv4. When it passes a hop or router its value is decremented by 1. The packet is discarded when it reaches 0. Source Address (128-bits) This field provides the address from where the packet originates. Destination Address (128-bits) The destination address is the address of the packet’s intended recipient. Summary of IV4 Limitation AND IPV6 Improvements IPv4 Limitation IPv6 Solution Limited address space 128-bit addresses (virtually unlimited space) Lack of security Built-in IPsec support Variable header size Fixed header size Inefficient routing Hierarchical addressing with better aggregation Limited QoS Traffic Class and Flow Label fields Fragmentation overhead Source-based fragmentation only Address spoofing Enhanced authentication and encryption Mobility issues Mobile IPv6 support Fragmentation of IPV4 header IP can support variable size packet format from 20 octets to 65,535 octets. But which packet size should an implementation use?\nThe Maximum Transmission Unit (MTU) specifies the largest packet size (in bytes) that can be transmitted over a network without requiring fragmentation.\nFor example, consider a host connected to an FDDI network, which is connected to an Ethernet network. The FDDI(MTU 4478)-connected host may elect to send a 4,478 octet packet, which will fit into an FDDI network, but the packet switch that is attempting to pass the packet into the Ethernet (MTU1500 )network will be unable to do so because it is too large.\nThe solution adopted by IPv4 was the use of forward fragmentation. The basic approach is that any IP router that is unable to forward an IP packet into the next network because the packet is too large for this network may split the packet into a set of smaller IP fragments and forward each of these fragments. Destination host is responsible to reassemble the packet into original IP packet.\nThe behavior is managed by a 32-bit field in the IPv4 header, which is subdivided into three sub-fields.\nThe first sub-field is a 16-bit packet identifier, which allows fragments that share a common packet identifier value to be identified as fragments of the same original packet.\nThe second sub-field is a 3-bit vector of flags. The first bit is unused. The second is the Don’t Fragment flag. If this flag is set, the packet cannot be fragmented and must be discarded when it cannot be forwarded. The third bit is the More-Fragments-field and is set for all fragments bar the final fragment.\nThe third sub-field is the fragmentation offset value, that is the offset of this fragment from the start of the original packet’s IP payload, measured in octawords (64-bit units).\nAdvantage\n1. Forward Flow Advantage: The sending host remains unaware of packet fragmentation, and all IP fragment packets continue toward their destination. This creates a streamlined “forward” flow of packets.\n2. Efficient Processing and Flexible Delivery: While the fragmenting router bears the processing load, subsequent routers handle fragments without additional overhead. Fragments can take parallel paths and arrive in any order at the destination for reassembly.\nWhen dont fragment bit is set the router if it cannot forward the packet it was expected to generate ICMP with addition of MTU of next hop network.\nFragmentation in IPV6 header The essential change between IPv4 and IPv6 is that in IPv6 the Don’t-Fragment-bit is always on.\nThe other change was that the packet identifier size was doubled in IPv6, using a 32-bit packet identifier field.\nAn IPv6 router cannot fragment an IPv6 packet, so if the packet is too large for the next hop the router is required to generate an ICMP6 Type 2 packet, addressed to the source of the packet with a Packet Too Big (PTB) code, and also providing the MTU size of the next hop. While an IPv6 router cannot perform packet fragmentation, the IPv6 sender may fragment an IPv6 packet at the source.\nProblems with fragmentation Complicates Routers and End system fragmentation is used to create lethal DoS attacks,attacker seding a series of bizarre and unexpected fragments. RFC’s A Request for Comments (RFC) is a formal document created by the Internet Engineering Task Force (IETF) that outlines technical specifications, organizational notes and standards relevant to internet and networking technologies, including protocols such as routing, addressing and transport technologies.\nRFC is submitted Either for peer review or to convey new concepts and information.\nInternet RFCs (Request for Comments) are a series of technical and organizational documents that serve as the foundation for the development and operation of the internet. They are published by the Internet Engineering Task Force (IETF) and related bodies.\nCategories of RFCs Informational RFCs:\nInformational RFCs provide general information, insights, or historical context about a particular technology, protocol, or concept. They are not intended to become internet standards. Standards Track RFCs:\nDefine protocols or technologies intended for broad implementation as internet standards. Standards Track RFCs define protocols, systems, or procedures that are meant to become official Internet Standards after rigorous testing and community review. Stages of Standardization:\nProposed Standard Indicates that the protocol or specification is ready for testing and implementation but may evolve. Draft Standard: A more refined version that has been implemented and tested by multiple independent parties. Internet Standard: The final and stable version of a specification, widely implemented and tested Example: RFC 2616 (HTTP/1.1). Experimental RFCs:\nExperimental RFCs describe ideas or technologies that are still in the early stages of development and testing Best Current Practices (BCP):\nBCP RFCs provide operational guidance and recommendations for best practices in managing networks or implementing protocols.\nHistoric RFCs:\nHistoric RFCs document outdated, obsolete, or superseded protocols and technologies. RFC Streams RFCs (Request for Comments) are published under different streams. Each stream has its own purpose, governance, and focus. The RFC Editor manages these streams, ensuring their publication and preservation.\nThere are four streams of RFC:\nIETF Stream RFCs in this stream come from the Internet Engineering Task Force (IETF), a key standards organization for internet technologies. Primarily for developing and maintaining internet standards and protocols. Overseen by the Internet Engineering Steering Group (IESG).\nIAB Stream RFCs in this stream are produced by the Internet Architecture Board (IAB),which provides strategic direction for the internet’s architecture. Managed directly by the IAB.\nIndependent Stream Independent submissions are created by individuals or organizations not directly affiliated with IETF or IAB processes. Document innovative, experimental, or niche topics that may not align with IETF’s work. Overseen by the Independent Submissions Editor (ISE).\n4. IRTF Stream\nRFCs in this stream come from the Internet Research Task Force (IRTF), which focuses on long-term research related to internet protocols and technologies. Not intended for immediate standardization. Managed by the IRTF Chair with oversight from the IAB\nEach stream operates independently but contributes to the broader body of internet documentation. All streams converge at the RFC Editor, which ensures that RFCs, regardless of their origin, are published, maintained, and accessible. Each RFC header identifies the stream it belongs to, helping readers understand its context and purpose.\nIPV6 Day 6 | What is IPv6 Address | CCNA | IT Index | Free | CCNA full course\nFeatures of IPV6:\nIncreases Address space(128 Bits) Simplified Configuration Integrated Security (AH: Authentication Header and ESP: Encapsulation security payload in Extension header) Compatibility with IPV4 Total group of 8 each of 16 bits each of in hexadecimal Each Hexadecimal is of 4 bits.\nFE80:0001:0000:0000:AEFA:0ABC:000B:0AEF\nCan be short handedly written as :\n**FE80:1::AEFA:ABC:B:AEF ; (**We cannot use double colon twice for different zeros appearing in address)\nNetwork Prefix of IPV6 Day 7| IPv6 Network and Host Address | CCNA | IT Index | CCNA Full course\nStarting 64 defines Network prefix and last 64 bits host ID.\nLast 64 bits has 48 MAC address Included so no need of ARP. The address format of 64 bits is EUI (Extended Unique Identifier).\nHow to create 64 bits from 48 bits mac address ?\nTake MAC address 7th bit set from 0 to 1 After 16th bit Fix FFFE Eg: 1111:2222:3333 be 48 bit MAC address Now,\n00010001 flip that 7th bit to 1 so we get,00010011 i.e 1311:2222:3333 (16th bit after flipping) now 16 bit after add FFFE So we get,1311:22FF:FE22:3333 which is 64 bit EUI.\nIPV6 Address Spaces: https://www.youtube.com/watch?v=QnRezw0f_KQ\u0026list=PLhn6wxTEOjSFxbPBdwbu2NG_Q9atKkdln\u0026index=3\nLink local address: FE8X Non Routable in Internet can be discovered in LAN Site local address: FECX Global Address: 2XXX Multicast Address: FFXX Anycast Link Local Address(FE8X)\nStarting 10 bit fixed(FE8 Upto 10 bits) Next 54 bit set to 0 Last 64 bit are used for Customer ID Non routable cannot be used with routing algorithm Site local Address(FECX)\nStarting 10 bit are fixed Next 38 bit set to zero Next 16 bit are defined as private subnet Last 64 bit are customer ID Global Address(2XXX)\nStarting 3 bits are fixed Next 13 bits define TLA(Top level Aggregation) Next 8 are reserved for future Next 24 bits define the NLA(Next level Aggregation) like ISP Next 16 bits define SLA(Site level Aggregation) For representing Organization Last 64 bit define Customer ID Anycast Address\nUsed to send packets to the nearest device in a group of devices sharing the same address. No specific prefix Useful for services like DNS, content delivery networks (CDNs), and load balancing Unique Local Address\nHas FD00::/8 I.E 8 bits are fixed followed by 0 and last 64 being interface ID Solicited Node Multicast Address\nTake the last 24 bits of the Interface ID Combine the prefix FF02::1:FF with this bits and add last 24 bits All-Nodes Multicast Address: FF02::1 (all nodes on the link). All-Routers Multicast Address: FF02::2 (all routers on the link). IPv4-Mapped IPv6 Address:\nRepresents an IPv4 address in an IPv6 format for compatibility. Format: ::FFFF: (e.g., ::FFFF:192.0.2.1). IPv4-Compatible IPv6 Address (Deprecated):\nPreviously used for transitioning from IPv4 to IPv6. Format: :: (e.g., ::192.0.2.1) Q.N) The question asks for the generation of various IPv6 addresses and identifiers based on the given MAC address: 02:1A:23:B2:45:A4\n64-bit Interface ID: 00:1A:23:FF:FE:B2:45:A4 Link-Local Address: FE80::001A:23FF:FEB2:45A4 Unique Local Address: FD00::001A:23FF:FEB2:45A4 (example with FD00::/8) Solicited-Node Multicast Address: FF02::1:FFB2:45A4 Chapter 3 Components of Mail System The MUA (email client) is used to compose and send an email. The email is submitted to the server via Mail Submission (MSA), which forwards it to the MTA. The MTA routes the email to the recipient’s mail server using SMTP. The recipient’s MDA delivers the email to their inbox on the mail server. The recipient accesses their email using Mail Access protocols like IMAP, POP3, or webmail. SMTP Application layer protocol\nUse process store and forward\nClient who want to send open TCP connection to SMTP server.\nAs soon it listens for TCP from client SMTP process initiates connection on port (25).\nAfter establishing connection client process sends mail to server and acknowledges it.\nWhen message arrives at destination server it uses POP or IMAP to download the mail. SMTP is message transfer agent and POP and IMAP are message access agent.\nHow SMTP (Simple Mail Transfer Protocol) Works\nSMTP is the standard protocol for sending emails over the internet. It is used to transfer emails from the sender’s mail server to the recipient’s mail server and between mail servers. Here’s a detailed explanation of how SMTP works:\nKey Roles in SMTP:\nMail User Agent (MUA): The email client (e.g., Outlook, Gmail) that a user interacts with to compose and send an email. Mail Transfer Agent (MTA): The server that handles the actual transmission of the email from the sender’s domain to the recipient’s domain. Steps in the SMTP Process:\n1. Email Composition and Submission:\nThe user composes an email using an MUA (like an email client or webmail service). When the user hits “Send,” the MUA sends the email to the sender’s mail server (SMTP server) using SMTP over port 587 (submission port). 2. Establishing an SMTP Connection:\nThe sender’s SMTP server establishes a connection with the recipient’s SMTP server over port 25 (the standard SMTP port for server-to-server communication). A three-step handshake occurs between the servers: HELO/EHLO Command: The sender’s server identifies itself to the recipient’s server. The recipient’s server responds, acknowledging the sender’s request. Both servers agree to proceed with the transfer. 3. Mail Transfer:\nThe sender’s SMTP server sends the email in a specific format: MAIL FROM: Specifies the sender’s email address. RCPT TO: Specifies the recipient’s email address. DATA: The actual content of the email, including the header (e.g., Subject, Date) and body (the email message itself). The recipient’s server acknowledges receipt of the email with a 250 OK status message. 4. Recipient Domain Lookup (DNS):\nIf the recipient’s domain is not on the sender’s server, the sender’s SMTP server queries the Domain Name System (DNS) for the recipient’s mail server’s IP address (MX record). Once the IP is resolved, the email is forwarded to the appropriate SMTP server. 5. Mail Queueing and Delivery:\nIf the recipient’s SMTP server is not reachable: The sender’s SMTP server queues the email and retries sending at regular intervals. Once the recipient’s SMTP server receives the email: It stores the message in the recipient’s mailbox, managed by the Mail Delivery Agent (MDA). POP: Pop works mostly on port 110.\n**IMAP:**IMAP uses port number 143.\nFTP(File transfer Protocol) File Transfer Protocol (FTP) is a network protocol for transmitting files between computers over TCP/IP connections. Within the TCP/IP suite, FTP is considered an application layer protocol.\nWorking of FTP\nFTP connection needs two parties to establish and communicate on the network. To do that, users need to have permission by providing credentials to the FTP server. Some public FTP servers may not require credentials to access their files. The practice is common in a so-called anonymous FTP.\nTwo channels in FTP:\nControl Channel: Initiates the instruction and response. TCP connection port for FTP server is 21.This connection is used by Control process also called Protocol Interpreter.\nData Channel: Distribution of data happens here. Connection is established between Data transfer process of client and server. Port 20 is used. Closes when files are transferred.. During file transfer client must define type of file to be transferred ,data structure used.\nWorking in Active and Passive Mode:\nIn Active mode:\nThe client initiates a control connection to the server (port 21). The server initiates a data connection back to the client on a random port (typically \u003e1024). Problem:\nFirewalls and NAT devices often block incoming connections to the client unless explicitly allowed. In Passive mode:\nThe client initiates the control connection to the server (port 21) as usual. The server opens a random port for the data connection and informs the client. The client then initiates the data connection to the server on this random port. Benefits:\nNo inbound connections to the client are required, which avoids firewall/NAT restrictions. The client maintains control over both connections, making it easier to traverse NAT or firewall configurations. Modes of Data transmission\nStream Mode: It is default, Data is sent as a continuous stream of bytes. If data is in file structure no EOF is needed. If in record structure each record has 1 byte EOR and each file has 1 byte EOF character. Best for networks with stable connections and files requiring minimal processing.\nBlock mode :\nData is divided into blocks, and each block is sent with a header containing control information. Each block has 3 bytes header, first block descriptor, second and third defines size of block in bytes. Used in systems where reliable data transfer is critical or where interruptions are likely.\nCompressed Mode:\nData is compressed ,compression method used is Run Length Encoding. Useful for transferring large text files or data over low-bandwidth networks.\nAspect Thin Client Thick Client Definition A client device that relies on a central server for processing and storage. A client device capable of performing most processing locally, with minimal reliance on a server. Processing Minimal processing is done on the client; most tasks are handled on the server. Most processing is performed locally on the client device. Storage No or limited local storage; relies on the server for storing data and applications. Stores data and applications locally on the client device. Dependency Highly dependent on the server for functionality. Less dependent on the server; can operate independently for most tasks. Hardware Requirements Requires lightweight hardware (low CPU, RAM, storage). Requires powerful hardware (higher CPU, RAM, storage). Software Requirements Runs minimal software (e.g., an OS and remote access tools). Runs full software suites, including operating systems and applications. Network Dependency Needs a constant and reliable network connection to function. Can function offline; network is needed only for specific tasks (e.g., syncing). Examples Virtual Desktop Infrastructure (VDI), Citrix Receiver. Desktop PCs, laptops running standalone applications. Cost Cheaper due to minimal hardware and software requirements. More expensive because of advanced hardware and software. Performance Performance depends on server capacity and network speed. Performance is self-contained, depending on local resources. Use Case Environments requiring centralized management, like schools, offices, or call centers. Environments requiring high local processing, like gaming, video editing, or standalone application development. Multiprotocol Multiprotocol support refers to a system, software, or device’s capability to handle and communicate using multiple communication protocols.\nMulti-Protocol Label Switching (MPLS) is a high-performance routing technique used in modern networking to speed up and manage traffic flows across wide area networks (WANs). It operates by forwarding packets based on labels instead of IP addresses, making routing decisions faster and more efficient.\nHow MPLS Works: Ingress Router: The first router in the MPLS network assigns a label to the incoming packet based on its destination or other criteria. Label-Switched Routers (LSRs): They assign packet to Forward Equivalence Class(FEC) And then Label switched packet(LSP). Intermediate routers forward the packet based on the label without looking at the IP header. Egress Router: The last router removes the label and forwards the packet to its destination using traditional IP routing. Key Components of MPLS: Label: A short identifier added to the packet by the ingress router. Contains information like LSP, QoS priority, and forwarding equivalence class (FEC). Label-Switched Path (LSP): A unidirectional path defined by labels from ingress to egress router. Forwarding Equivalence Class (FEC): A group of packets that are treated the same way by the MPLS network, based on criteria like destination or service type. Label Distribution Protocol (LDP): Protocol used to distribute labels between routers. Benefits of MPLS Scalability Improved bandwidth Utilization Improved Uptime QoS quality of service to prioritize traffic ensuring better performance for data like VoIP or video stream. QUIC protocol By replacing TCP with UDP and encrypting most of its payload, QUIC reduces the time it takes to start viewing the content two to three times, while maintaining data security. QUIC was developed by Google (runs on Chrome \u0026 Opera) and was designed to compensate for HTTP/2 deficiencies.\nUnlike TCP, which stops everything to recover lost data, QUIC manages errors at the individual stream level. For example, if one stream (like a favicon request) has an error, other streams can keep working without being delayed. This makes QUIC faster and more efficient, especially on unreliable networks, because data can continue flowing while only the problematic stream is fixed.\nQUIC also improves speed by encrypting each packet separately, so partial packets don’t cause delays in processing. With QUIC, all these processes—like encryption and error handling—are optimized and completed in a single handshake, reducing latency and increasing performance.\nChapter 4 HTTP Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting hypermedia documents, such as HTML HTTP follows a classical client-server model, with a client opening a connection to make a request, then waiting until it receives a response from the server. HTTP is a stateless protocol, meaning that the server does not keep any session data between two requests, although the later addition of cookies adds state to some client-server interactions. Working Of HTTP\nClient initiates TCP connection at port 80 TCP Three-Way Handshake: The client and server establish a TCP connection using the Three-Way Handshake: The client sends a SYN packet. The server responds with a SYN-ACK packet. The client replies with an ACK packet. Once this handshake is complete, the TCP connection is established. HTTP Request Sent Over TCP: After the TCP connection is ready, the client sends the HTTP request (e.g., GET, POST) to the server over this connection. HTTP Response Sent Over TCP: The server processes the request and sends back an HTTP response (e.g., 200 OK, 404 Not Found) over the same TCP connection. TCP Connection Persistence (Optional): If HTTP/1.1 or later is used, the TCP connection is often kept open (persistent connection) for multiple HTTP requests and responses, reducing the overhead of establishing new TCP connections. If the Connection: close header is included, the TCP connection will be closed after the response. HTTP Headers 1. Request Headers\nProvide information about the client and its request. Examples: Host: Server’s domain name. User-Agent: Client software details. Accept: Supported response formats. Authorization: Authentication credentials. Cookie: Sends stored cookies. 2. Response Headers\nProvide information about the server’s response. Examples: Content-Type: Type of response data (e.g., text/html). Content-Length: Size of response body. Set-Cookie: Sets cookies for the client. Cache-Control: Caching policies. Server: Server software details. 3. General Headers\nApply to both requests and responses; not specific to the body. Examples: Date: Timestamp of the message. Connection: Connection management (e.g., keep-alive). 4. Entity Headers\nProvide metadata about the message body. Examples: Content-Encoding: Compression type (e.g., gzip). Content-Language: Language of the content. Content-Disposition: How to handle the content (e.g., download). 5. Custom Headers\nUser-defined headers for specific application needs. Example: X-Custom-Header: CustomValue Persistent and Non Persistent Connection 1. Non-Persistent Connections\nDefinition: A new TCP connection is established for each HTTP request-response pair. Once the server sends the response, the connection is closed.\nSteps:\nClient establishes a TCP connection with the server. Client sends an HTTP request. Server processes the request and sends the response. TCP connection is closed. If another resource is needed (e.g., an image or stylesheet), a new connection is opened. There are two types:\n1. Non-Persistent-Without parallel connection: Each objection takes two RTTs (assuming no window limit) one for TCP connection and the other for HTTP image/text file.\n2. Non-Persistent-With parallel connection: Non-Persistent with a parallel connection requires extra overhead in transferring data.\nPersistent Connections\nDefinition: A single TCP connection is reused for multiple HTTP request-response pairs, reducing the overhead of repeatedly establishing connections. Steps: Client establishes a TCP connection with the server. Client sends multiple HTTP requests over the same connection. Server processes each request and sends responses over the same connection. Connection remains open for additional requests or is explicitly closed. 1. Non-Pipelined Persistent Connection: In a Non-pipeline connection, we first establish a connection that takes two RTTs then we send all the object’s images/text files which take 1 RTT each (TCP for each object is not required).\n2. Pipelined Persistent Connection: In Pipelined connection, 2RTT is for connection establishment and then 1RTT(assuming no window limit) for all the objects i.e. images/text.\nHTTP Request Methods GET: Retrieve a information from server using URI contains Status line, header, empty line (separate header from message body) and message body.\nHEAD: message contains status line and header only\nPOST: Send data to server like form data, file upload. Server response contain status line, header, empty line and message body.\nPUT: Request server to store included body at location specified by given URI.\nDELETE: Request server to delete a file at given URI\nCONNECT: Used to establish network connection to web server over HTTP.\nTRACE: Content of request message to web client used as debugging tool.\nOPTIONS: Used to find out HTTP Methods and other option supported by web server.\nWeb servers Remaining biccha ko part has been skimmed off by me from manual and needs to be Rewritten and restudied. BRD ko assessment ko lagi time nabhara i skipped them off.\nAJAX (Asynchronous JavaScript and XML) AJAX is a set of web development techniques used to create dynamic, interactive web applications. It allows web pages to retrieve data from a server asynchronously (in the background) without refreshing the entire page. This enables web applications to update only the relevant parts of a page without reloading it.\nHow AJAX Works:\nUser Interaction: The user interacts with a webpage (e.g., clicks a button, submits a form), which triggers an AJAX request. AJAX Request: JavaScript creates an XMLHttpRequest object and sends a request to the server in the background. Server Response: The server processes the request and sends back the required data (e.g., JSON, XML, HTML) without refreshing the page. Update the Webpage: JavaScript updates the relevant parts of the webpage with the server’s response, without reloading the entire page. Why AJAX is different?\nAJAX (Asynchronous JavaScript and XML) is different from traditional web development because it allows web pages to send and receive data from a server asynchronously, meaning the page doesn’t need to reload. It enables partial page updates, improving user experience by keeping the page interactive while only refreshing the necessary parts of the page.\nAdvantages\nImproved User Experience: AJAX allows parts of a web page to update dynamically, improving responsiveness and interactivity without requiring full page reloads. Faster Updates: Since only parts of the page are updated, the user experience feels faster and more fluid. Reduced Server Load: Asynchronous requests mean the server can handle multiple requests simultaneously, without waiting for the full page reload. AJAX Disadvantages:\nComplexity: Managing multiple asynchronous requests and responses can make your code more complex. Browser Compatibility: Older browsers may not fully support AJAX or the Fetch API, although this is less of a problem today. SEO Concerns: Content dynamically loaded with AJAX may not be indexed by search engines, potentially affecting SEO. Browser as Rendering Engine A browser is essentially a software application designed to retrieve, interpret, and display web content, such as HTML, CSS, and JavaScript, from the internet.\nUser Interface (UI): The UI includes all the elements that a user interacts with, such as the address bar, back/forward buttons, tabs, bookmarks, and the main display area (where the webpage is shown). It’s the visible part of the browser that lets users input URLs, navigate through pages, and access browser settings. Browser Engine: The browser engine acts as a mediator between the user interface and the rendering engine. It receives user input (e.g., URL or button clicks) and communicates with the rendering engine to display the page. It also handles tasks like processing requests to load new pages or interacting with JavaScript and other resources on the page. Rendering Engine (Rendering Engine/HTML Parser): The rendering engine is responsible for interpreting the HTML, CSS, and JavaScript and converting them into a visual representation (the web page) that users can interact with. It performs the following tasks: Parsing HTML: It converts the raw HTML code into a DOM (Document Object Model) tree, representing the structure of the webpage. CSS Styling: The engine applies the CSS rules to the DOM elements to style them accordingly. Layout: It calculates the position and size of each element on the page based on CSS properties like margins, padding, and grid/flexbox layouts. Painting: It fills in the pixels of each element with the appropriate visual properties (color, borders, etc.). Compositing: After the elements are painted, they are combined into layers and presented to the user. JavaScript Engine (V8, SpiderMonkey, etc.): The JavaScript engine executes JavaScript code embedded in the page. This engine interprets or compiles JavaScript code into machine code that the browser can run. It enables dynamic interactivity on the page, such as handling button clicks, form submissions, animations, or making asynchronous requests (AJAX). Browsers use different JavaScript engines; for instance, Google Chrome uses V8, while Mozilla Firefox uses SpiderMonkey. Networking: The networking component handles all network-related tasks, such as sending requests to the server (HTTP requests) and retrieving resources like HTML, CSS, JavaScript, images, and videos. It handles protocols like HTTP and HTTPS to communicate with web servers. Data Storage: Browsers have various mechanisms for storing data locally. This includes cookies (small pieces of data stored by websites), local storage (key-value pairs for persistent data), and IndexedDB (a more advanced way to store large amounts of structured data for web apps). UI Backend (Optional): The UI backend is responsible for drawing basic elements like widgets and buttons. This component uses the operating system’s UI services and libraries (like Windows, macOS, or Linux) to render the UI. Flow of Rendering a Page:\nThe browser engine receives the URL from the user and sends a request via the networking component. The server responds with the HTML, which is passed to the rendering engine. The rendering engine parses the HTML, applies CSS styles, and executes JavaScript, building the visual representation (DOM, CSSOM, and Render Tree). The JavaScript engine runs any embedded or external scripts. The rendering engine lays out the page, paints it, and composites the layers for final display. The browser finally renders the fully styled and interactive page to the user interface for the user to interact with. Web hosting and its types Shared Web Hosting: In shared web hosting, multiple websites are hosted on the same server, sharing its resources (such as CPU, memory, and bandwidth). It’s the most cost-effective option since the server’s maintenance and resources are distributed among many users. However, this means performance can be affected if other sites on the server use a lot of resources. Advantages: Affordable Easy to set up Ideal for small websites or personal blogs with low traffic Disadvantages: Limited resources (CPU, memory, bandwidth) Lower performance and security due to sharing resources with other sites Less control over server settings Dedicated Hosting: With dedicated hosting, a client rents an entire server exclusively for their website. This gives them full control over the server’s resources, such as storage, CPU, memory, and software configurations. It’s ideal for large businesses or websites with high traffic that require more power, security, and customization. Advantages: Full control over server resources and configurations High performance with no resource sharing Enhanced security and reliability Disadvantages: Expensive Requires technical expertise to manage the server Overkill for small websites or those with lower traffic Virtual Private Hosting (VPS - Virtual Private Server): VPS hosting is a step up from shared hosting. In VPS, a physical server is divided into multiple virtual servers, each with its own operating system, resources (CPU, RAM, disk space), and configurations. Though you share the physical server with other users, you have more control and guaranteed resources. Advantages: More control and flexibility compared to shared hosting Dedicated resources, ensuring better performance More affordable than dedicated hosting Disadvantages: More expensive than shared hosting Still shares a physical server with others, so performance could still be affected by other users Requires some technical knowledge to manage Virtual Hosting allows multiple websites to share a single physical server. With virtual hosting, the server’s resources (CPU, memory, storage) are shared, but each website appears to have its own dedicated hosting environment.\nVirtual Hosting allows multiple websites to share a single physical server. With virtual hosting, the server’s resources (CPU, memory, storage) are shared, but each website appears to have its own dedicated hosting environment. This helps save costs while enabling multiple domains to be hosted on the same server. There are three primary types of virtual hosting: port-based, name-based, and IP-based.\nPort-Based Virtual Hosting: In port-based virtual hosting, multiple websites are hosted on the same IP address, but each website is assigned a unique port number. The server differentiates requests based on the port number specified in the URL. Example: http://example1.com:8080 http://example2.com:8081 The port number is included in the URL to specify which website the user is trying to access. This approach is rarely used because users typically don’t include port numbers in their browsers, and it can lead to confusion. Advantages: Allows multiple sites on the same server without needing extra IP addresses. Disadvantages: Users have to specify a port number in the URL, which is not ideal for a seamless user experience. 2)Name-Based Virtual Hosting:\nName-based virtual hosting is the most common and widely used method. In this method, multiple websites are hosted on the same server, using the same IP address. The server differentiates between the websites based on the hostname (domain name) sent in the HTTP request header. For name based virtual Hosting HTTP/1.1 supported webrowser is needed that to include tarfer hostname in request. When a request is made to the server, the domain name (e.g., example1.com) is included in the request, and the server uses this information to direct the request to the appropriate website. Example: http://example1.com http://example2.com Both websites can share the same IP address, and the server uses the domain name to route the request to the correct website. Advantages: Cost-effective (multiple websites can share the same IP address). Easy to manage and configure. Users don’t need to enter port numbers. Disadvantages: Not ideal for SSL (Secure Socket Layer) certificates in older systems, as SSL requires a specific IP per domain for proper encryption. However, newer solutions like SNI (Server Name Indication) can resolve this issue. IP-Based Virtual Hosting: In IP-based virtual hosting, each website hosted on the server is assigned a unique IP address. The server differentiates between the websites based on the IP address in the request. For example: http://192.168.1.1 (for example1.com) http://192.168.1.2 (for example2.com) Each website has its own IP address, even though they reside on the same physical server. Advantages: Each domain gets its own IP address, making it ideal for SSL certificates, as each domain can have a separate IP address for secure connections. More flexibility in handling requests. Disadvantages: Requires more IP addresses, which can become expensive or limited (especially with IPv4). Less efficient than name-based hosting due to the need for unique IP addresses for each site. Document Object Model (DOM) The Document Object Model (DOM) is an essential concept in web development that represents the structure of an HTML or XML document in a tree-like format. It provides a way to programmatically access and manipulate the content, structure, and style of a webpage. DOM is inteRface that allows developers to interact and modify the content of webpage dynamically using language like JS.\nTree Structure: The DOM represents a document as a tree of nodes, where each node represents a part of the document. The tree structure starts with a root node (the element in an HTML document) and branches out to child nodes that represent the document’s elements (e.g., , , , etc.). Node Types: In the DOM, every part of the document is a node. Common node types include: Element nodes (e.g., , ) Text nodes (e.g., the content inside a tag) Attribute nodes (e.g., class, id in an element) Comment nodes (e.g., HTML comments) Tree Navigation and Hierarchy: The nodes in the DOM are connected in a hierarchical structure, allowing navigation between parent, child, and sibling nodes. This hierarchical relationship provides a clear way to traverse and manipulate the document. Parent node: The node directly above another node in the hierarchy. Child node: A node that is nested inside another node. Sibling node: Nodes that share the same parent. Dynamic Representation: The DOM is not static; it is dynamic, meaning that it can be modified in real-time through programming. Using JavaScript, developers can change the content, attributes, and structure of the document, which will instantly be reflected on the webpage. For example: If you change the content of an element using JavaScript (document.getElementById('myElement').innerText = 'New Content';), the DOM updates, and the page is automatically re-rendered to show the new content. Platform- and Language-Independent: The DOM is designed to be independent of the platform and programming language. Although it’s primarily used with JavaScript in web browsers, it can also be accessed and manipulated by other programming languages (e.g., Python, Java, etc.) when working with XML documents. ",
+  "wordCount" : "8257",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/blog/face-landmarks-detection/cover.jpg","datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/prtfoio/blog/i-and-i/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agrim Paneru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/prtfoio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/prtfoio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/prtfoio/blog/">Blogs</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Internet and Intranet
+    </h1>
+    <div class="post-description">
+      Internet and Intranet
+    </div>
+    <div class="post-meta">
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/blog/face-landmarks-detection/cover.jpg" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#i-and-i" aria-label="I AND I">I AND I</a></li>
+                <li>
+                    <a href="#chapter-1" aria-label="CHAPTER 1">CHAPTER 1</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#definition-of-autonomous-system-as" aria-label="Definition of Autonomous System (AS):">Definition of Autonomous System (AS):</a></li>
+                <li>
+                    <a href="#iana" aria-label="IANA">IANA</a></li>
+                <li>
+                    <a href="#functions-of-iana" aria-label="Functions Of IANA:">Functions Of IANA:</a></li>
+                <li>
+                    <a href="#key-functions-of-icann" aria-label="Key Functions of ICANN:">Key Functions of ICANN:</a></li></ul>
+                    
+                <li>
+                    <a href="#hierarchy-of-iana" aria-label="Hierarchy of IANA">Hierarchy of IANA</a><ul>
+                        
+                <li>
+                    <a href="#regional-internet-registries-rirs" aria-label="Regional Internet Registries (RIRs)">Regional Internet Registries (RIRs)</a></li>
+                <li>
+                    <a href="#national-internet-registry" aria-label="National Internet Registry">National Internet Registry</a></li>
+                <li>
+                    <a href="#lir" aria-label="LIR">LIR</a></li></ul>
+                </li>
+                <li>
+                    <a href="#isp" aria-label="ISP">ISP</a><ul>
+                        
+                <li>
+                    <a href="#1-tier-1-isps" aria-label="1. Tier 1 ISPs:">1. Tier 1 ISPs:</a></li>
+                <li>
+                    <a href="#2-tier-2-isps" aria-label="2. Tier 2 ISPs:">2. Tier 2 ISPs:</a></li>
+                <li>
+                    <a href="#3-tier-3-isps" aria-label="3. Tier 3 ISPs:">3. Tier 3 ISPs:</a></li></ul>
+                </li>
+                <li>
+                    <a href="#qn-how-to-isp-interconnect" aria-label="Q.N) How to ISP interconnect?">Q.N) How to ISP interconnect?</a></li>
+                <li>
+                    <a href="#internet-backbone" aria-label="Internet Backbone">Internet Backbone</a><ul>
+                        
+                <li>
+                    <a href="#necessities-of-internet-backbone-infrastructure" aria-label="Necessities of Internet Backbone Infrastructure:">Necessities of Internet Backbone Infrastructure:</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-2" aria-label="Chapter 2">Chapter 2</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#ip-definition" aria-label="IP Definition">IP Definition</a></li>
+                <li>
+                    <a href="#application-layer" aria-label="Application layer">Application layer</a></li>
+                <li>
+                    <a href="#transport-layer" aria-label="Transport Layer">Transport Layer</a></li>
+                <li>
+                    <a href="#internet-layer" aria-label="Internet Layer">Internet Layer</a></li>
+                <li>
+                    <a href="#network-access-layer" aria-label="Network Access Layer">Network Access Layer</a></li>
+                <li>
+                    <a href="#ipv4-header-format" aria-label="IPV4 HEADER FORMAT">IPV4 HEADER FORMAT</a></li>
+                <li>
+                    <a href="#1-version-4-bits" aria-label="1. Version (4 bits)">1. Version (4 bits)</a></li>
+                <li>
+                    <a href="#2-ihl-internet-header-length-4-bits" aria-label="2. IHL (Internet Header Length, 4 bits)">2. IHL (Internet Header Length, 4 bits)</a></li>
+                <li>
+                    <a href="#3-type-of-service-tos--dscp-8-bits" aria-label="3. Type of Service (ToS) / DSCP (8 bits)">3. Type of Service (ToS) / DSCP (8 bits)</a></li>
+                <li>
+                    <a href="#4-total-length-16-bits" aria-label="4. Total Length (16 bits)">4. Total Length (16 bits)</a></li>
+                <li>
+                    <a href="#5-identification-16-bits" aria-label="5. Identification (16 bits)">5. Identification (16 bits)</a></li>
+                <li>
+                    <a href="#6-flags-3-bits" aria-label="6. Flags (3 bits)">6. Flags (3 bits)</a></li>
+                <li>
+                    <a href="#7-fragment-offset-13-bits" aria-label="7. Fragment Offset (13 bits)">7. Fragment Offset (13 bits)</a></li>
+                <li>
+                    <a href="#8-time-to-live-ttl-8-bits" aria-label="8. Time to Live (TTL, 8 bits)">8. Time to Live (TTL, 8 bits)</a></li>
+                <li>
+                    <a href="#9-protocol-8-bits" aria-label="9. Protocol (8 bits)">9. Protocol (8 bits)</a></li>
+                <li>
+                    <a href="#10-header-checksum-16-bits" aria-label="10. Header Checksum (16 bits)">10. Header Checksum (16 bits)</a></li>
+                <li>
+                    <a href="#11-source-address-32-bits" aria-label="11. Source Address (32 bits)">11. Source Address (32 bits)</a></li>
+                <li>
+                    <a href="#12-destination-address-32-bits" aria-label="12. Destination Address (32 bits)">12. Destination Address (32 bits)</a></li>
+                <li>
+                    <a href="#13-options-variable-length" aria-label="13. Options (variable length)">13. Options (variable length)</a></li>
+                <li>
+                    <a href="#limitations-of-ipv4-header" aria-label="Limitations of IPv4 header">Limitations of IPv4 header</a></li></ul>
+                    
+                <li>
+                    <a href="#ipv6-header" aria-label="IPV6 HEADER">IPV6 HEADER</a><ul>
+                        
+                <li>
+                    <a href="#summary-of-iv4-limitation-and-ipv6-improvements" aria-label="Summary of IV4 Limitation AND IPV6 Improvements">Summary of IV4 Limitation AND IPV6 Improvements</a></li>
+                <li>
+                    <a href="#fragmentation-of-ipv4-header" aria-label="Fragmentation of IPV4 header">Fragmentation of IPV4 header</a></li>
+                <li>
+                    <a href="#fragmentation-in-ipv6-header" aria-label="Fragmentation in IPV6 header">Fragmentation in IPV6 header</a></li>
+                <li>
+                    <a href="#problems-with-fragmentation" aria-label="Problems with fragmentation">Problems with fragmentation</a></li>
+                <li>
+                    <a href="#rfcs" aria-label="RFC’s">RFC’s</a></li>
+                <li>
+                    <a href="#categories-of-rfcs" aria-label="Categories of RFCs">Categories of RFCs</a></li></ul>
+                </li>
+                <li>
+                    <a href="#rfc-streams" aria-label="RFC Streams">RFC Streams</a></li>
+                <li>
+                    <a href="#ipv6" aria-label="IPV6">IPV6</a><ul>
+                        
+                <li>
+                    <a href="#network-prefix-of-ipv6" aria-label="Network Prefix of IPV6">Network Prefix of IPV6</a></li>
+                <li>
+                    <a href="#ipv6-address-spaces" aria-label="IPV6 Address Spaces:">IPV6 Address Spaces:</a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-3" aria-label="Chapter 3">Chapter 3</a><ul>
+                        
+                <li>
+                    <a href="#components-of-mail-system" aria-label="Components of Mail System">Components of Mail System</a></li>
+                <li>
+                    <a href="#smtp" aria-label="SMTP">SMTP</a></li>
+                <li>
+                    <a href="#ftpfile-transfer-protocol" aria-label="FTP(File transfer Protocol)">FTP(File transfer Protocol)</a></li>
+                <li>
+                    <a href="#multiprotocol" aria-label="Multiprotocol">Multiprotocol</a></li>
+                <li>
+                    <a href="#how-mpls-works" aria-label="How MPLS Works:">How MPLS Works:</a></li>
+                <li>
+                    <a href="#key-components-of-mpls" aria-label="Key Components of MPLS:">Key Components of MPLS:</a></li>
+                <li>
+                    <a href="#benefits-of-mpls" aria-label="Benefits of MPLS">Benefits of MPLS</a></li>
+                <li>
+                    <a href="#quic-protocol" aria-label="QUIC protocol">QUIC protocol</a></li></ul>
+                </li>
+                <li>
+                    <a href="#chapter-4" aria-label="Chapter 4">Chapter 4</a><ul>
+                        
+                <li>
+                    <a href="#http" aria-label="HTTP">HTTP</a></li>
+                <li>
+                    <a href="#http-headers" aria-label="HTTP Headers">HTTP Headers</a></li>
+                <li>
+                    <a href="#persistent-and-non-persistent-connection" aria-label="Persistent and Non Persistent Connection">Persistent and Non Persistent Connection</a></li>
+                <li>
+                    <a href="#http-request-methods" aria-label="HTTP Request Methods">HTTP Request Methods</a></li>
+                <li>
+                    <a href="#web-servers" aria-label="Web servers">Web servers</a></li>
+                <li>
+                    <a href="#ajax-asynchronous-javascript-and-xml" aria-label="AJAX (Asynchronous JavaScript and XML)">AJAX (Asynchronous JavaScript and XML)</a></li>
+                <li>
+                    <a href="#browser-as-rendering-engine" aria-label="Browser as Rendering Engine">Browser as Rendering Engine</a></li>
+                <li>
+                    <a href="#web-hosting-and-its-types" aria-label="Web hosting and its types">Web hosting and its types</a></li>
+                <li>
+                    <a href="#document-object-model-dom" aria-label="Document Object Model (DOM)">Document Object Model (DOM)</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="i-and-i">I AND I<a hidden class="anchor" aria-hidden="true" href="#i-and-i">#</a></h1>
+<h1 id="chapter-1">CHAPTER 1<a hidden class="anchor" aria-hidden="true" href="#chapter-1">#</a></h1>
+<h3 id="definition-of-autonomous-system-as"><strong>Definition of Autonomous System (AS):</strong><a hidden class="anchor" aria-hidden="true" href="#definition-of-autonomous-system-as">#</a></h3>
+<p>An <strong>Autonomous System (AS)</strong> is a collection of IP networks and routers that operate under the control of a single administrative entity and share a unified routing policy.</p>
+<ul>
+<li>It is identified by a globally unique number called an <strong>Autonomous System Number (ASN)</strong>, which is used in routing protocols to distinguish it from other ASes.</li>
+</ul>
+<h3 id="iana"><strong>IANA</strong><a hidden class="anchor" aria-hidden="true" href="#iana">#</a></h3>
+<p>oversees the global IP allocation,AS no allocation,rootzone mgmt in DNS and Internet numbers.Internet numbers include IP address,AS numbers,Protocol Numbers*(Protocol 6: TCP)* ,Port Numbers.</p>
+<h3 id="functions-of-iana"><strong>Functions Of IANA:</strong><a hidden class="anchor" aria-hidden="true" href="#functions-of-iana">#</a></h3>
+<p><strong>IP Address Allocation</strong>: Allocates IP address blocks to regional internet registries (RIRs).</p>
+<p><strong>DNS Root Zone Management</strong>: Manages the DNS root zone, ensuring the stability of the domain name system.</p>
+<p><strong>Protocol Parameter Assignment</strong>: Maintains protocol numbers and parameters as defined by technical standards (e.g., port numbers).</p>
+<p><strong>Management of Internet Numbers</strong>: Coordinates globally unique identifiers, such as Autonomous System Numbers (ASNs).</p>
+<p><strong>DNS Root Zone Management</strong></p>
+<p>The <strong>DNS Root Zone Management</strong> refers to the administration and oversight of the <strong>root zone</strong> of the <strong>Domain Name System (DNS)</strong>, which is the highest level of the hierarchical DNS system. The root zone is crucial for the operation of the entire internet&rsquo;s domain name resolution system.</p>
+<hr>
+<p>What is the DNS Root Zone?</p>
+<p>The <strong>DNS Root Zone</strong> is essentially the starting point of the DNS hierarchy. It contains information about the top-level domain (TLD) servers, such as:</p>
+<ul>
+<li><strong>Country Code TLDs (ccTLDs)</strong>: e.g., .uk for the United Kingdom, .jp for Japan.</li>
+<li><strong>Special-purpose TLDs</strong>: e.g., .int for international organizations.</li>
+<li><strong>Generic TLDs (gTLDs)</strong>: e.g., .com, .org, .net, .edu, and newer ones like .tech, .xyz.</li>
+</ul>
+<p><strong>ICANN&rsquo;s Role</strong>:</p>
+<ul>
+<li>Non-profit organization overseeing global domain name system (DNS) and IP address allocation.</li>
+</ul>
+<p><strong>ICANN</strong></p>
+<ul>
+<li>Ensures stability, security, and interoperability of the internet.</li>
+</ul>
+<h3 id="key-functions-of-icann"><strong>Key Functions of ICANN:</strong><a hidden class="anchor" aria-hidden="true" href="#key-functions-of-icann">#</a></h3>
+<p><strong>DNS Management</strong>: Coordinates the DNS to ensure domain names are mapped correctly to IP addresses.</p>
+<p><strong>TLD Management</strong>: Oversees <strong>Top-Level Domains (TLDs)</strong> like .com, .org, .net, and country-specific domains.</p>
+<p><strong>IP Address Allocation</strong>: Manages global distribution of <strong>IP addresses</strong> through IANA (Internet Assigned Numbers Authority).</p>
+<p><strong>Root Zone Management</strong>: Updates and maintains the DNS root zone file, essential for routing domain queries.</p>
+<p><strong>Registrar Accreditation</strong>: Accredits domain registrars to ensure they follow standards for domain registration.</p>
+<p><strong>Security and Stability</strong>: Works to ensure the <strong>security and resiliency</strong> of the internet&rsquo;s DNS infrastructure.</p>
+<h2 id="hierarchy-of-iana">Hierarchy of IANA<a hidden class="anchor" aria-hidden="true" href="#hierarchy-of-iana">#</a></h2>
+<h3 id="regional-internet-registries-rirs"><strong>Regional Internet Registries (RIRs)</strong><a hidden class="anchor" aria-hidden="true" href="#regional-internet-registries-rirs">#</a></h3>
+<p>IANA allocates IP address blocks to <strong>Regional Internet Registries (RIRs)</strong>. There are five RIRs, each serving a specific geographic region:</p>
+<ol>
+<li><strong>ARIN</strong> (American Registry for Internet Numbers) – North America.</li>
+<li><strong>RIPE NCC</strong> (Réseaux IP Européens Network Coordination Centre) – Europe, the Middle East, and Central Asia.</li>
+<li><strong>APNIC</strong> (Asia Pacific Network Information Centre) – Asia-Pacific region.</li>
+<li><strong>LACNIC</strong> (Latin America and Caribbean Network Information Centre) – Latin America and the Caribbean.</li>
+<li><strong>AFRINIC</strong> (African Network Information Centre) – Africa.</li>
+</ol>
+<ul>
+<li><strong>Role of RIRs</strong>: RIRs distribute IP address blocks to Internet Service Providers (ISPs) and large network operators within their regions.</li>
+</ul>
+<h3 id="national-internet-registry">National Internet Registry<a hidden class="anchor" aria-hidden="true" href="#national-internet-registry">#</a></h3>
+<p>Works under the umbrella of RIR and allocates the IP numbers at national level within specified Countries or economic unit.</p>
+<p>NIR operate through ASIA Pacific region Under APNIC.</p>
+<p>NIR operating are CNNIC(China internet network information center),JPNIC(Japan network information center).</p>
+<h3 id="lir">LIR<a hidden class="anchor" aria-hidden="true" href="#lir">#</a></h3>
+<p>A <strong>Local Internet Registry (LIR)</strong> is an organization, typically an <strong>Internet Service Provider (ISP)</strong> or a large enterprise, that is authorized by a <strong>Regional Internet Registry (RIR)</strong> to manage and distribute IP address blocks within a specific region. LIRs receive IP address allocations from RIRs and then sub-allocate these addresses to customers or internal networks, ensuring that internet addresses are efficiently distributed within their service area. In addition to managing IP address assignments, LIRs may also handle <strong>reverse DNS management</strong>, <strong>routing policy implementation</strong>, and support the <strong>IPv6 adoption</strong> process.</p>
+<p><strong>ISP</strong></p>
+<p>An <strong>Internet Service Provider (ISP)</strong> is a company or organization that provides individuals and businesses with access to the internet.Mercantile first internet company of nepal.</p>
+<p><img alt="image.png" loading="lazy" src="image.png"></p>
+<h2 id="isp">ISP<a hidden class="anchor" aria-hidden="true" href="#isp">#</a></h2>
+<p>ISPs operate at different levels based on their role in providing internet services. The main levels of ISPs are:</p>
+<h3 id="1-tier-1-isps">1. <strong>Tier 1 ISPs</strong>:<a hidden class="anchor" aria-hidden="true" href="#1-tier-1-isps">#</a></h3>
+<ul>
+<li><strong>Definition</strong>: These are the top-level ISPs that own and operate the backbone infrastructure of the internet. They have direct access to the global internet backbone and can exchange traffic with other Tier 1 providers without paying for it.</li>
+</ul>
+<p><strong>Roles</strong>: They provide internet access to other ISPs and manage large-scale internet infrastructure, ensuring the flow of data between regions and countries.</p>
+<ul>
+<li>Owns and operates global internet backbone infrastructure.</li>
+<li>Exchanges traffic directly with other Tier 1 ISPs without paying.</li>
+<li>Provides direct access to the global internet.</li>
+<li>Has large-scale, highly redundant global infrastructure.</li>
+<li><strong>Example</strong>: AT&amp;T, NTT Communications, and Level 3 Communications.</li>
+</ul>
+<h3 id="2-tier-2-isps">2. <strong>Tier 2 ISPs</strong>:<a hidden class="anchor" aria-hidden="true" href="#2-tier-2-isps">#</a></h3>
+<ul>
+<li><strong>Definition</strong>: These ISPs have access to the internet backbone through peering agreements with Tier 1 ISPs, but they also purchase bandwidth from Tier 1 providers.</li>
+</ul>
+<p><strong>Roles</strong>: Tier 2 ISPs serve as intermediaries, providing internet access to smaller ISPs or businesses and offering more localized or regional services.</p>
+<ul>
+<li>Operates on a regional or national level.</li>
+<li>Purchases bandwidth from Tier 1 ISPs for global access.</li>
+<li>Peers with other Tier 2 ISPs for additional connectivity.</li>
+<li>Serves as an intermediary between Tier 1 and Tier 3 ISPs.</li>
+<li><strong>Example</strong>: Comcast, , and Vodafone.</li>
+</ul>
+<h3 id="3-tier-3-isps">3. <strong>Tier 3 ISPs</strong>:<a hidden class="anchor" aria-hidden="true" href="#3-tier-3-isps">#</a></h3>
+<ul>
+<li><strong>Definition</strong>: These ISPs are smaller, usually local or regional, and rely on Tier 1 and Tier 2 ISPs for internet connectivity.</li>
+</ul>
+<p><strong>Role</strong>: Tier 3 ISPs provide internet services directly to consumers, businesses, or smaller networks. They typically do not own extensive infrastructure and may provide broadband, DSL, or fiber internet.</p>
+<ul>
+<li>Focuses on local or regional internet service provision.</li>
+<li>Relies on Tier 1 and Tier 2 ISPs for global internet access.</li>
+<li>Provides broadband or fiber-optic connections to end-users.</li>
+<li>Has limited infrastructure focused on last-mile connectivity.(last mile provider)</li>
+<li><strong>Example</strong>: Local cable providers or small regional internet companies.</li>
+</ul>
+<p>To <strong>operate the backbone infrastructure</strong> means to own, manage, and control the core network systems that form the foundation of the internet.</p>
+<h2 id="qn-how-to-isp-interconnect">Q.N) How to ISP interconnect?<a hidden class="anchor" aria-hidden="true" href="#qn-how-to-isp-interconnect">#</a></h2>
+<p>ISPs are connected through various methods that ensure efficient data flow across the internet. Peering agreements allow ISPs to exchange traffic directly with each other without payment, especially between Tier 1 ISPs, which form the backbone of the internet, and Tier 2 ISPs. Tier 2 and Tier 3 ISPs, often without the infrastructure to connect directly to the global network, typically enter transit relationships, where they pay Tier 1 ISPs for bandwidth to access the internet. Additionally, ISPs interconnect through fiber-optic cables, both undersea for global connectivity and land-based for regional and national traffic. Internet Exchange Points (IXPs) also facilitate these connections by providing physical locations where multiple ISPs can meet and exchange traffic</p>
+<h2 id="internet-backbone">Internet Backbone<a hidden class="anchor" aria-hidden="true" href="#internet-backbone">#</a></h2>
+<p>The <strong>internet backbone infrastructure</strong> refers to the high-speed, high-capacity network of <strong>fiber-optic cables</strong>, <strong>data centers</strong>, <strong>routers</strong>, and <strong>switches</strong> that form the core of the internet. This infrastructure connects different <strong>Internet Service Providers (ISPs)</strong>, regions, and countries, facilitating global communication and data transfer. The backbone is responsible for carrying vast amounts of data across long distances, ensuring that the internet is fast, reliable, and scalable.</p>
+<h3 id="necessities-of-internet-backbone-infrastructure"><strong>Necessities of Internet Backbone Infrastructure</strong>:<a hidden class="anchor" aria-hidden="true" href="#necessities-of-internet-backbone-infrastructure">#</a></h3>
+<ol>
+<li><strong>Global Connectivity</strong>: Enables seamless communication and access to content across different regions and countries.
+<ul>
+<li><em>Example</em>: Undersea cables linking continents, such as the <strong>SEA-ME-WE 3</strong> cable.</li>
+</ul>
+</li>
+<li><strong>High-Speed Data Transfer</strong>: Facilitates fast transmission of large data volumes with minimal delay.
+<ul>
+<li><em>Example</em>: Fiber-optic cables enabling smooth streaming of HD and 4K content on platforms like <strong>Netflix</strong>.</li>
+</ul>
+</li>
+<li><strong>Scalability</strong>: Allows the internet to grow and handle increasing demand as more devices and users come online.</li>
+<li><strong>Redundancy and Reliability</strong>: Provides alternative routes to ensure the internet remains operational even if one part of the network fails.</li>
+</ol>
+<h1 id="chapter-2">Chapter 2<a hidden class="anchor" aria-hidden="true" href="#chapter-2">#</a></h1>
+<h3 id="ip-definition">IP Definition<a hidden class="anchor" aria-hidden="true" href="#ip-definition">#</a></h3>
+<p>The Internet Protocol (IP) is a set of rules that allows computers and other devices to communicate over the Internet. It ensures that information sent from one device reaches the correct destination by using a unique set of numbers known as IP addresses</p>
+<p><strong>Layers of TCP/IP</strong></p>
+<p><img alt="image.png" loading="lazy" src="image%201.png"></p>
+<h3 id="application-layer">Application layer<a hidden class="anchor" aria-hidden="true" href="#application-layer">#</a></h3>
+<p>The application layer provides the way for the user to communicate with the system. Any service running on the host machine that provides the user interface is using the application layer.</p>
+<p>Accessing web pages, sending emails ,resolving domain name are examples of application layer.</p>
+<p><strong>DNS, FTP, HTTP/HTTPS, SMTP, POP, SNMP, DHCP, SSH &amp; TELNET</strong></p>
+<h3 id="transport-layer">Transport Layer<a hidden class="anchor" aria-hidden="true" href="#transport-layer">#</a></h3>
+<p>The transport layer communicates with the application layer and receives data from it. After receiving the data from the application layer, the transport layer divides the data into segments and assigns a sequence number to each segment.</p>
+<ul>
+<li>The transport layer uses TCP and UDP protocols for the communication of data.</li>
+<li>TCP is used for connection-oriented service and UDP is used for connectionless service.</li>
+<li>Instead of TCP and UDP, the transport layer also uses <strong>SCTP (Stream Control Transmission Protocol)</strong> for VoIP calls. SCTP combines the features of both TCP and UDP.</li>
+</ul>
+<h3 id="internet-layer">Internet Layer<a hidden class="anchor" aria-hidden="true" href="#internet-layer">#</a></h3>
+<p>Internet Protocol (IP) address is used to provide logical transmission of data over a network using <strong>best-effort delivery(<strong>best-effort delivery means that the IP is not providing any error detecting mechanism</strong>)</strong>  at the Internet layer.</p>
+<p>The Internet layer describes protocols for communication which are <strong>ARP</strong> (Address Resolution Protocol), <strong>RARP</strong> (Reverse Address Resolution Protocol), <strong>ICMP</strong> (Internet Control Message Protocol), and <strong>IGMP</strong> (Internet Group Message Protocol).</p>
+<h3 id="network-access-layer">Network Access Layer<a hidden class="anchor" aria-hidden="true" href="#network-access-layer">#</a></h3>
+<p>The network access layer is a combination of the data link layer and the physical layer. It provides the functionality of both the data link layer and the physical layer. The network access layer works based on the MAC address. It creates the frame and converts it into a stream of bits for machine-understandable language.</p>
+<ul>
+<li>The network access layer receives packets from the Internet layer and converts them into frames, then bits, for machine-readable transmission.</li>
+<li>It defines the data transmission format across network media.</li>
+</ul>
+<h3 id="ipv4-header-format">IPV4 HEADER FORMAT<a hidden class="anchor" aria-hidden="true" href="#ipv4-header-format">#</a></h3>
+<p>IPv4 is a connectionless protocol used for packet-switched networks.IPv4 uses 32-bit addresses.</p>
+<p>It has Unicast, broadcast, and multicast style of addresses.
+IPv4 supports VLSM (Virtual Length Subnet Mask).
+IPv4 uses the Post Address Resolution Protocol to map to the MAC address.
+RIP may be a routing protocol supported by the routed daemon</p>
+<p><img alt="image.png" loading="lazy" src="image%202.png"></p>
+<h3 id="1-version-4-bits"><strong>1. Version (4 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#1-version-4-bits">#</a></h3>
+<p>Specifies the version of the Internet Protocol. For IPv4, this value is always <strong>4</strong>.</p>
+<h3 id="2-ihl-internet-header-length-4-bits"><strong>2. IHL (Internet Header Length, 4 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#2-ihl-internet-header-length-4-bits">#</a></h3>
+<p>Defines the length of the IPv4 header in 32-bit words. The minimum value is <strong>5</strong> (20 bytes), and the maximum is <strong>15</strong> (60 bytes).</p>
+<h3 id="3-type-of-service-tos--dscp-8-bits"><strong>3. Type of Service (ToS) / DSCP (8 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#3-type-of-service-tos--dscp-8-bits">#</a></h3>
+<p>Indicates the quality of service for the packet, such as low delay, high throughput, or reliability. It can be used for prioritizing certain packets.</p>
+<h3 id="4-total-length-16-bits"><strong>4. Total Length (16 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#4-total-length-16-bits">#</a></h3>
+<p>Represents the total size of the packet (header + data) in bytes. The maximum value is <strong>65,535 bytes</strong>.</p>
+<h3 id="5-identification-16-bits"><strong>5. Identification (16 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#5-identification-16-bits">#</a></h3>
+<p>A unique identifier for the packet, used to reassemble fragmented packets at the destination.</p>
+<h3 id="6-flags-3-bits"><strong>6. Flags (3 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#6-flags-3-bits">#</a></h3>
+<p>Controls fragmentation:</p>
+<ul>
+<li><strong>Bit 0:</strong> Reserved (always 0).</li>
+<li><strong>Bit 1 (DF):</strong> Don&rsquo;t Fragment.</li>
+<li><strong>Bit 2 (MF):</strong> More Fragments (indicates more fragments follow).</li>
+</ul>
+<h3 id="7-fragment-offset-13-bits"><strong>7. Fragment Offset (13 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#7-fragment-offset-13-bits">#</a></h3>
+<p>Specifies the position of a fragment relative to the beginning of the original packet.</p>
+<h3 id="8-time-to-live-ttl-8-bits"><strong>8. Time to Live (TTL, 8 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#8-time-to-live-ttl-8-bits">#</a></h3>
+<p>Limits the packet&rsquo;s lifetime to prevent infinite loops. It’s decremented by one at each hop; the packet is discarded when TTL reaches 0.</p>
+<h3 id="9-protocol-8-bits"><strong>9. Protocol (8 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#9-protocol-8-bits">#</a></h3>
+<p>Indicates the protocol used in the data portion of the packet. For example:</p>
+<ul>
+<li><strong>1:</strong> ICMP</li>
+<li><strong>6:</strong> TCP</li>
+<li><strong>17:</strong> UDP</li>
+</ul>
+<h3 id="10-header-checksum-16-bits"><strong>10. Header Checksum (16 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#10-header-checksum-16-bits">#</a></h3>
+<p>Used to detect errors in the IPv4 header.</p>
+<h3 id="11-source-address-32-bits"><strong>11. Source Address (32 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#11-source-address-32-bits">#</a></h3>
+<p>The IP address of the sender.</p>
+<h3 id="12-destination-address-32-bits"><strong>12. Destination Address (32 bits)</strong><a hidden class="anchor" aria-hidden="true" href="#12-destination-address-32-bits">#</a></h3>
+<p>The IP address of the recipient.</p>
+<h3 id="13-options-variable-length"><strong>13. Options (variable length)</strong><a hidden class="anchor" aria-hidden="true" href="#13-options-variable-length">#</a></h3>
+<p>Optional field for additional features like security, timestamps, or record route. It makes the header size variable.</p>
+<h3 id="limitations-of-ipv4-header">Limitations of IPv4 header<a hidden class="anchor" aria-hidden="true" href="#limitations-of-ipv4-header">#</a></h3>
+<ul>
+<li><strong>Limited Address Space:</strong> IPv4&rsquo;s 32-bit addressing supports only about 4.3 billion unique IPs, insufficient for the modern internet.</li>
+<li><strong>Lack of Security Features:</strong> IPv4 lacks built-in encryption or authentication, making it vulnerable to spoofing and other attacks.</li>
+<li><strong>Variable Header Size:</strong> The IPv4 header size (20–60 bytes) complicates processing due to optional fields.</li>
+<li><strong>Limited Quality of Service (QoS):</strong> The ToS field is inadequate for prioritizing modern network traffic.</li>
+<li><strong>Fragmentation Overhead:</strong> Fragmentation at routers adds processing overhead and increases packet loss risks.</li>
+<li><strong>Processing Overhead:</strong> Header checksum calculations introduce delays in high-speed networks.</li>
+</ul>
+<h2 id="ipv6-header">IPV6 HEADER<a hidden class="anchor" aria-hidden="true" href="#ipv6-header">#</a></h2>
+<p>The IPv6 header is a part of the information sent over the internet. It’s always 40 bytes long and includes details like where data should go and how it should get there. IPv6 is designed to replace IPv4, offering a much larger address space and improved features.</p>
+<p><img alt="image.png" loading="lazy" src="image%203.png"></p>
+<ul>
+<li><strong>Version (4-bits)</strong>
+It shows the version of the internet protocol we used, i.e. 0110</li>
+<li><strong>Traffic Class (8-bits)</strong>
+This is an 8-bit field in which 8 bits are divided into two parts. The most significant 6-bit is for the type of service so that the router will get to know about what services need to be provided to the given packet. And for Explicit Congestion Notification (ECN), the least significant 2-bit is used.</li>
+<li><strong>Flow Label (20-bits)</strong>
+This 20-bit is required for maintaining the sequential flow of packets related to a particular communication. This field is also helpful in avoiding the reordering of packets. The source labels the sequence to help the router so that it can identify that a particular packet is related to a specific flow of data. It is generally used for real or streaming media.</li>
+<li><strong>Payload Length (16-bits)</strong>
+This field is used to help the router know how much information is stored in the payload of a particular packet.</li>
+<li><strong>Next Header (8-bits)</strong>
+This field is used to represent the type of extension header or if the extension header is not present then it shows the Upper Layer PDU.
+The value for Upper Layer PDU is the same as that of values in IPv4.</li>
+<li><strong>Hop Limit (8-bits)</strong>
+Hop limit is a field in a header that stops the header from going into an infinite loop in the network. It works the same as that of TTL in IPv4. When it passes a hop or router its value is decremented by 1. The packet is discarded when it reaches 0.</li>
+<li><strong>Source Address (128-bits)</strong>
+This field provides the address from where the packet originates.</li>
+<li><strong>Destination Address (128-bits)</strong>
+The destination address is the address of the packet’s intended recipient.</li>
+</ul>
+<h3 id="summary-of-iv4-limitation-and-ipv6-improvements">Summary of IV4 Limitation AND IPV6 Improvements<a hidden class="anchor" aria-hidden="true" href="#summary-of-iv4-limitation-and-ipv6-improvements">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th><strong>IPv4 Limitation</strong></th>
+          <th><strong>IPv6 Solution</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Limited address space</td>
+          <td>128-bit addresses (virtually unlimited space)</td>
+      </tr>
+      <tr>
+          <td>Lack of security</td>
+          <td>Built-in IPsec support</td>
+      </tr>
+      <tr>
+          <td>Variable header size</td>
+          <td>Fixed header size</td>
+      </tr>
+      <tr>
+          <td>Inefficient routing</td>
+          <td>Hierarchical addressing with better aggregation</td>
+      </tr>
+      <tr>
+          <td>Limited QoS</td>
+          <td>Traffic Class and Flow Label fields</td>
+      </tr>
+      <tr>
+          <td>Fragmentation overhead</td>
+          <td>Source-based fragmentation only</td>
+      </tr>
+      <tr>
+          <td>Address spoofing</td>
+          <td>Enhanced authentication and encryption</td>
+      </tr>
+      <tr>
+          <td>Mobility issues</td>
+          <td>Mobile IPv6 support</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="fragmentation-of-ipv4-header">Fragmentation of IPV4 header<a hidden class="anchor" aria-hidden="true" href="#fragmentation-of-ipv4-header">#</a></h3>
+<p>IP can support variable size packet format from 20 octets to 65,535 octets. But which packet size should an implementation use?</p>
+<p>The <strong>Maximum Transmission Unit (MTU)</strong> specifies the largest packet size (in bytes) that can be transmitted over a network without requiring fragmentation.</p>
+<p>For example, consider a host connected to an FDDI network, which is connected to an Ethernet network. The FDDI(MTU 4478)-connected host may elect to send a 4,478 octet packet, which will fit into an FDDI network, but the packet switch that is attempting to pass the packet into the Ethernet (<strong>MTU</strong>1500 )network will be unable to do so because it is too large.</p>
+<p>The solution adopted by IPv4 was the use of forward fragmentation. The basic approach is that any IP router that is unable to forward an IP packet into the next network because the packet is too large for this network may split the packet into a set of smaller IP fragments and forward each of these fragments. Destination host is responsible to reassemble the packet into original IP packet.</p>
+<p>The behavior is managed by a 32-bit field in the IPv4 header, which is subdivided into three sub-fields.</p>
+<p><img alt="image.png" loading="lazy" src="image%204.png"></p>
+<p>The first sub-field is a 16-bit packet identifier, which allows fragments that share a common packet identifier value to be identified as fragments of the same original packet.</p>
+<p>The second sub-field is a 3-bit vector of flags. The first bit is unused. The second is the Don’t Fragment flag. If this flag is set, the packet cannot be fragmented and must be discarded when it cannot be forwarded. The third bit is the More-Fragments-field and is set for all fragments bar the final fragment.</p>
+<p>The third sub-field is the fragmentation offset value, that is the offset of this fragment from the start of the original packet’s IP payload, measured in octawords (64-bit units).</p>
+<p><strong>Advantage</strong></p>
+<p><strong>1. Forward Flow Advantage:</strong> The sending host remains unaware of packet fragmentation, and all IP fragment packets continue toward their destination. This creates a streamlined &ldquo;forward&rdquo; flow of packets.</p>
+<p><strong>2. Efficient Processing and Flexible Delivery:</strong> While the fragmenting router bears the processing load, subsequent routers handle fragments without additional overhead. Fragments can take parallel paths and arrive in any order at the destination for reassembly.</p>
+<p>When dont fragment bit is set the router  if it cannot forward the packet it was expected to generate ICMP with addition of MTU of next hop network.</p>
+<h3 id="fragmentation-in-ipv6-header">Fragmentation in IPV6 header<a hidden class="anchor" aria-hidden="true" href="#fragmentation-in-ipv6-header">#</a></h3>
+<p>The essential change between IPv4 and IPv6 is that in IPv6 the Don’t-Fragment-bit is always on.</p>
+<p>The other change was that the packet identifier size was doubled in IPv6, using a 32-bit packet identifier field.</p>
+<p>An IPv6 router cannot fragment an IPv6 packet, so if the packet is too large for the next hop the router is required to generate an ICMP6 Type 2 packet, addressed to the source of the packet with a Packet Too Big (PTB) code, and also providing the MTU size of the next hop. While an IPv6 router cannot perform packet fragmentation, the IPv6 sender may fragment an IPv6 packet at the source.</p>
+<h3 id="problems-with-fragmentation">Problems with fragmentation<a hidden class="anchor" aria-hidden="true" href="#problems-with-fragmentation">#</a></h3>
+<ul>
+<li>Complicates Routers and End system</li>
+<li>fragmentation is used to create lethal DoS attacks,attacker seding a series of bizarre and unexpected fragments.</li>
+</ul>
+<h3 id="rfcs">RFC’s<a hidden class="anchor" aria-hidden="true" href="#rfcs">#</a></h3>
+<p>A Request for Comments (RFC) is a formal document created by the Internet Engineering Task Force (IETF) that outlines technical specifications, organizational notes and standards relevant to internet and networking technologies, including protocols such as routing, addressing and transport technologies.</p>
+<p>RFC is submitted Either for peer review or to convey new concepts and information.</p>
+<p><strong>Internet RFCs (Request for Comments)</strong> are a series of technical and organizational documents that serve as the foundation for the development and operation of the internet. They are published by the <strong>Internet Engineering Task Force (IETF)</strong> and related bodies.</p>
+<hr>
+<h3 id="categories-of-rfcs"><strong>Categories of RFCs</strong><a hidden class="anchor" aria-hidden="true" href="#categories-of-rfcs">#</a></h3>
+<ol>
+<li>
+<p><strong>Informational RFCs:</strong></p>
+<ul>
+<li>Informational RFCs provide general information, insights, or historical context about a particular technology, protocol, or concept. They are not intended to become internet standards.</li>
+</ul>
+</li>
+<li>
+<p><strong>Standards Track RFCs:</strong></p>
+<ul>
+<li>Define protocols or technologies intended for broad implementation as internet standards.</li>
+<li>Standards Track RFCs define protocols, systems, or procedures that are meant to become official <strong>Internet Standards</strong> after rigorous testing and community review.</li>
+</ul>
+<p><strong>Stages of Standardization:</strong></p>
+<ol>
+<li><strong>Proposed Standard</strong> Indicates that the protocol or specification is ready for testing and implementation but may evolve.</li>
+<li><strong>Draft Standard:</strong> A more refined version that has been implemented and tested by multiple independent parties.</li>
+<li><strong>Internet Standard:</strong> The final and stable version of a specification, widely implemented and tested</li>
+</ol>
+<ul>
+<li>Example: <strong>RFC 2616</strong> (HTTP/1.1).</li>
+</ul>
+</li>
+<li>
+<p><strong>Experimental RFCs:</strong></p>
+<ul>
+<li>Experimental RFCs describe ideas or technologies that are still in the early stages of development and testing</li>
+</ul>
+</li>
+<li>
+<p><strong>Best Current Practices (BCP):</strong></p>
+<p>BCP RFCs provide operational guidance and recommendations for best practices in managing networks or implementing protocols.</p>
+</li>
+<li>
+<p><strong>Historic RFCs:</strong></p>
+<ul>
+<li>Historic RFCs document outdated, obsolete, or superseded protocols and technologies.</li>
+</ul>
+</li>
+</ol>
+<h2 id="rfc-streams">RFC Streams<a hidden class="anchor" aria-hidden="true" href="#rfc-streams">#</a></h2>
+<p>RFCs (Request for Comments) are published under different <strong>streams.</strong> Each stream has its own purpose, governance, and focus. The <strong>RFC Editor</strong> manages these streams, ensuring their publication and preservation.</p>
+<p>There are four streams of RFC:</p>
+<ol>
+<li><strong>IETF Stream</strong></li>
+</ol>
+<p>RFCs in this stream come from the <strong>Internet Engineering Task Force (IETF)</strong>, a key standards organization for internet technologies. Primarily for developing and maintaining internet standards and protocols.
+Overseen by the <strong>Internet Engineering Steering Group (IESG)</strong>.</p>
+<ol start="2">
+<li><strong>IAB Stream</strong></li>
+</ol>
+<p>RFCs in this stream are produced by the <strong>Internet Architecture Board (IAB)</strong>,which provides strategic direction for the internet&rsquo;s architecture. Managed directly by the <strong>IAB</strong>.</p>
+<ol start="3">
+<li><strong>Independent Stream</strong></li>
+</ol>
+<p>Independent submissions are created by individuals or organizations not directly affiliated with IETF or IAB processes. Document innovative, experimental, or niche topics that may not align with IETF’s work.
+Overseen by the <strong>Independent Submissions Editor (ISE)</strong>.</p>
+<p><strong>4. IRTF Stream</strong></p>
+<p>RFCs in this stream come from the <strong>Internet Research Task Force (IRTF)</strong>, which focuses on long-term research related to internet protocols and technologies. Not intended for immediate standardization.
+Managed by the <strong>IRTF Chair</strong> with oversight from the IAB</p>
+<p>Each stream operates independently but contributes to the broader body of internet documentation.
+All streams converge at the <strong>RFC Editor</strong>, which ensures that RFCs, regardless of their origin, are published, maintained, and accessible. Each RFC header identifies the stream it belongs to, helping readers understand its context and purpose.</p>
+<h2 id="ipv6">IPV6<a hidden class="anchor" aria-hidden="true" href="#ipv6">#</a></h2>
+<p><a href="https://www.youtube.com/watch?v=9P3NTIb198E&amp;list=PLhn6wxTEOjSFxbPBdwbu2NG_Q9atKkdln&amp;index=1">Day 6 | What is IPv6 Address | CCNA | IT Index | Free | CCNA full course</a></p>
+<p>Features of IPV6:</p>
+<ul>
+<li>Increases Address space(128 Bits)</li>
+<li>Simplified Configuration</li>
+<li>Integrated Security (<strong>AH:</strong> Authentication Header and <strong>ESP:</strong> Encapsulation security payload in Extension header)</li>
+<li>Compatibility with IPV4</li>
+</ul>
+<p>Total group of 8 each of 16 bits each of in hexadecimal Each Hexadecimal is of 4 bits.</p>
+<p><strong>FE80:0001:0000:0000:AEFA:0ABC:000B:0AEF</strong></p>
+<p>Can be short handedly written as :</p>
+<p>**FE80:1::AEFA:ABC:B:AEF ; (**We cannot use double colon twice for different zeros appearing in address)</p>
+<h3 id="network-prefix-of-ipv6"><strong>Network Prefix of IPV6</strong><a hidden class="anchor" aria-hidden="true" href="#network-prefix-of-ipv6">#</a></h3>
+<p><a href="https://www.youtube.com/watch?v=7Gg3LsqLZH4&amp;list=PLhn6wxTEOjSFxbPBdwbu2NG_Q9atKkdln&amp;index=2">Day 7|   IPv6 Network and Host Address | CCNA | IT Index | CCNA Full course</a></p>
+<p>Starting 64 defines Network prefix and last 64 bits host ID.</p>
+<p>Last 64 bits has 48 MAC address Included so no need of ARP. The address format of 64 bits is EUI (Extended Unique Identifier).</p>
+<p><strong>How to create 64 bits from 48 bits mac address ?</strong></p>
+<ol>
+<li>Take MAC address</li>
+<li>7th bit set from 0 to 1</li>
+<li>After 16th bit Fix FFFE</li>
+</ol>
+<p>Eg: 1111:2222:3333 be 48 bit MAC address Now,</p>
+<p>000100<strong>0</strong>1 flip that 7th bit to 1 so we get,00010011 i.e 13<em><strong>11</strong></em>:<em><strong>22</strong></em>22:3333 (16th bit after flipping) now 16 bit after add FFFE So we get,1311:22FF:FE22:3333 which is 64 bit EUI.</p>
+<h3 id="ipv6-address-spaces">IPV6 Address Spaces:<a hidden class="anchor" aria-hidden="true" href="#ipv6-address-spaces">#</a></h3>
+<p><a href="https://www.youtube.com/watch?v=QnRezw0f_KQ&amp;list=PLhn6wxTEOjSFxbPBdwbu2NG_Q9atKkdln&amp;index=3">https://www.youtube.com/watch?v=QnRezw0f_KQ&amp;list=PLhn6wxTEOjSFxbPBdwbu2NG_Q9atKkdln&amp;index=3</a></p>
+<ol>
+<li><strong>Link local address: FE8X</strong> Non Routable in Internet can be discovered in LAN</li>
+<li><strong>Site local address: FECX</strong></li>
+<li><strong>Global Address:  2XXX</strong></li>
+<li><strong>Multicast Address: FFXX</strong></li>
+<li><strong>Anycast</strong></li>
+</ol>
+<p><strong>Link Local Address(FE8X)</strong></p>
+<ul>
+<li>Starting 10 bit fixed(<strong>FE8</strong> Upto 10 bits)</li>
+<li>Next 54 bit set to 0</li>
+<li>Last 64 bit are used for Customer ID</li>
+<li>Non routable cannot be used with routing algorithm</li>
+</ul>
+<p><strong>Site local Address(FECX)</strong></p>
+<ul>
+<li>Starting 10 bit are fixed</li>
+<li>Next 38 bit set to zero</li>
+<li>Next 16 bit are defined as private subnet</li>
+<li>Last 64 bit are customer ID</li>
+</ul>
+<p><strong>Global Address(2XXX)</strong></p>
+<ul>
+<li>Starting 3 bits are fixed</li>
+<li>Next 13 bits define <strong>TLA</strong>(Top level Aggregation)</li>
+<li>Next 8 are reserved for future</li>
+<li>Next 24 bits define the <strong>NLA</strong>(Next level Aggregation) like ISP</li>
+<li>Next 16 bits define <strong>SLA(<strong>Site level Aggregation</strong>)</strong> For representing Organization</li>
+<li>Last 64 bit define Customer ID</li>
+</ul>
+<p><strong>Anycast  Address</strong></p>
+<ul>
+<li>Used to send packets to the nearest device in a group of devices sharing the same address.</li>
+<li>No specific prefix</li>
+<li>Useful for services like DNS, content delivery networks (CDNs), and load balancing</li>
+</ul>
+<p><strong>Unique Local Address</strong></p>
+<ul>
+<li>Has FD00::/8 I.E 8 bits are fixed followed by 0 and last 64 being interface ID</li>
+</ul>
+<p><strong>Solicited Node Multicast Address</strong></p>
+<ul>
+<li>Take the last 24 bits of the Interface ID</li>
+<li>Combine the prefix FF02::1:FF with this bits and add last 24 bits</li>
+<li><strong>All-Nodes Multicast Address:</strong> <code>FF02::1</code> (all nodes on the link).</li>
+<li><strong>All-Routers Multicast Address:</strong> <code>FF02::2</code> (all routers on the link).</li>
+</ul>
+<p><strong>IPv4-Mapped IPv6 Address:</strong></p>
+<ul>
+<li>Represents an IPv4 address in an IPv6 format for compatibility.</li>
+<li>Format: <code>::FFFF:&lt;IPv4 address&gt;</code> (e.g., <code>::FFFF:192.0.2.1</code>).</li>
+</ul>
+<p><strong>IPv4-Compatible IPv6 Address (Deprecated):</strong></p>
+<ul>
+<li>Previously used for transitioning from IPv4 to IPv6.</li>
+<li>Format: <code>::&lt;IPv4 address&gt;</code> (e.g., <code>::192.0.2.1</code>)</li>
+</ul>
+<p><strong>Q.N) The question asks for the generation of various IPv6 addresses and identifiers based on the given MAC address: <code>02:1A:23:B2:45:A4</code></strong></p>
+<ul>
+<li><strong>64-bit Interface ID:</strong> <code>00:1A:23:FF:FE:B2:45:A4</code></li>
+<li><strong>Link-Local Address:</strong> <code>FE80::001A:23FF:FEB2:45A4</code></li>
+<li><strong>Unique Local Address:</strong> <code>FD00::001A:23FF:FEB2:45A4</code> (example with <code>FD00::/8</code>)</li>
+<li><strong>Solicited-Node Multicast Address:</strong> <code>FF02::1:FFB2:45A4</code></li>
+</ul>
+<h2 id="chapter-3">Chapter 3<a hidden class="anchor" aria-hidden="true" href="#chapter-3">#</a></h2>
+<h3 id="components-of-mail-system"><strong>Components of Mail System</strong><a hidden class="anchor" aria-hidden="true" href="#components-of-mail-system">#</a></h3>
+<ol>
+<li>The <strong>MUA</strong> (email client) is used to compose and send an email.</li>
+<li>The email is submitted to the server via <strong>Mail Submission (MSA)</strong>, which forwards it to the <strong>MTA</strong>.</li>
+<li>The <strong>MTA</strong> routes the email to the recipient’s mail server using <strong>SMTP</strong>.</li>
+<li>The recipient’s <strong>MDA</strong> delivers the email to their inbox on the mail server.</li>
+<li>The recipient accesses their email using <strong>Mail Access</strong> protocols like IMAP, POP3, or webmail.</li>
+</ol>
+<h3 id="smtp"><strong>SMTP</strong><a hidden class="anchor" aria-hidden="true" href="#smtp">#</a></h3>
+<p>Application layer protocol</p>
+<p>Use process store and forward</p>
+<p>Client who want to send open TCP connection to SMTP server.</p>
+<p>As soon it listens for TCP from client SMTP process initiates connection on port (25).</p>
+<p>After establishing connection client process sends mail to server and acknowledges it.</p>
+<p>When message arrives at destination server it uses POP or IMAP to download the mail. SMTP is message transfer agent and POP and IMAP are message access agent.</p>
+<p><strong>How SMTP (Simple Mail Transfer Protocol) Works</strong></p>
+<p>SMTP is the standard protocol for sending emails over the internet. It is used to transfer emails from the sender’s mail server to the recipient’s mail server and between mail servers. Here&rsquo;s a detailed explanation of how SMTP works:</p>
+<hr>
+<p><strong>Key Roles in SMTP:</strong></p>
+<ol>
+<li><strong>Mail User Agent (MUA)</strong>: The email client (e.g., Outlook, Gmail) that a user interacts with to compose and send an email.</li>
+<li><strong>Mail Transfer Agent (MTA)</strong>: The server that handles the actual transmission of the email from the sender’s domain to the recipient’s domain.</li>
+</ol>
+<hr>
+<p><strong>Steps in the SMTP Process:</strong></p>
+<p><strong>1. Email Composition and Submission:</strong></p>
+<ul>
+<li>The user composes an email using an MUA (like an email client or webmail service).</li>
+<li>When the user hits &ldquo;Send,&rdquo; the MUA sends the email to the sender&rsquo;s mail server (SMTP server) using <strong>SMTP over port 587</strong> (submission port).</li>
+</ul>
+<p><strong>2. Establishing an SMTP Connection:</strong></p>
+<ul>
+<li>The sender’s SMTP server establishes a connection with the recipient&rsquo;s SMTP server over <strong>port 25</strong> (the standard SMTP port for server-to-server communication).</li>
+<li>A <strong>three-step handshake</strong> occurs between the servers:
+<ol>
+<li><strong>HELO/EHLO Command</strong>: The sender’s server identifies itself to the recipient’s server.</li>
+<li>The recipient’s server responds, acknowledging the sender’s request.</li>
+<li>Both servers agree to proceed with the transfer.</li>
+</ol>
+</li>
+</ul>
+<p><strong>3. Mail Transfer:</strong></p>
+<ul>
+<li>The sender’s SMTP server sends the email in a specific format:
+<ul>
+<li><strong>MAIL FROM</strong>: Specifies the sender&rsquo;s email address.</li>
+<li><strong>RCPT TO</strong>: Specifies the recipient&rsquo;s email address.</li>
+<li><strong>DATA</strong>: The actual content of the email, including the header (e.g., Subject, Date) and body (the email message itself).</li>
+</ul>
+</li>
+<li>The recipient’s server acknowledges receipt of the email with a <strong>250 OK</strong> status message.</li>
+</ul>
+<p><strong>4. Recipient Domain Lookup (DNS):</strong></p>
+<ul>
+<li>If the recipient’s domain is not on the sender’s server, the sender’s SMTP server queries the <strong>Domain Name System (DNS)</strong> for the recipient’s mail server&rsquo;s IP address (MX record).</li>
+<li>Once the IP is resolved, the email is forwarded to the appropriate SMTP server.</li>
+</ul>
+<p><strong>5. Mail Queueing and Delivery:</strong></p>
+<ul>
+<li>If the recipient’s SMTP server is not reachable:
+<ul>
+<li>The sender’s SMTP server queues the email and retries sending at regular intervals.</li>
+</ul>
+</li>
+<li>Once the recipient’s SMTP server receives the email:
+<ul>
+<li>It stores the message in the recipient&rsquo;s mailbox, managed by the <strong>Mail Delivery Agent (MDA)</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>POP:</strong> Pop works mostly on port 110.</p>
+<p>**IMAP:**IMAP uses port number 143.</p>
+<p><img alt="image.png" loading="lazy" src="image%205.png"></p>
+<h3 id="ftpfile-transfer-protocol"><strong>FTP(File transfer Protocol)</strong><a hidden class="anchor" aria-hidden="true" href="#ftpfile-transfer-protocol">#</a></h3>
+<p>File Transfer Protocol (FTP) is a network protocol for transmitting files between computers over TCP/IP connections. Within the TCP/IP suite, FTP is considered an application layer protocol.</p>
+<p><strong>Working of FTP</strong></p>
+<p>FTP connection needs two parties to establish and communicate on the network. To do that, users need to have permission by providing credentials to the FTP server. Some public FTP servers may not require credentials to access their files. The practice is common in a so-called anonymous FTP.</p>
+<p>Two channels in FTP:</p>
+<p><strong>Control  Channel:</strong> Initiates the instruction and response. TCP connection port for FTP server is 21.This connection is used by Control process also called Protocol Interpreter.</p>
+<p><strong>Data Channel:</strong> Distribution of data happens here. Connection is established between Data transfer process of client and server. Port 20 is used. Closes when files are transferred.. During file transfer client must define type of file to be transferred ,data structure used.</p>
+<p><strong>Working in Active and Passive Mode:</strong></p>
+<p>In <strong>Active mode</strong>:</p>
+<ol>
+<li>The client initiates a <strong>control connection</strong> to the server (port 21).</li>
+<li>The server initiates a <strong>data connection</strong> back to the client on a random port (typically &gt;1024).</li>
+</ol>
+<p><strong>Problem</strong>:</p>
+<ul>
+<li>Firewalls and NAT devices often block incoming connections to the client unless explicitly allowed.</li>
+</ul>
+<p>In <strong>Passive mode</strong>:</p>
+<ol>
+<li>The client initiates the <strong>control connection</strong> to the server (port 21) as usual.</li>
+<li>The server opens a <strong>random port</strong> for the data connection and informs the client.</li>
+<li>The client then initiates the <strong>data connection</strong> to the server on this random port.</li>
+</ol>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li><strong>No inbound connections</strong> to the client are required, which avoids firewall/NAT restrictions.</li>
+<li>The client maintains control over both connections, making it easier to traverse NAT or firewall configurations.</li>
+</ul>
+<p><strong>Modes of Data transmission</strong></p>
+<p><strong>Stream Mode</strong>: It is default, Data is sent as a continuous stream of bytes. If data is in file structure no EOF is needed. If in record structure each record has 1 byte EOR and each file has 1 byte EOF character. Best for networks with stable connections and files requiring minimal processing.</p>
+<p><strong>Block mode :</strong></p>
+<p>Data is divided into blocks, and each block is sent with a header containing control information. Each block has 3 bytes header, first block descriptor, second and third defines size of block in bytes. Used in systems where reliable data transfer is critical or where interruptions are likely.</p>
+<p><strong>Compressed Mode:</strong></p>
+<p>Data is compressed ,compression method used is Run Length Encoding. Useful for transferring large text files or data over low-bandwidth networks.</p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Aspect</strong></th>
+          <th><strong>Thin Client</strong></th>
+          <th><strong>Thick Client</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Definition</strong></th>
+          <th>A client device that relies on a central server for processing and storage.</th>
+          <th>A client device capable of performing most processing locally, with minimal reliance on a server.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Processing</strong></th>
+          <th>Minimal processing is done on the client; most tasks are handled on the server.</th>
+          <th>Most processing is performed locally on the client device.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Storage</strong></th>
+          <th>No or limited local storage; relies on the server for storing data and applications.</th>
+          <th>Stores data and applications locally on the client device.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Dependency</strong></th>
+          <th>Highly dependent on the server for functionality.</th>
+          <th>Less dependent on the server; can operate independently for most tasks.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Hardware Requirements</strong></th>
+          <th>Requires lightweight hardware (low CPU, RAM, storage).</th>
+          <th>Requires powerful hardware (higher CPU, RAM, storage).</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Software Requirements</strong></th>
+          <th>Runs minimal software (e.g., an OS and remote access tools).</th>
+          <th>Runs full software suites, including operating systems and applications.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Network Dependency</strong></th>
+          <th>Needs a constant and reliable network connection to function.</th>
+          <th>Can function offline; network is needed only for specific tasks (e.g., syncing).</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Examples</strong></th>
+          <th>Virtual Desktop Infrastructure (VDI), Citrix Receiver.</th>
+          <th>Desktop PCs, laptops running standalone applications.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Cost</strong></th>
+          <th>Cheaper due to minimal hardware and software requirements.</th>
+          <th>More expensive because of advanced hardware and software.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Performance</strong></th>
+          <th>Performance depends on server capacity and network speed.</th>
+          <th>Performance is self-contained, depending on local resources.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Use Case</strong></th>
+          <th>Environments requiring centralized management, like schools, offices, or call centers.</th>
+          <th>Environments requiring high local processing, like gaming, video editing, or standalone application development.</th>
+      </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<h3 id="multiprotocol">Multiprotocol<a hidden class="anchor" aria-hidden="true" href="#multiprotocol">#</a></h3>
+<p><strong>Multiprotocol support</strong> refers to a system, software, or device&rsquo;s capability to handle and communicate using multiple communication protocols.</p>
+<p><strong>Multi-Protocol Label Switching (MPLS)</strong> is a high-performance routing technique used in modern networking to speed up and manage traffic flows across wide area networks (WANs). It operates by forwarding packets based on <strong>labels</strong> instead of IP addresses, making routing decisions faster and more efficient.</p>
+<h3 id="how-mpls-works"><strong>How MPLS Works</strong>:<a hidden class="anchor" aria-hidden="true" href="#how-mpls-works">#</a></h3>
+<ol>
+<li><strong>Ingress Router</strong>:
+<ul>
+<li>The first router in the MPLS network assigns a label to the incoming packet based on its destination or other criteria.</li>
+</ul>
+</li>
+<li><strong>Label-Switched Routers (LSRs)</strong>:
+<ol>
+<li>They assign packet to Forward Equivalence Class(FEC) And then Label switched packet(LSP).</li>
+</ol>
+<ul>
+<li>Intermediate routers forward the packet based on the label without looking at the IP header.</li>
+</ul>
+</li>
+<li><strong>Egress Router</strong>:
+<ul>
+<li>The last router removes the label and forwards the packet to its destination using traditional IP routing.</li>
+</ul>
+</li>
+</ol>
+<h3 id="key-components-of-mpls"><strong>Key Components of MPLS</strong>:<a hidden class="anchor" aria-hidden="true" href="#key-components-of-mpls">#</a></h3>
+<ol>
+<li><strong>Label</strong>:
+<ul>
+<li>A short identifier added to the packet by the ingress router.</li>
+<li>Contains information like LSP, QoS priority, and forwarding equivalence class (FEC).</li>
+</ul>
+</li>
+<li><strong>Label-Switched Path (LSP)</strong>:
+<ul>
+<li>A unidirectional path defined by labels from ingress to egress router.</li>
+</ul>
+</li>
+<li><strong>Forwarding Equivalence Class (FEC)</strong>:
+<ul>
+<li>A group of packets that are treated the same way by the MPLS network, based on criteria like destination or service type.</li>
+</ul>
+</li>
+<li><strong>Label Distribution Protocol (LDP)</strong>:
+<ul>
+<li>Protocol used to distribute labels between routers.</li>
+</ul>
+</li>
+</ol>
+<h3 id="benefits-of-mpls">Benefits of MPLS<a hidden class="anchor" aria-hidden="true" href="#benefits-of-mpls">#</a></h3>
+<ol>
+<li>Scalability</li>
+<li>Improved bandwidth Utilization</li>
+<li>Improved Uptime</li>
+<li>QoS quality of service to prioritize traffic ensuring better performance for data like VoIP or video stream.</li>
+</ol>
+<h3 id="quic-protocol">QUIC protocol<a hidden class="anchor" aria-hidden="true" href="#quic-protocol">#</a></h3>
+<p>By replacing TCP with UDP and encrypting most of its payload, QUIC reduces the time it takes to start viewing the content two to three times, while maintaining data security. QUIC was developed by Google (runs on Chrome &amp; Opera) and was designed to compensate for HTTP/2 deficiencies.</p>
+<p><img alt="image.png" loading="lazy" src="image%206.png"></p>
+<p>Unlike TCP, which stops everything to recover lost data, QUIC manages errors at the individual stream level. For example, if one stream (like a favicon request) has an error, other streams can keep working without being delayed. This makes QUIC faster and more efficient, especially on unreliable networks, because data can continue flowing while only the problematic stream is fixed.</p>
+<p>QUIC also improves speed by encrypting each packet separately, so partial packets don’t cause delays in processing. With QUIC, all these processes—like encryption and error handling—are optimized and completed in a single handshake, reducing latency and increasing performance.</p>
+<h2 id="chapter-4">Chapter 4<a hidden class="anchor" aria-hidden="true" href="#chapter-4">#</a></h2>
+<h3 id="http">HTTP<a hidden class="anchor" aria-hidden="true" href="#http">#</a></h3>
+<ul>
+<li><em><strong>Hypertext Transfer Protocol (HTTP)</strong></em> is an <a href="https://en.wikipedia.org/wiki/Application_Layer">application-layer</a> protocol for transmitting hypermedia documents, such as HTML</li>
+<li>HTTP follows a classical <a href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a>, with a client opening a connection to make a request, then waiting until it receives a response from the server. HTTP is a <a href="https://en.wikipedia.org/wiki/Stateless_protocol">stateless protocol</a>, meaning that the server does not keep any session data between two requests, although the later addition of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">cookies</a> adds state to some client-server interactions.</li>
+</ul>
+<p><strong>Working Of HTTP</strong></p>
+<ul>
+<li>Client initiates TCP connection at port 80</li>
+<li><strong>TCP Three-Way Handshake:</strong>
+<ul>
+<li>The client and server establish a TCP connection using the <strong>Three-Way Handshake</strong>:
+<ol>
+<li>The client sends a <strong>SYN</strong> packet.</li>
+<li>The server responds with a <strong>SYN-ACK</strong> packet.</li>
+<li>The client replies with an <strong>ACK</strong> packet.</li>
+</ol>
+</li>
+<li>Once this handshake is complete, the TCP connection is established.</li>
+</ul>
+</li>
+<li><strong>HTTP Request Sent Over TCP:</strong>
+<ul>
+<li>After the TCP connection is ready, the client sends the HTTP request (e.g., <code>GET</code>, <code>POST</code>) to the server over this connection.</li>
+</ul>
+</li>
+<li><strong>HTTP Response Sent Over TCP:</strong>
+<ul>
+<li>The server processes the request and sends back an HTTP response (e.g., <code>200 OK</code>, <code>404 Not Found</code>) over the same TCP connection.</li>
+</ul>
+</li>
+<li><strong>TCP Connection Persistence (Optional):</strong>
+<ul>
+<li>If <strong>HTTP/1.1</strong> or later is used, the TCP connection is often kept open (persistent connection) for multiple HTTP requests and responses, reducing the overhead of establishing new TCP connections.</li>
+<li>If the <code>Connection: close</code> header is included, the TCP connection will be closed after the response.</li>
+</ul>
+</li>
+</ul>
+<h3 id="http-headers"><strong>HTTP Headers</strong><a hidden class="anchor" aria-hidden="true" href="#http-headers">#</a></h3>
+<p><strong>1. Request Headers</strong></p>
+<ul>
+<li>Provide information about the client and its request.</li>
+<li>Examples:
+<ul>
+<li><strong>Host</strong>: Server&rsquo;s domain name.</li>
+<li><strong>User-Agent</strong>: Client software details.</li>
+<li><strong>Accept</strong>: Supported response formats.</li>
+<li><strong>Authorization</strong>: Authentication credentials.</li>
+<li><strong>Cookie</strong>: Sends stored cookies.</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. Response Headers</strong></p>
+<ul>
+<li>Provide information about the server’s response.</li>
+<li>Examples:
+<ul>
+<li><strong>Content-Type</strong>: Type of response data (e.g., <code>text/html</code>).</li>
+<li><strong>Content-Length</strong>: Size of response body.</li>
+<li><strong>Set-Cookie</strong>: Sets cookies for the client.</li>
+<li><strong>Cache-Control</strong>: Caching policies.</li>
+<li><strong>Server</strong>: Server software details.</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. General Headers</strong></p>
+<ul>
+<li>Apply to both requests and responses; not specific to the body.</li>
+<li>Examples:
+<ul>
+<li><strong>Date</strong>: Timestamp of the message.</li>
+<li><strong>Connection</strong>: Connection management (e.g., <code>keep-alive</code>).</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. Entity Headers</strong></p>
+<ul>
+<li>Provide metadata about the message body.</li>
+<li>Examples:
+<ul>
+<li><strong>Content-Encoding</strong>: Compression type (e.g., <code>gzip</code>).</li>
+<li><strong>Content-Language</strong>: Language of the content.</li>
+<li><strong>Content-Disposition</strong>: How to handle the content (e.g., download).</li>
+</ul>
+</li>
+</ul>
+<p><strong>5. Custom Headers</strong></p>
+<ul>
+<li>User-defined headers for specific application needs.</li>
+<li>Example: <code>X-Custom-Header: CustomValue</code></li>
+</ul>
+<h3 id="persistent-and-non-persistent-connection">Persistent and Non Persistent Connection<a hidden class="anchor" aria-hidden="true" href="#persistent-and-non-persistent-connection">#</a></h3>
+<p><strong>1. Non-Persistent Connections</strong></p>
+<ul>
+<li>
+<p><strong>Definition:</strong> A new TCP connection is established for each HTTP request-response pair. Once the server sends the response, the connection is closed.</p>
+</li>
+<li>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Client establishes a TCP connection with the server.</li>
+<li>Client sends an HTTP request.</li>
+<li>Server processes the request and sends the response.</li>
+<li>TCP connection is closed.</li>
+<li>If another resource is needed (e.g., an image or stylesheet), a new connection is opened.</li>
+</ol>
+<p>There are two types:</p>
+<p><strong>1. Non-Persistent-Without parallel connection:</strong> Each objection takes two RTTs (assuming no window limit) one for TCP connection and the other for HTTP image/text file.</p>
+<p><strong>2. Non-Persistent-With parallel connection:</strong> Non-Persistent with a parallel connection requires extra overhead in transferring data.</p>
+<p><img alt="image.png" loading="lazy" src="image%207.png"></p>
+</li>
+</ul>
+<p><strong>Persistent Connections</strong></p>
+<ul>
+<li><strong>Definition:</strong> A single TCP connection is reused for multiple HTTP request-response pairs, reducing the overhead of repeatedly establishing connections.</li>
+<li><strong>Steps:</strong>
+<ol>
+<li>Client establishes a TCP connection with the server.</li>
+<li>Client sends multiple HTTP requests over the same connection.</li>
+<li>Server processes each request and sends responses over the same connection.</li>
+<li>Connection remains open for additional requests or is explicitly closed.</li>
+</ol>
+</li>
+</ul>
+<p><strong>1. Non-Pipelined Persistent Connection:</strong> In a Non-pipeline connection, we first establish a connection that takes two RTTs then we send all the object’s images/text files which take 1 RTT each (TCP for each object is not required).</p>
+<p><strong>2. Pipelined Persistent Connection:</strong> In Pipelined connection, 2RTT is for connection establishment and then 1RTT(assuming no window limit) for all the objects i.e. images/text.</p>
+<p><img alt="image.png" loading="lazy" src="image%208.png"></p>
+<h3 id="http-request-methods">HTTP Request Methods<a hidden class="anchor" aria-hidden="true" href="#http-request-methods">#</a></h3>
+<p><strong>GET</strong>: Retrieve a information from server using URI contains Status line, header, empty line (separate header from message body) and message body.</p>
+<p><strong>HEAD</strong>: message contains status line and header only</p>
+<p><strong>POST:</strong> Send data to server like form data, file upload. Server response contain status line, header, empty line and message body.</p>
+<p><strong>PUT:</strong> Request server to store included body at location specified by given URI.</p>
+<p><strong>DELETE:</strong> Request server to delete a file at given URI</p>
+<p><strong>CONNECT:</strong> Used to establish network connection to web server over HTTP.</p>
+<p><strong>TRACE</strong>: Content of request message to web client used as debugging tool.</p>
+<p><strong>OPTIONS:</strong> Used to find out HTTP Methods and other option supported by web server.</p>
+<h3 id="web-servers">Web servers<a hidden class="anchor" aria-hidden="true" href="#web-servers">#</a></h3>
+<p><img alt="image.png" loading="lazy" src="image%209.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%2010.png"></p>
+<p>Remaining biccha ko part has been skimmed off by me from manual and needs to be Rewritten and restudied. BRD ko assessment ko lagi time nabhara i skipped them off.</p>
+<h3 id="ajax-asynchronous-javascript-and-xml">AJAX (Asynchronous JavaScript and XML)<a hidden class="anchor" aria-hidden="true" href="#ajax-asynchronous-javascript-and-xml">#</a></h3>
+<p><strong>AJAX</strong> is a set of web development techniques used to create dynamic, interactive web applications. It allows web pages to retrieve data from a server asynchronously (in the background) without refreshing the entire page. This enables web applications to update only the relevant parts of a page without reloading it.</p>
+<p><strong>How AJAX Works:</strong></p>
+<ol>
+<li><strong>User Interaction:</strong> The user interacts with a webpage (e.g., clicks a button, submits a form), which triggers an AJAX request.</li>
+<li><strong>AJAX Request:</strong> JavaScript creates an <code>XMLHttpRequest</code> object and sends a request to the server in the background.</li>
+<li><strong>Server Response:</strong> The server processes the request and sends back the required data (e.g., JSON, XML, HTML) without refreshing the page.</li>
+<li><strong>Update the Webpage:</strong> JavaScript updates the relevant parts of the webpage with the server&rsquo;s response, without reloading the entire page.</li>
+</ol>
+<p><img alt="image.png" loading="lazy" src="image%2011.png"></p>
+<p><strong>Why AJAX is different?</strong></p>
+<p>AJAX (Asynchronous JavaScript and XML) is different from traditional web development because it allows web pages to send and receive data from a server asynchronously, meaning the page doesn&rsquo;t need to reload. It enables partial page updates, improving user experience by keeping the page interactive while only refreshing the necessary parts of the page.</p>
+<p><img alt="image.png" loading="lazy" src="image%2012.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%2013.png"></p>
+<p><strong>Advantages</strong></p>
+<ul>
+<li><strong>Improved User Experience:</strong> AJAX allows parts of a web page to update dynamically, improving responsiveness and interactivity without requiring full page reloads.</li>
+<li><strong>Faster Updates:</strong> Since only parts of the page are updated, the user experience feels faster and more fluid.</li>
+<li><strong>Reduced Server Load:</strong> Asynchronous requests mean the server can handle multiple requests simultaneously, without waiting for the full page reload.</li>
+</ul>
+<p><strong>AJAX Disadvantages:</strong></p>
+<ol>
+<li><strong>Complexity:</strong> Managing multiple asynchronous requests and responses can make your code more complex.</li>
+<li><strong>Browser Compatibility:</strong> Older browsers may not fully support AJAX or the Fetch API, although this is less of a problem today.</li>
+<li><strong>SEO Concerns:</strong> Content dynamically loaded with AJAX may not be indexed by search engines, potentially affecting SEO.</li>
+</ol>
+<h3 id="browser-as-rendering-engine">Browser as Rendering Engine<a hidden class="anchor" aria-hidden="true" href="#browser-as-rendering-engine">#</a></h3>
+<p>A <strong>browser</strong> is essentially a software application designed to retrieve, interpret, and display web content, such as HTML, CSS, and JavaScript, from the internet.</p>
+<p><img alt="image.png" loading="lazy" src="image%2014.png"></p>
+<ol>
+<li><strong>User Interface (UI):</strong></li>
+</ol>
+<ul>
+<li>The <strong>UI</strong> includes all the elements that a user interacts with, such as the address bar, back/forward buttons, tabs, bookmarks, and the main display area (where the webpage is shown). It&rsquo;s the visible part of the browser that lets users input URLs, navigate through pages, and access browser settings.</li>
+</ul>
+<ol start="2">
+<li><strong>Browser Engine:</strong></li>
+</ol>
+<ul>
+<li>The <strong>browser engine</strong> acts as a mediator between the user interface and the rendering engine. It receives user input (e.g., URL or button clicks) and communicates with the rendering engine to display the page. It also handles tasks like processing requests to load new pages or interacting with JavaScript and other resources on the page.</li>
+</ul>
+<ol start="3">
+<li><strong>Rendering Engine (Rendering Engine/HTML Parser):</strong></li>
+</ol>
+<ul>
+<li>The <strong>rendering engine</strong> is responsible for interpreting the HTML, CSS, and JavaScript and converting them into a visual representation (the web page) that users can interact with. It performs the following tasks:
+<ul>
+<li><strong>Parsing HTML</strong>: It converts the raw HTML code into a DOM (Document Object Model) tree, representing the structure of the webpage.</li>
+<li><strong>CSS Styling</strong>: The engine applies the CSS rules to the DOM elements to style them accordingly.</li>
+<li><strong>Layout</strong>: It calculates the position and size of each element on the page based on CSS properties like margins, padding, and grid/flexbox layouts.</li>
+<li><strong>Painting</strong>: It fills in the pixels of each element with the appropriate visual properties (color, borders, etc.).</li>
+<li><strong>Compositing</strong>: After the elements are painted, they are combined into layers and presented to the user.</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><strong>JavaScript Engine (V8, SpiderMonkey, etc.):</strong></li>
+</ol>
+<ul>
+<li>The <strong>JavaScript engine</strong> executes JavaScript code embedded in the page. This engine interprets or compiles JavaScript code into machine code that the browser can run. It enables dynamic interactivity on the page, such as handling button clicks, form submissions, animations, or making asynchronous requests (AJAX). Browsers use different JavaScript engines; for instance, <strong>Google Chrome</strong> uses <strong>V8</strong>, while <strong>Mozilla Firefox</strong> uses <strong>SpiderMonkey</strong>.</li>
+</ul>
+<ol start="5">
+<li><strong>Networking:</strong></li>
+</ol>
+<ul>
+<li>The <strong>networking</strong> component handles all network-related tasks, such as sending requests to the server (HTTP requests) and retrieving resources like HTML, CSS, JavaScript, images, and videos. It handles protocols like <strong>HTTP</strong> and <strong>HTTPS</strong> to communicate with web servers.</li>
+</ul>
+<ol start="6">
+<li><strong>Data Storage:</strong></li>
+</ol>
+<ul>
+<li>Browsers have various mechanisms for <strong>storing data</strong> locally. This includes cookies (small pieces of data stored by websites), local storage (key-value pairs for persistent data), and IndexedDB (a more advanced way to store large amounts of structured data for web apps).</li>
+</ul>
+<ol start="7">
+<li><strong>UI Backend (Optional):</strong></li>
+</ol>
+<ul>
+<li>The <strong>UI backend</strong> is responsible for drawing basic elements like widgets and buttons. This component uses the operating system’s UI services and libraries (like Windows, macOS, or Linux) to render the UI.</li>
+</ul>
+<p><strong>Flow of Rendering a Page:</strong></p>
+<ol>
+<li>The <strong>browser engine</strong> receives the URL from the user and sends a request via the <strong>networking</strong> component.</li>
+<li>The server responds with the <strong>HTML</strong>, which is passed to the <strong>rendering engine</strong>.</li>
+<li>The <strong>rendering engine</strong> parses the HTML, applies CSS styles, and executes JavaScript, building the visual representation (DOM, CSSOM, and Render Tree).</li>
+<li>The <strong>JavaScript engine</strong> runs any embedded or external scripts.</li>
+<li>The <strong>rendering engine</strong> lays out the page, paints it, and composites the layers for final display.</li>
+<li>The browser finally renders the fully styled and interactive page to the <strong>user interface</strong> for the user to interact with.</li>
+</ol>
+<h3 id="web-hosting-and-its-types"><strong>Web hosting and its types</strong><a hidden class="anchor" aria-hidden="true" href="#web-hosting-and-its-types">#</a></h3>
+<ul>
+<li><strong>Shared Web Hosting:</strong>
+<ul>
+<li>In <strong>shared web hosting</strong>, multiple websites are hosted on the same server, sharing its resources (such as CPU, memory, and bandwidth). It&rsquo;s the most cost-effective option since the server&rsquo;s maintenance and resources are distributed among many users. However, this means performance can be affected if other sites on the server use a lot of resources.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>Affordable</li>
+<li>Easy to set up</li>
+<li>Ideal for small websites or personal blogs with low traffic</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>Limited resources (CPU, memory, bandwidth)</li>
+<li>Lower performance and security due to sharing resources with other sites</li>
+<li>Less control over server settings</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Dedicated Hosting:</strong>
+<ul>
+<li>With <strong>dedicated hosting</strong>, a client rents an entire server exclusively for their website. This gives them full control over the server’s resources, such as storage, CPU, memory, and software configurations. It’s ideal for large businesses or websites with high traffic that require more power, security, and customization.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>Full control over server resources and configurations</li>
+<li>High performance with no resource sharing</li>
+<li>Enhanced security and reliability</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>Expensive</li>
+<li>Requires technical expertise to manage the server</li>
+<li>Overkill for small websites or those with lower traffic</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Virtual Private Hosting (VPS - Virtual Private Server):</strong>
+<ul>
+<li><strong>VPS hosting</strong> is a step up from shared hosting. In VPS, a physical server is divided into multiple virtual servers, each with its own operating system, resources (CPU, RAM, disk space), and configurations. Though you share the physical server with other users, you have more control and guaranteed resources.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>More control and flexibility compared to shared hosting</li>
+<li>Dedicated resources, ensuring better performance</li>
+<li>More affordable than dedicated hosting</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>More expensive than shared hosting</li>
+<li>Still shares a physical server with others, so performance could still be affected by other users</li>
+<li>Requires some technical knowledge to manage</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Virtual Hosting</strong> allows multiple websites to share a single physical server. With virtual hosting, the server&rsquo;s resources (CPU, memory, storage) are shared, but each website appears to have its own dedicated hosting environment.</p>
+<p><strong>Virtual Hosting</strong> allows multiple websites to share a single physical server. With virtual hosting, the server&rsquo;s resources (CPU, memory, storage) are shared, but each website appears to have its own dedicated hosting environment. This helps save costs while enabling multiple domains to be hosted on the same server. There are three primary types of virtual hosting: <strong>port-based</strong>, <strong>name-based</strong>, and <strong>IP-based</strong>.</p>
+<ol>
+<li><strong>Port-Based Virtual Hosting:</strong></li>
+</ol>
+<ul>
+<li>In <strong>port-based virtual hosting</strong>, multiple websites are hosted on the same IP address, but each website is assigned a unique port number. The server differentiates requests based on the port number specified in the URL.</li>
+<li><strong>Example:</strong>
+<ul>
+<li><code>http://example1.com:8080</code></li>
+<li><code>http://example2.com:8081</code></li>
+</ul>
+</li>
+<li>The port number is included in the URL to specify which website the user is trying to access. This approach is rarely used because users typically don&rsquo;t include port numbers in their browsers, and it can lead to confusion.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>Allows multiple sites on the same server without needing extra IP addresses.</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>Users have to specify a port number in the URL, which is not ideal for a seamless user experience.</li>
+</ul>
+</li>
+</ul>
+<p><strong>2)Name-Based Virtual Hosting:</strong></p>
+<ul>
+<li><strong>Name-based virtual hosting</strong> is the most common and widely used method. In this method, multiple websites are hosted on the same server, using the same IP address. The server differentiates between the websites based on the <strong>hostname</strong> (domain name) sent in the HTTP request header.</li>
+<li>For name based virtual Hosting HTTP/1.1 supported webrowser is needed that to include tarfer hostname in request.</li>
+<li>When a request is made to the server, the domain name (e.g., <code>example1.com</code>) is included in the request, and the server uses this information to direct the request to the appropriate website.</li>
+<li><strong>Example:</strong>
+<ul>
+<li><code>http://example1.com</code></li>
+<li><code>http://example2.com</code></li>
+</ul>
+</li>
+<li>Both websites can share the same IP address, and the server uses the domain name to route the request to the correct website.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>Cost-effective (multiple websites can share the same IP address).</li>
+<li>Easy to manage and configure.</li>
+<li>Users don&rsquo;t need to enter port numbers.</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>Not ideal for SSL (Secure Socket Layer) certificates in older systems, as SSL requires a specific IP per domain for proper encryption. However, newer solutions like <strong>SNI (Server Name Indication)</strong> can resolve this issue.</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><strong>IP-Based Virtual Hosting:</strong></li>
+</ol>
+<ul>
+<li>In <strong>IP-based virtual hosting</strong>, each website hosted on the server is assigned a <strong>unique IP address</strong>. The server differentiates between the websites based on the IP address in the request.</li>
+<li>For example:
+<ul>
+<li><code>http://192.168.1.1</code> (for <code>example1.com</code>)</li>
+<li><code>http://192.168.1.2</code> (for <code>example2.com</code>)</li>
+</ul>
+</li>
+<li>Each website has its own IP address, even though they reside on the same physical server.</li>
+<li><strong>Advantages:</strong>
+<ul>
+<li>Each domain gets its own IP address, making it ideal for SSL certificates, as each domain can have a separate IP address for secure connections.</li>
+<li>More flexibility in handling requests.</li>
+</ul>
+</li>
+<li><strong>Disadvantages:</strong>
+<ul>
+<li>Requires more IP addresses, which can become expensive or limited (especially with IPv4).</li>
+<li>Less efficient than name-based hosting due to the need for unique IP addresses for each site.</li>
+</ul>
+</li>
+</ul>
+<h3 id="document-object-model-dom"><strong>Document Object Model (DOM)</strong><a hidden class="anchor" aria-hidden="true" href="#document-object-model-dom">#</a></h3>
+<p>The <strong>Document Object Model (DOM)</strong> is an essential concept in web development that represents the structure of an HTML or XML document in a tree-like format. It provides a way to programmatically access and manipulate the content, structure, and style of a webpage. DOM is inteRface that allows developers to interact and modify the content of webpage dynamically using language like JS.</p>
+<ul>
+<li><strong>Tree Structure:</strong>
+<ul>
+<li>The DOM represents a document as a <strong>tree of nodes</strong>, where each node represents a part of the document. The tree structure starts with a <strong>root node</strong> (the <code>&lt;html&gt;</code> element in an HTML document) and branches out to child nodes that represent the document’s elements (e.g., <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, etc.).</li>
+<li><strong>Node Types:</strong> In the DOM, every part of the document is a node. Common node types include:
+<ul>
+<li><strong>Element nodes</strong> (e.g., <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>)</li>
+<li><strong>Text nodes</strong> (e.g., the content inside a <code>&lt;p&gt;</code> tag)</li>
+<li><strong>Attribute nodes</strong> (e.g., <code>class</code>, <code>id</code> in an element)</li>
+<li><strong>Comment nodes</strong> (e.g., HTML comments)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Tree Navigation and Hierarchy:</strong>
+<ul>
+<li>The nodes in the DOM are connected in a hierarchical structure, allowing navigation between parent, child, and sibling nodes. This hierarchical relationship provides a clear way to traverse and manipulate the document.
+<ul>
+<li><strong>Parent node</strong>: The node directly above another node in the hierarchy.</li>
+<li><strong>Child node</strong>: A node that is nested inside another node.</li>
+<li><strong>Sibling node</strong>: Nodes that share the same parent.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Dynamic Representation:</strong>
+<ul>
+<li>The DOM is not static; it is <strong>dynamic</strong>, meaning that it can be modified in real-time through programming. Using JavaScript, developers can change the content, attributes, and structure of the document, which will instantly be reflected on the webpage.</li>
+<li><strong>For example:</strong> If you change the content of an element using JavaScript (<code>document.getElementById('myElement').innerText = 'New Content';</code>), the DOM updates, and the page is automatically re-rendered to show the new content.</li>
+</ul>
+</li>
+<li><strong>Platform- and Language-Independent:</strong>
+<ul>
+<li>The DOM is designed to be independent of the platform and programming language. Although it’s primarily used with JavaScript in web browsers, it can also be accessed and manipulated by other programming languages (e.g., Python, Java, etc.) when working with XML documents.</li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/prtfoio/tags/dl/">DL</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/ai/">AI</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/python/">Python</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/pytorch/">PyTorch</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

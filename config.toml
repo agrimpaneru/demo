@@ -1,4 +1,0 @@
-baseURL = 'https://agrimpaneru.github.io/demo/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme="PaperMod"
