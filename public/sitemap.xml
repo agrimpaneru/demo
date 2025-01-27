@@ -3,27 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/prtfoio/blog/i-and-i/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/lab/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/</loc>
-    <lastmod>2025-01-22T12:59:51+05:45</lastmod>
+    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/blog/</loc>
+    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</loc>
+    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/posts/</loc>
     <lastmod>2025-01-22T12:59:51+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/ai/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/dl/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/python/</loc>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/pytorch/</loc>
+    <loc>http://localhost:1313/prtfoio/tags/college-notes/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/tags/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/categories/</loc>
   </url>
 </urlset>

@@ -1,16 +1,11 @@
 ---
 title: "Internet and Intranet"
+date: 2025-01-12
 description: "Internet and Intranet"
 dateString: May 2020
 draft: false
-tags: ["DL", "AI", "Python", "PyTorch"]
+tags: ["College Notes"]
 weight: 104
-
-
-
-cover:
-    image: "/blog/face-landmarks-detection/cover.jpg"
-    # caption: "A sample landmark detection on a photo by Ayo Ogunseinde taken from Unsplash"
 ---
 
 # I AND I

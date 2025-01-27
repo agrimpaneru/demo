@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LSTM From Scratch | Agrim Paneru</title>
+<meta name="keywords" content="">
+<meta name="description" content="LSTM from Scratch
+In this post, we will implement a simple next word predictor LSTM from scratch using torch.
+A gentle Introduction to LSTM
+Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter &amp; Schmidhuber (1997). As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.">
+<meta name="author" content="Agrim Paneru">
+<link rel="canonical" href="http://localhost:1313/prtfoio/blog/lstm-from-scratch/">
+<link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.96c7d6443f7296882c1368d79c4a3a4eb0beea7637a5bb0631f2d1dcdee56598.css" integrity="sha256-lsfWRD9ylogsE2jXnEo6TrC&#43;6nY3pbsGMfLR3N7lZZg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/blog/lstm-from-scratch/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/blog/lstm-from-scratch/">
+  <meta property="og:site_name" content="Agrim Paneru">
+  <meta property="og:title" content="LSTM From Scratch">
+  <meta property="og:description" content="LSTM from Scratch In this post, we will implement a simple next word predictor LSTM from scratch using torch.
+A gentle Introduction to LSTM Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter &amp; Schmidhuber (1997). As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-01-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-27T00:00:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/prtfoio/lstm.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/prtfoio/lstm.jpg">
+<meta name="twitter:title" content="LSTM From Scratch">
+<meta name="twitter:description" content="LSTM from Scratch
+In this post, we will implement a simple next word predictor LSTM from scratch using torch.
+A gentle Introduction to LSTM
+Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter &amp; Schmidhuber (1997). As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "     ",
+      "item": "http://localhost:1313/prtfoio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "LSTM From Scratch",
+      "item": "http://localhost:1313/prtfoio/blog/lstm-from-scratch/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LSTM From Scratch",
+  "name": "LSTM From Scratch",
+  "description": "LSTM from Scratch In this post, we will implement a simple next word predictor LSTM from scratch using torch.\nA gentle Introduction to LSTM Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter \u0026amp; Schmidhuber (1997). As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "LSTM from Scratch In this post, we will implement a simple next word predictor LSTM from scratch using torch.\nA gentle Introduction to LSTM Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter \u0026 Schmidhuber (1997). As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.\nThe LSTM model we’re gonna implement follows this architecture.\nTo learn about their detailed structure here is a reference to this awesome blog Understanding LSTM Networks – colah’s blog.\nFor simplified architecture:\nImports Lets import the required library\nimport torch import torch.nn as nn import torch.nn.functional as F Data Preparation We’ll be using autoregressive sentence generation for our dataset. This approach involves predicting the next word in a sequence based on the words that came before it.\nConsider a sentence,\n“I am Peter the hero.”\nInput Sequence Target Output [I] AM [I, AM] Peter [ I, AM, Peter] THE [I, AM, Peter, THE] HERO We’ll be working with George Orwell’s essay The Spike as our dataset. Since the dataset is relatively small, it allows us to focus on developing a deeper intuition without getting overwhelmed by the volume of data.\nTokenization Next, I’ll create a dictionary to convert words into indices—a common practice in Natural Language Processing (NLP). Instead of relying on libraries, I’ll build it from scratch to better understand how it works.\nchar2idx={char:i for i,char in enumerate(set(data))} # char2idx['.']=0 idx2char={i:char for i,char in enumerate(set(data))} We can run char2idx to view the word mapping to indices.\nx=[] for i in orgi.split(\"\\n\"): x.append([char2idx[j] for j in i.split(\" \")]) This snippet processes a text dataset to convert words into their corresponding indices using the char2idx dictionary we created earlier.\nX_train = [] # List to store input sequences Y_train = [] # List to store corresponding outputs for sequence in x: for i in range(1, len(sequence)-1): # Input is the subsequence from start to the ith element X_train.append(sequence[:i]) # Output is the ith element (next token) Y_train.append(sequence[i]) This code prepares the dataset for autoregressive sentence generation, a technique where the model predicts the next token in a sequence based on previous tokens\nFor example, if the sequence is [1, 2, 3, 4], the resulting pairs would look like this:\nInput: [1], Output: 2 Input: [1, 2], Output: 3 Input: [1, 2, 3], Output: 4 Since LSTMs require input sequences of the same length, I padded all sequences to a fixed maximum length. I chose to pad at the beginning of the sequence because it preserves the actual data at the end, which is where the LSTM focuses more when processing the sequence. This ensures that the more meaningful tokens remain closer to the output\nmax_len=max([len(i) for i in X_train]) vocab_size=len(set(data)) def pre_pad_sequences_pytorch(sequences, max_len): padded_sequences = [] for seq in sequences: # If the sequence is shorter than max_len, pad with zeros at the beginning if len(seq) \u003c max_len: padded_seq = [0] * (max_len - len(seq)) + seq # Pre-padding with 0 # If the sequence is longer than max_len, truncate it else: padded_seq = seq[-max_len:] padded_sequences.append(padded_seq) return torch.tensor(padded_sequences) X_train_padded = pre_pad_sequences_pytorch(X_train, max_len) X_train_padded=X_train_padded.unsqueeze(-1) Y_train=torch.tensor(Y_train) This creates a dataset ready to be set into LSTM network.\nFinally, the LSTM ##### Long Short-Term Memory Network Class ##### class LSTM: def __init__(self, vocab_size, embedding_dim, hidden_size, output_size): self.hidden_size = hidden_size #embedding layer self.embedding = torch.randn(vocab_size, embedding_dim, requires_grad=True) # Initialize weights with requires_grad=True #forget gate self.Wf = torch.randn(hidden_size, embedding_dim + hidden_size, requires_grad=True) self.bf = torch.zeros(hidden_size, requires_grad=True) #input gate self.Wi = torch.randn(hidden_size, embedding_dim + hidden_size, requires_grad=True) self.bi = torch.zeros(hidden_size, requires_grad=True) #candidate gate self.Wc = torch.randn(hidden_size, embedding_dim + hidden_size, requires_grad=True) self.bc = torch.zeros(hidden_size, requires_grad=True) #output gate self.Wo = torch.randn(hidden_size, embedding_dim + hidden_size, requires_grad=True) self.bo = torch.zeros(hidden_size, requires_grad=True) #final gate self.Wv = torch.randn(output_size, hidden_size, requires_grad=True) self.bv = torch.zeros(output_size, requires_grad=True) self._initialize_weights() This is a custom implementation of a Long Short-Term Memory (LSTM) network. It takes four inputs\nvocab_size,embedding_dim,hidden_size and output_size vocab_size is the number of unique words in your dataset.\nembedding_dim is the size of the word embeddings. Instead of representing words as simple indices (like 1, 2, 3, etc.), we represent them as dense vectors (e.g., [0.2, -0.5, 0.7, …]).\nWhy embedding layer is needed ? Words are initially represented as indices (e.g., “cat” = 1, “dog” = 2, etc.). But these indices don’t carry any meaningful information about the words. The embedding layer converts these indices into dense vectors of size embedding_dim. These vectors are trainable, meaning the model will learn the best way to represent each word during training. For example, if embedding_dim =4, the word “cat” might be represented as a vector like [0.1, -0.3, 0.5, 0.9]. https://medium.com/analytics-vidhya/embeddings-the-what-the-why-and-the-how-15a6a3c99ce8 This blogs deeps dives into the working and importance of Embeddings layer.\nThe other function we’ll be defining is a Xavier Initialization. Recurrent neural networks are very sensitive to the initialization used, so choosing the right one is important. It’s probably enough to know that the Xavier Initialization is a good choice; however, we can take a look at the math here.\ndef _initialize_weights(self): nn.init.xavier_uniform_(self.Wf) nn.init.xavier_uniform_(self.Wi) nn.init.xavier_uniform_(self.Wc) nn.init.xavier_uniform_(self.Wo) nn.init.xavier_uniform_(self.Wv) def parameters(self): # Return a list of all parameters (weights and biases) in the model return [self.Wf, self.bf, self.Wi, self.bi, self.Wc, self.bc, self.Wo, self.bo, self.Wv, self.bv, self.embedding] The next function to define is the forward function.\ndef forward(self, x, init_states=None): # Apply embedding layer to input indices x=x.squeeze(dim=-1) x = self.embedding[x] batch_size, seq_len, _ = x.size() # Initialize h_t and c_t if init_states is None if init_states is None: h_t = torch.zeros(batch_size, self.hidden_size, requires_grad=True) c_t = torch.zeros(batch_size, self.hidden_size, requires_grad=True) else: h_t, c_t = init_states outputs = [] for t in range(seq_len): x_t = x[:, t, :] # Shape: (batch_size, embedding_dim) Z_t = torch.cat([x_t, h_t], dim=1) # Shape: (batch_size, embedding_dim + hidden_size) # Forget gate ft = torch.sigmoid(Z_t @ self.Wf.t() + self.bf) # Input gate it = torch.sigmoid(Z_t @ self.Wi.t() + self.bi) # Candidate cell state can = torch.tanh(Z_t @ self.Wc.t() + self.bc) # Output gate ot = torch.sigmoid(Z_t @ self.Wo.t() + self.bo) c_t = c_t * ft + can * it h_t = ot * torch.tanh(c_t) # Compute output for current time step y_t = h_t @ self.Wv.t() + self.bv return y_t, (h_t, c_t) When building a model for next-word prediction, the goal is to predict the most likely word that follows a given sequence. In this context, we don’t need outputs from every timestep of the sequence—only the final output (from the last timestep) is necessary to make the prediction.\nNow lets initialize our Model.\nWe’ll be using a hidden size of 128 and an embedding dimension of 10 for our model. For comparison, GPT-2 Small (with 117 million parameters) used an embedding dimension of 768, and the latest GPT-4 uses 16,384. Since we are working with a small dataset, a smaller embedding dimension should work, and I chose 10 . You can play with this value to see how it plays out.\nmodel = LSTM(vocab_size=vocab_size, embedding_dim=128, hidden_size=128, output_size=vocab_size) params = model.parameters() optimizer = torch.optim.Adam(params, lr=0.005) Training Loop hidden_state = None # Initialize hidden state for _ in range(500): # Sample a batch batch_indices = torch.randint(0, X_train_padded.shape[0], (128,)) x_train = X_train_padded[batch_indices] # Shape: (batch_size, seq_len) # Forward pass outputs,hidden_state = model.forward(x_train, init_states=hidden_state) # print(outputs.shape) h_t, c_t = hidden_state hidden_state = (h_t.detach(), c_t.detach()) # Detach hidden state for next batch # Compute loss y_batch = Y_train[batch_indices] # Shape: (batch_size, seq_len, vocab_size) loss = criterion(outputs, y_batch) # Backward pass and optimization optimizer.zero_grad() loss.backward() optimizer.step() print(loss) This training approach grabs a random batch of 128 data points, puts them into the model, and hopes for the best, kind of like cramming for an exam with random notes you found in your bag. While it’s not the most efficient way to train, I went with it to really wrap my head around how batches flow through the network. After each iteration, the hidden state is politely told, “Take a break, you’ve done enough,” and detached. This prevents PyTorch from becoming a hoarder and building a massive computation graph that would slow things down to a crawl. For optimization, I used the Adam optimizer. Though simple, this setup helped me grasp the inner workings of batching and hidden state management in LSTMs.\nBefore we begin training the network, let’s see how our model performs with its randomly initialized weights. This will give us a baseline idea of what kind of text it generates before learning anything meaningful from the data.\nThe following code preprocess the input and passes it to the model\ndef generate_sequence(model, seed_string, char2idx, idx2char, sequence_length, max_len=55): seed_indices = [char2idx[word] for word in seed_string.split(\" \") if word in char2idx] seed_tensor = torch.tensor(seed_indices).unsqueeze(0) # Shape: (1, seq_len) generated_indices = seed_indices[:] hidden_state = None for _ in range(sequence_length): # Pre-pad the input sequence to match the model's expected input size padded_input = pre_pad_sequences_pytorch([generated_indices], max_len).unsqueeze(-1) # Get the model output and hidden state output, (hidden_state) = model.forward(padded_input, hidden_state) # Take the output corresponding to the last token next_token_logits = output # Shape: (1, vocab_size) # Use softmax to get probabilities and sample the next token next_token_prob = torch.softmax(next_token_logits, dim=-1) # next_token_idx = torch.multinomial(next_token_prob, num_samples=1).item() next_token_idx=torch.argmax(next_token_prob).item() # Append the predicted token to the sequence generated_indices.append(next_token_idx) # Convert indices back to characters generated_words = [idx2char[idx] for idx in generated_indices] return \" \".join(generated_words) # Example usage: seed_string = \"scum\" sequence_length = 20 generated_text = generate_sequence(model, seed_string, char2idx, idx2char, sequence_length) print(\"Generated Text:\") print(generated_text) Now for a sequence_length of 20 this is what our model outputs.\nIt is.' if bath, is.' if bath, cockney side, black serve is.' go three asleep straw bath, is.' cotton when when This up apparatus kind where Majors tub a stripped eight Doesn’t makes any sense.\nNow Lets train the model and run this code again.\nNow I trained the model for 300 iteration, it started with an initial loss of 6.85 reaching to 0.1084 at the end of 300 iteration. So, our model learnt well from the data. Lets see how our model performs after training on the same seed string.\nGenerated Text: scum my was much luckier than the others, because at ten o'clock the Tramp Major picked me out for the most coveted of all jobs in the spike, the job of helping in the workhouse kitchen. There was not really any work to be done there, and I was able to Much better . Lets generate a paragraph now .\nGenerated Text: scum my was much luckier than the others, because at ten o'clock the Tramp Major picked me out for the most coveted of all jobs in the spike, the job of helping in the workhouse kitchen. There was not really any work to be done there, and I was able to make off and hide in a shed used for storing potatoes, together with some workhouse paupers who were skulking to avoid the Sunday-morning service. There was a stove burning there, and comfortable packing cases to sit on, and back numbers of the Family Herald, and even a copy of Raffles from the workhouse library. It was paradise after the grime, of Sunday. It appeared the Tramp Major served the than before and the hot pipes. The cotton blankets were almost useless. One spent the night in turning from side to side, falling asleep for ten minutes and waking half frozen, and watching for the medical tables. It was a gloomy, chilly, limewashed place, consisting only of a bathroom and dining-room and about a hundred narrow stone cells. The terrible Tramp Major met us at the door and herded us into the bathroom to be stripped and searched. He was a gruff, soldierly man of forty, a pound of bread, a bit of margarine, and a pint of so-called tea. It took us five minutes to gulp down the cheap, noxious food. Then the Tramp Major served us with three cotton blankets each, and drove us off to our cells for the night. The doors were locked on the outside a little before seven in the evening, and would stay locked for the next twelve twelve hours in the spike, told tales of mooching, of pints stood him in the boozers, of the night for giving a back answer. When You, came to be searched, he fair held you upside down and shook you. If you were caught with tobacco there was bell to. Pay, and if you went in with money (which is against the law) God help help had no socks, except the tramps had already washed to our about and and for the lot of spring, perhaps—the authorities little It of the water, and decided to go dirty for the queer habit of sleeping in his hat, grumbled about a parcel of tommy that he had lost on the toad. Bill the moocher, the best built man of But it looks like our small model memorized the paragraph instead of learning any real patterns. This is a case of overfitting. Since we trained the model for 300 epochs on such a small dataset, it essentially “rote learned” the paragraph and just outputs the exact same text from the dataset\nIn generating text, we initially used argmax with torch.argmax(next_token_prob).item(), which simply picks the word with the highest probability from the output distribution. This approach is deterministic, meaning it will always choose the same word if the probabilities don’t change.\nNow, let’s try using a multinomial distribution instead. A multinomial distribution creates a probability distribution over all possible tokens, allowing us to sample the next token randomly based on the probabilities. Instead of always choosing the word with the highest probability, the multinomial distribution introduces some randomness by selecting tokens based on their likelihood.\nFor this uncomment the line # next_token_idx = torch.multinomial(next_token_prob, num_samples=1).item().\nThis method introduces variations in the text output, as the model can now generate different sequences even when given the same starting point. It’s like giving the model a little creative freedom, kind of like letting it freestyle instead of sticking to a strict script.\nThat wraps up this blog. Here, we generated text sequences using a trained LSTM model. I know there’s a lot of room for improvement, but the goal was to get a basic understanding of data preprocessing and how LSTMs work. For more structured and efficient code, it would make sense to use PyTorch’s nn.LSTM module.\nWhat’s Next? To improve this model:\nAdd Dropout: Prevent overfitting with regularization techniques. Use Better Sampling: Replace the random batch sampling with more structured approaches like sequential data loading. Increase Dataset Size: Larger datasets will yield more meaningful insights during training. Thanks for sticking around till the end! This being my first blog, I’m sure it’s not perfect, but I’ll work on improving my writing in the future. Appreciate you reading through!\nHere’s the GitHub repository with the code and dataset used for this project. Feel free to check it out!\nResources The Long Short-Term Memory (LSTM) Network from Scratch | Medium Implementing a LSTM from scratch with Numpy - Christina Kouridi Building makemore Part 2: MLP ",
+  "wordCount" : "2516",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/prtfoio/lstm.jpg","datePublished": "2025-01-27T00:00:00Z",
+  "dateModified": "2025-01-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Agrim Paneru"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/prtfoio/blog/lstm-from-scratch/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agrim Paneru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/prtfoio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/prtfoio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/prtfoio/blog/">     </a></div>
+    <h1 class="post-title entry-hint-parent">
+      LSTM From Scratch
+    </h1>
+    <div class="post-meta"><span title='2025-01-27 00:00:00 +0000 UTC'>January 27, 2025</span>&nbsp;·&nbsp;⏱️ 12 min&nbsp;·&nbsp;Agrim Paneru
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" srcset="http://localhost:1313/prtfoio/lstm_hu7907974118191674057.jpg 360w ,http://localhost:1313/prtfoio/lstm_hu1249034756754433779.jpg 480w ,http://localhost:1313/prtfoio/lstm_hu8882724940143364348.jpg 720w ,http://localhost:1313/prtfoio/lstm_hu15796057470441731772.jpg 1080w ,http://localhost:1313/prtfoio/lstm_hu875471573707001218.jpg 1500w ,http://localhost:1313/prtfoio/lstm.jpg 8297w" 
+            sizes="(min-width: 768px) 720px, 100vw" src="http://localhost:1313/prtfoio/lstm.jpg" alt="LSTM illustration" 
+            width="8297" height="5634">
+        <p>Understanding LSTMs step-by-step</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#lstm-from-scratch" aria-label="LSTM from Scratch">LSTM from Scratch</a><ul>
+                        
+                <li>
+                    <a href="#a-gentle-introduction-to-lstm" aria-label="A gentle Introduction to LSTM">A gentle Introduction to LSTM</a></li>
+                <li>
+                    <a href="#imports" aria-label="Imports">Imports</a></li>
+                <li>
+                    <a href="#data-preparation" aria-label="Data Preparation">Data Preparation</a><ul>
+                        
+                <li>
+                    <a href="#tokenization" aria-label="Tokenization">Tokenization</a></li></ul>
+                </li>
+                <li>
+                    <a href="#finally-the-lstm" aria-label="Finally, the LSTM">Finally, the LSTM</a><ul>
+                        
+                <li>
+                    <a href="#why-embedding-layer-is-needed-" aria-label="Why embedding layer is needed ?">Why embedding layer is needed ?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#training-loop" aria-label="Training Loop">Training Loop</a><ul>
+                        
+                <li>
+                    <a href="#whats-next" aria-label="What&rsquo;s Next?">What&rsquo;s Next?</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#resources" aria-label="Resources">Resources</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="lstm-from-scratch">LSTM from Scratch<a hidden class="anchor" aria-hidden="true" href="#lstm-from-scratch">#</a></h1>
+<p>In this post, we will implement a simple next word predictor LSTM from scratch using torch.</p>
+<h2 id="a-gentle-introduction-to-lstm">A gentle Introduction to LSTM<a hidden class="anchor" aria-hidden="true" href="#a-gentle-introduction-to-lstm">#</a></h2>
+<p>Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by <a href="http://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter &amp; Schmidhuber (1997)</a>. As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.</p>
+<p>The LSTM model we’re gonna implement follows this architecture.</p>
+<p><img alt="image.png" loading="lazy" src="image.png"></p>
+<p>To learn about their detailed structure here is a reference to this awesome blog <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks &ndash; colah&rsquo;s blog</a>.</p>
+<p>For simplified architecture:</p>
+<p><img alt="image.png" loading="lazy" src="image%201.png"></p>
+<h2 id="imports">Imports<a hidden class="anchor" aria-hidden="true" href="#imports">#</a></h2>
+<p>Lets import the required library</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn.functional <span style="color:#66d9ef">as</span> F
+</span></span></code></pre></div><h2 id="data-preparation">Data Preparation<a hidden class="anchor" aria-hidden="true" href="#data-preparation">#</a></h2>
+<p>We’ll be using <strong>autoregressive sentence generation</strong> for our dataset. This approach involves predicting the next word in a sequence based on the words that came before it.</p>
+<p>Consider a sentence,</p>
+<p><strong>&ldquo;I am Peter the hero.&rdquo;</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Input Sequence</th>
+          <th>Target Output</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>[I]</td>
+          <td>AM</td>
+      </tr>
+      <tr>
+          <td>[I, AM]</td>
+          <td>Peter</td>
+      </tr>
+      <tr>
+          <td>[ I, AM, Peter]</td>
+          <td>THE</td>
+      </tr>
+      <tr>
+          <td>[I, AM, Peter, THE]</td>
+          <td>HERO</td>
+      </tr>
+  </tbody>
+</table>
+<p>We&rsquo;ll be working with George Orwell&rsquo;s essay <em>The Spike</em> as our dataset. Since the dataset is relatively small, it allows us to focus on developing a deeper intuition without getting overwhelmed by the volume of data.</p>
+<h3 id="tokenization">Tokenization<a hidden class="anchor" aria-hidden="true" href="#tokenization">#</a></h3>
+<p><img alt="image.png" loading="lazy" src="image%202.png"></p>
+<p>Next, I&rsquo;ll create a dictionary to convert words into indices—a common practice in Natural Language Processing (NLP). Instead of relying on libraries, I&rsquo;ll build it from scratch to better understand how it works.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>char2idx<span style="color:#f92672">=</span>{char:i <span style="color:#66d9ef">for</span> i,char <span style="color:#f92672">in</span> enumerate(set(data))}
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># char2idx[&#39;.&#39;]=0</span>
+</span></span><span style="display:flex;"><span>idx2char<span style="color:#f92672">=</span>{i:char <span style="color:#66d9ef">for</span> i,char <span style="color:#f92672">in</span> enumerate(set(data))}
+</span></span></code></pre></div><p>We can run char2idx to view the word mapping to indices.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>x<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> orgi<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>):
+</span></span><span style="display:flex;"><span>    x<span style="color:#f92672">.</span>append([char2idx[j] <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> i<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>)])
+</span></span></code></pre></div><p>This snippet processes a text dataset to convert words into their corresponding indices using the <code>char2idx</code> dictionary we created earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X_train <span style="color:#f92672">=</span> []  <span style="color:#75715e"># List to store input sequences</span>
+</span></span><span style="display:flex;"><span>Y_train <span style="color:#f92672">=</span> []  <span style="color:#75715e"># List to store corresponding outputs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> sequence <span style="color:#f92672">in</span> x:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(sequence)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Input is the subsequence from start to the ith element</span>
+</span></span><span style="display:flex;"><span>        X_train<span style="color:#f92672">.</span>append(sequence[:i])
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Output is the ith element (next token)</span>
+</span></span><span style="display:flex;"><span>        Y_train<span style="color:#f92672">.</span>append(sequence[i])
+</span></span></code></pre></div><p>This code prepares the dataset for autoregressive sentence generation, a technique where the model predicts the next token in a sequence based on previous tokens</p>
+<p>For example, if the sequence is <code>[1, 2, 3, 4]</code>, the resulting pairs would look like this:</p>
+<ul>
+<li>Input: <code>[1]</code>, Output: <code>2</code></li>
+<li>Input: <code>[1, 2]</code>, Output: <code>3</code></li>
+<li>Input: <code>[1, 2, 3]</code>, Output: <code>4</code></li>
+</ul>
+<p>Since LSTMs require input sequences of the same length, I padded all sequences to a fixed maximum length. I chose to pad at the beginning of the sequence because it preserves the actual data at the end, which is where the LSTM focuses more when processing the sequence. This ensures that the more meaningful tokens remain closer to the output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>max_len<span style="color:#f92672">=</span>max([len(i) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> X_train])
+</span></span><span style="display:flex;"><span>vocab_size<span style="color:#f92672">=</span>len(set(data))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pre_pad_sequences_pytorch</span>(sequences, max_len):
+</span></span><span style="display:flex;"><span>    padded_sequences <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> seq <span style="color:#f92672">in</span> sequences:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the sequence is shorter than max_len, pad with zeros at the beginning</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(seq) <span style="color:#f92672">&lt;</span> max_len:
+</span></span><span style="display:flex;"><span>            padded_seq <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> (max_len <span style="color:#f92672">-</span> len(seq)) <span style="color:#f92672">+</span> seq  <span style="color:#75715e"># Pre-padding with 0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># If the sequence is longer than max_len, truncate it</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            padded_seq <span style="color:#f92672">=</span> seq[<span style="color:#f92672">-</span>max_len:]  
+</span></span><span style="display:flex;"><span>        padded_sequences<span style="color:#f92672">.</span>append(padded_seq)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> torch<span style="color:#f92672">.</span>tensor(padded_sequences)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>X_train_padded <span style="color:#f92672">=</span> pre_pad_sequences_pytorch(X_train, max_len)
+</span></span><span style="display:flex;"><span>X_train_padded<span style="color:#f92672">=</span>X_train_padded<span style="color:#f92672">.</span>unsqueeze(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>Y_train<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>tensor(Y_train)
+</span></span></code></pre></div><p>This creates a dataset ready to be set into LSTM network.</p>
+<h2 id="finally-the-lstm">Finally, the LSTM<a hidden class="anchor" aria-hidden="true" href="#finally-the-lstm">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">##### Long Short-Term Memory Network Class #####</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LSTM</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, vocab_size, embedding_dim, hidden_size, output_size):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>hidden_size <span style="color:#f92672">=</span> hidden_size
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#embedding layer</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embedding <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(vocab_size, embedding_dim, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Initialize weights with requires_grad=True</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#forget gate</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wf <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(hidden_size, embedding_dim <span style="color:#f92672">+</span> hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bf <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#input gate</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wi <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(hidden_size, embedding_dim <span style="color:#f92672">+</span> hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bi <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#candidate gate</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wc <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(hidden_size, embedding_dim <span style="color:#f92672">+</span> hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bc <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#output gate</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wo <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(hidden_size, embedding_dim <span style="color:#f92672">+</span> hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bo <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#75715e">#final gate</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wv <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(output_size, hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bv <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(output_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>_initialize_weights()
+</span></span></code></pre></div><p>This is a custom implementation of a Long Short-Term Memory (LSTM) network. It takes four inputs</p>
+<p><strong>vocab_size,embedding_dim,hidden_size and output_size</strong> vocab_size is the number of unique words in your dataset.</p>
+<p><strong>embedding_dim</strong> is  the size of the word embeddings. Instead of representing words as simple indices (like 1, 2, 3, etc.), we represent them as dense vectors (e.g., [0.2, -0.5, 0.7, &hellip;]).</p>
+<h3 id="why-embedding-layer-is-needed-">Why embedding layer is needed ?<a hidden class="anchor" aria-hidden="true" href="#why-embedding-layer-is-needed-">#</a></h3>
+<ul>
+<li>Words are initially represented as indices (e.g., &ldquo;cat&rdquo; = 1, &ldquo;dog&rdquo; = 2, etc.). But these indices don’t carry any meaningful information about the words.</li>
+<li>The embedding layer converts these indices into dense vectors of size <code>embedding_dim</code>. These vectors are trainable, meaning the model will learn the best way to represent each word during training.</li>
+<li>For example, if <code>embedding_dim =4</code>, the word &ldquo;cat&rdquo; might be represented as a vector like [0.1, -0.3, 0.5, 0.9].</li>
+</ul>
+<p><a href="https://medium.com/analytics-vidhya/embeddings-the-what-the-why-and-the-how-15a6a3c99ce8">https://medium.com/analytics-vidhya/embeddings-the-what-the-why-and-the-how-15a6a3c99ce8</a> This blogs deeps dives into the working and importance of Embeddings layer.</p>
+<p> The other function we’ll be defining is a <a href="https://365datascience.com/tutorials/machine-learning-tutorials/what-is-xavier-initialization/">Xavier Initialization</a>. Recurrent neural networks are very sensitive to the initialization used, so choosing the right one is important. It’s probably enough to know that the Xavier Initialization is a good choice; however, we can take a look at the math  <a href="https://cs230.stanford.edu/section/4/">here</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_initialize_weights</span>(self):
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(self<span style="color:#f92672">.</span>Wf)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(self<span style="color:#f92672">.</span>Wi)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(self<span style="color:#f92672">.</span>Wc)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(self<span style="color:#f92672">.</span>Wo)
+</span></span><span style="display:flex;"><span>        nn<span style="color:#f92672">.</span>init<span style="color:#f92672">.</span>xavier_uniform_(self<span style="color:#f92672">.</span>Wv)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parameters</span>(self):
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Return a list of all parameters (weights and biases) in the model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [self<span style="color:#f92672">.</span>Wf, self<span style="color:#f92672">.</span>bf, self<span style="color:#f92672">.</span>Wi, self<span style="color:#f92672">.</span>bi, self<span style="color:#f92672">.</span>Wc, self<span style="color:#f92672">.</span>bc, self<span style="color:#f92672">.</span>Wo, self<span style="color:#f92672">.</span>bo, self<span style="color:#f92672">.</span>Wv, self<span style="color:#f92672">.</span>bv, self<span style="color:#f92672">.</span>embedding]
+</span></span></code></pre></div><p>The next function to define is the <code>forward</code> function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x, init_states<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Apply embedding layer to input indices</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        x<span style="color:#f92672">=</span>x<span style="color:#f92672">.</span>squeeze(dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>embedding[x]
+</span></span><span style="display:flex;"><span>        batch_size, seq_len, _ <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>size()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Initialize h_t and c_t if init_states is None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> init_states <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span>            h_t <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(batch_size, self<span style="color:#f92672">.</span>hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>            c_t <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>zeros(batch_size, self<span style="color:#f92672">.</span>hidden_size, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            h_t, c_t <span style="color:#f92672">=</span> init_states
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> t <span style="color:#f92672">in</span> range(seq_len):
+</span></span><span style="display:flex;"><span>            x_t <span style="color:#f92672">=</span> x[:, t, :]  <span style="color:#75715e"># Shape: (batch_size, embedding_dim)</span>
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            Z_t <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cat([x_t, h_t], dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># Shape: (batch_size, embedding_dim + hidden_size)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Forget gate</span>
+</span></span><span style="display:flex;"><span>            ft <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(Z_t <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wf<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bf)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Input gate</span>
+</span></span><span style="display:flex;"><span>            it <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(Z_t <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wi<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bi)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Candidate cell state</span>
+</span></span><span style="display:flex;"><span>            can <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tanh(Z_t <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wc<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bc)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Output gate</span>
+</span></span><span style="display:flex;"><span>            ot <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sigmoid(Z_t <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wo<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bo)
+</span></span><span style="display:flex;"><span>            c_t <span style="color:#f92672">=</span> c_t <span style="color:#f92672">*</span> ft <span style="color:#f92672">+</span> can <span style="color:#f92672">*</span> it
+</span></span><span style="display:flex;"><span>            h_t <span style="color:#f92672">=</span> ot <span style="color:#f92672">*</span> torch<span style="color:#f92672">.</span>tanh(c_t)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Compute output for current time step</span>
+</span></span><span style="display:flex;"><span>            y_t <span style="color:#f92672">=</span> h_t <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wv<span style="color:#f92672">.</span>t() <span style="color:#f92672">+</span> self<span style="color:#f92672">.</span>bv
+</span></span><span style="display:flex;"><span>           
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> y_t, (h_t, c_t)
+</span></span></code></pre></div><p>When building a model for next-word prediction, the goal is to predict the most likely word that follows a given sequence. In this context, we don’t need outputs from every timestep of the sequence—only the final output (from the last timestep) is necessary to make the prediction.</p>
+<p>Now lets initialize our Model.</p>
+<p>We’ll be using a hidden size of 128 and an embedding dimension of 10 for our model. For comparison, GPT-2 Small (with 117 million parameters) used an embedding dimension of 768, and the latest GPT-4 uses 16,384. Since we are working with a small dataset, a smaller embedding dimension should work, and I chose 10 . You can play with this value to see how it plays out.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> LSTM(vocab_size<span style="color:#f92672">=</span>vocab_size, embedding_dim<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, hidden_size<span style="color:#f92672">=</span><span style="color:#ae81ff">128</span>, output_size<span style="color:#f92672">=</span>vocab_size)
+</span></span><span style="display:flex;"><span>params <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>parameters()
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(params, lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.005</span>)
+</span></span></code></pre></div><h2 id="training-loop">Training Loop<a hidden class="anchor" aria-hidden="true" href="#training-loop">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>hidden_state <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  <span style="color:#75715e"># Initialize hidden state</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">500</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Sample a batch</span>
+</span></span><span style="display:flex;"><span>    batch_indices <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">0</span>, X_train_padded<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>], (<span style="color:#ae81ff">128</span>,))
+</span></span><span style="display:flex;"><span>    x_train <span style="color:#f92672">=</span> X_train_padded[batch_indices]  <span style="color:#75715e"># Shape: (batch_size, seq_len)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Forward pass</span>
+</span></span><span style="display:flex;"><span>    outputs,hidden_state <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>forward(x_train, init_states<span style="color:#f92672">=</span>hidden_state)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(outputs.shape)</span>
+</span></span><span style="display:flex;"><span>    h_t, c_t <span style="color:#f92672">=</span> hidden_state
+</span></span><span style="display:flex;"><span>    hidden_state <span style="color:#f92672">=</span> (h_t<span style="color:#f92672">.</span>detach(), c_t<span style="color:#f92672">.</span>detach())  <span style="color:#75715e"># Detach hidden state for next batch</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Compute loss</span>
+</span></span><span style="display:flex;"><span>    y_batch <span style="color:#f92672">=</span> Y_train[batch_indices]  <span style="color:#75715e"># Shape: (batch_size, seq_len, vocab_size)</span>
+</span></span><span style="display:flex;"><span>    loss <span style="color:#f92672">=</span> criterion(outputs, y_batch)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Backward pass and optimization</span>
+</span></span><span style="display:flex;"><span>    optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>    loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>    optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>    print(loss)
+</span></span></code></pre></div><p>This training approach grabs a random batch of 128 data points, puts them into the model, and hopes for the best, kind of like cramming for an exam with random notes you found in your bag. While it’s not the most efficient way to train, I went with it to really wrap my head around how batches flow through the network. After each iteration, the hidden state is politely told, &ldquo;Take a break, you’ve done enough,&rdquo; and detached. This prevents PyTorch from becoming a hoarder and building a massive computation graph that would slow things down to a crawl. For optimization, I used the Adam optimizer. Though simple, this setup helped me grasp the inner workings of batching and hidden state management in LSTMs.</p>
+<p>Before we begin training the network, let’s see how our model performs with its randomly initialized weights. This will give us a baseline idea of what kind of text it generates before learning anything meaningful from the data.</p>
+<p>The following code preprocess the input and passes it to the model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_sequence</span>(model, seed_string, char2idx, idx2char, sequence_length, max_len<span style="color:#f92672">=</span><span style="color:#ae81ff">55</span>):    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    seed_indices <span style="color:#f92672">=</span> [char2idx[word] <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> seed_string<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34; &#34;</span>) <span style="color:#66d9ef">if</span> word <span style="color:#f92672">in</span> char2idx]
+</span></span><span style="display:flex;"><span>    seed_tensor <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor(seed_indices)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>)  <span style="color:#75715e"># Shape: (1, seq_len)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    generated_indices <span style="color:#f92672">=</span> seed_indices[:]  
+</span></span><span style="display:flex;"><span>    hidden_state <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(sequence_length):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Pre-pad the input sequence to match the model&#39;s expected input size</span>
+</span></span><span style="display:flex;"><span>        padded_input <span style="color:#f92672">=</span> pre_pad_sequences_pytorch([generated_indices], max_len)<span style="color:#f92672">.</span>unsqueeze(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Get the model output and hidden state</span>
+</span></span><span style="display:flex;"><span>        output, (hidden_state) <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>forward(padded_input, hidden_state)
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Take the output corresponding to the last token</span>
+</span></span><span style="display:flex;"><span>        next_token_logits <span style="color:#f92672">=</span> output  <span style="color:#75715e"># Shape: (1, vocab_size)</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Use softmax to get probabilities and sample the next token</span>
+</span></span><span style="display:flex;"><span>        next_token_prob <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>softmax(next_token_logits, dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#  next_token_idx = torch.multinomial(next_token_prob, num_samples=1).item()</span>
+</span></span><span style="display:flex;"><span>        next_token_idx<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>argmax(next_token_prob)<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Append the predicted token to the sequence</span>
+</span></span><span style="display:flex;"><span>        generated_indices<span style="color:#f92672">.</span>append(next_token_idx)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert indices back to characters</span>
+</span></span><span style="display:flex;"><span>    generated_words <span style="color:#f92672">=</span> [idx2char[idx] <span style="color:#66d9ef">for</span> idx <span style="color:#f92672">in</span> generated_indices]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join(generated_words)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example usage:</span>
+</span></span><span style="display:flex;"><span>seed_string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;scum&#34;</span>
+</span></span><span style="display:flex;"><span>sequence_length <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>generated_text <span style="color:#f92672">=</span> generate_sequence(model, seed_string, char2idx, idx2char, sequence_length)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Generated Text:&#34;</span>)
+</span></span><span style="display:flex;"><span>print(generated_text)
+</span></span></code></pre></div><p>Now for a sequence_length of 20 this is what our model outputs.</p>
+<pre tabindex="0"><code>It is.&#39; if bath, is.&#39; if bath, cockney side, black serve is.&#39; go three asleep straw bath, is.&#39; cotton when when This up apparatus kind where Majors tub a stripped eight
+</code></pre><p>Doesn’t makes any sense.</p>
+<p>Now Lets train the model and run this code again.</p>
+<p>Now I trained the model for 300 iteration, it started with an initial loss of 6.85 reaching to 0.1084 at the end of 300 iteration. So, our model learnt well from the data. Lets see how our model performs after training on the same seed string.</p>
+<pre tabindex="0"><code>Generated Text:
+scum my was much luckier than the others, because at ten o&#39;clock the Tramp Major picked me out for the most coveted of all jobs in the spike, the job of helping in the workhouse kitchen. There was not really any work to be done there, and I was able to
+</code></pre><p>Much better . Lets generate a paragraph now .</p>
+<pre tabindex="0"><code>Generated Text:
+scum my was much luckier than the others, because at ten o&#39;clock the Tramp Major picked me out for the most coveted of all jobs in the spike, the job of helping in the workhouse kitchen. There was not really any work to be done there, and I was able to make off and hide in a shed used for storing potatoes, together with some workhouse paupers who were skulking to avoid the Sunday-morning service. There was a stove burning there, and comfortable packing cases to sit on, and back numbers of the Family Herald, and even a copy of Raffles from the workhouse library. It was paradise after the grime, of Sunday. It appeared the Tramp Major served the than before and the hot pipes. The cotton blankets were almost useless. One spent the night in turning from side to side, falling asleep for ten minutes and waking half frozen, and watching for the medical tables. It was a gloomy, chilly, limewashed place, consisting only of a bathroom and dining-room and about a hundred narrow stone cells. The terrible Tramp Major met us at the door and herded us into the bathroom to be stripped and searched. He was a gruff, soldierly man of forty, a pound of bread, a bit of margarine, and a pint of so-called tea. It took us five minutes to gulp down the cheap, noxious food. Then the Tramp Major served us with three cotton blankets each, and drove us off to our cells for the night. The doors were locked on the outside a little before seven in the evening, and would stay locked for the next twelve twelve hours in the spike, told tales of mooching, of pints stood him in the boozers, of the night for giving a back answer. When You, came to be searched, he fair held you upside down and shook you. If you were caught with tobacco there was bell to. Pay, and if you went in with money (which is against the law) God help help had no socks, except the tramps had already washed to our about and and for the lot of spring, perhaps—the authorities little It of the water, and decided to go dirty for the queer habit of sleeping in his hat, grumbled about a parcel of tommy that he had lost on the toad. Bill the moocher, the best built man of
+</code></pre><p><img alt="image.png" loading="lazy" src="image%203.png"></p>
+<p>But it looks like our small model memorized the paragraph instead of learning any real patterns. This is a case of overfitting. Since we trained the model for 300 epochs on such a small dataset, it essentially “rote learned” the paragraph and just outputs the exact same text from the dataset</p>
+<p>In generating text, we initially used <code>argmax</code> with <code>torch.argmax(next_token_prob).item()</code>, which simply picks the word with the highest probability from the output distribution. This approach is deterministic, meaning it will always choose the same word if the probabilities don&rsquo;t change.</p>
+<p>Now, let’s try using a <strong>multinomial distribution</strong> instead. A multinomial distribution creates a probability distribution over all possible tokens, allowing us to sample the next token randomly based on the probabilities. Instead of always choosing the word with the highest probability, the multinomial distribution introduces some randomness by selecting tokens based on their likelihood.</p>
+<p>For this uncomment the line <em>#  next_token_idx = torch.multinomial(next_token_prob, num_samples=1).item().</em></p>
+<p>This method introduces <strong>variations in the text output</strong>, as the model can now generate different sequences even when given the same starting point. It&rsquo;s like giving the model a little creative freedom, kind of like letting it freestyle instead of sticking to a strict script.</p>
+<p>That wraps up this blog. Here, we generated text sequences using a trained LSTM model. I know there’s a lot of room for improvement, but the goal was to get a basic understanding of data preprocessing and how LSTMs work. For more structured and efficient code, it would make sense to use PyTorch’s  <code>nn.LSTM</code> module.</p>
+<h3 id="whats-next">What&rsquo;s Next?<a hidden class="anchor" aria-hidden="true" href="#whats-next">#</a></h3>
+<p>To improve this model:</p>
+<ol>
+<li><strong>Add Dropout</strong>: Prevent overfitting with regularization techniques.</li>
+<li><strong>Use Better Sampling</strong>: Replace the random batch sampling with more structured approaches like sequential data loading.</li>
+<li><strong>Increase Dataset Size</strong>: Larger datasets will yield more meaningful insights during training.</li>
+</ol>
+<p>Thanks for sticking around till the end! This being my first blog, I’m sure it’s not perfect, but I’ll work on improving my writing in the future. Appreciate you reading through!</p>
+<p>Here’s the <a href="https://github.com/agrimpaneru/LSTM_SCRATCH">GitHub repository</a> with the code and dataset used for this project. Feel free to check it out!</p>
+<h1 id="resources">Resources<a hidden class="anchor" aria-hidden="true" href="#resources">#</a></h1>
+<ul>
+<li><a href="https://medium.com/@CallMeTwitch/building-a-neural-network-zoo-from-scratch-the-long-short-term-memory-network-1cec5cf31b7">The Long Short-Term Memory (LSTM) Network from Scratch | Medium</a></li>
+<li><a href="https://christinakouridi.github.io/posts/implement-lstm/">Implementing a LSTM from scratch with Numpy - Christina Kouridi</a></li>
+<li><a href="https://www.youtube.com/watch?v=TCH_1BHY58I&amp;list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&amp;index=3">Building makemore Part 2: MLP</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

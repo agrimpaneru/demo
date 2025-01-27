@@ -36,11 +36,17 @@ menu:
 
 params:
   # theme
+  DateFormat: "January 2, 2006"
   showToc: true
   TocOpen: false
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   hideMeta: false
+  ShowReadingTime: true
+  params:
+  customCSS: ["css/custom.css"]
+
+  
 
   # for enchanced SEO
   env: production
