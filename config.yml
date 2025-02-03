@@ -45,7 +45,16 @@ params:
   ShowReadingTime: true
   params:
   customCSS: ["css/custom.css"]
+  params:
+  comments: true
+  commento: true
 
+  Title: "Agrim Paneru"
+  description: "Agrim Paneru's portfolio and blog about machine learning, AI, and software engineering."
+  og_title: "Agrim Paneru"
+  og_description: "Explore Agrim Paneru's projects, blogs, and experience in the world of technology and machine learning."
+  og_url: "https://agrim.github.io/prtfoio/"
+ # Same image as OG
   
 
   # for enchanced SEO

@@ -1,5 +1,7 @@
 ---
-title: "LSTM From Scratch"
+title: "Implementing LSTM from scratch in PyTorch step-by-step."
+description: "A step-by-step guide to building an LSTM model from scratch in PyTorch."
+tags: ["LSTM", "PyTorch", "Machine Learning"]
 date: 2025-01-27
 author: "Agrim Paneru"
 cover:
@@ -8,6 +10,8 @@ cover:
   caption: "Understanding LSTMs step-by-step" # Optional caption for the image
   relative: false # Set to true if the path is relative to your static folder
 weight: 100
+comments: true
+
 --- 
 
 # LSTM from Scratch
