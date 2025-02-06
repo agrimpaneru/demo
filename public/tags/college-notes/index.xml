@@ -9,6 +9,13 @@
     <lastBuildDate>Sun, 12 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/prtfoio/tags/college-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Self-Attention Explained: Implementing Scaled Dot-Product Attention with PyTorch</title>
+      <link>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</guid>
+      <description>A beginner-friendly explanation of self-attention and its implementation in PyTorch.</description>
+    </item>
+    <item>
       <title>Internet and Intranet</title>
       <link>http://localhost:1313/prtfoio/blog/i-and-i/</link>
       <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>

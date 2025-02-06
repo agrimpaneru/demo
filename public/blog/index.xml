@@ -9,14 +9,18 @@
     <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/prtfoio/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>LSTM From Scratch</title>
+      <title>Self-Attention Explained: Implementing Scaled Dot-Product Attention with PyTorch</title>
+      <link>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</guid>
+      <description>A beginner-friendly explanation of self-attention and its implementation in PyTorch.</description>
+    </item>
+    <item>
+      <title>Implementing LSTM from scratch in PyTorch step-by-step.</title>
       <link>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</guid>
-      <description>&lt;h1 id=&#34;lstm-from-scratch&#34;&gt;LSTM from Scratch&lt;/h1&gt;
-&lt;p&gt;In this post, we will implement a simple next word predictor LSTM from scratch using torch.&lt;/p&gt;
-&lt;h2 id=&#34;a-gentle-introduction-to-lstm&#34;&gt;A gentle Introduction to LSTM&lt;/h2&gt;
-&lt;p&gt;Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by &lt;a href=&#34;http://www.bioinf.jku.at/publications/older/2604.pdf&#34;&gt;Hochreiter &amp;amp; Schmidhuber (1997)&lt;/a&gt;. As LSTMs are also a type of Recurrent Neural Network, they too have a hidden state, but they have another memory cell called the cell state as well.&lt;/p&gt;</description>
+      <description>A step-by-step guide to building an LSTM model from scratch in PyTorch.</description>
     </item>
     <item>
       <title>Internet and Intranet</title>

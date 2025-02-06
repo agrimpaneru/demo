@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Machine Learning on Agrim Paneru</title>
+    <link>http://localhost:1313/prtfoio/categories/machine-learning/</link>
+    <description>Recent content in Machine Learning on Agrim Paneru</description>
+    <generator>Hugo -- 0.140.2</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/prtfoio/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self-Attention Explained: Implementing Scaled Dot-Product Attention with PyTorch</title>
+      <link>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</guid>
+      <description>A beginner-friendly explanation of self-attention and its implementation in PyTorch.</description>
+    </item>
+  </channel>
+</rss>

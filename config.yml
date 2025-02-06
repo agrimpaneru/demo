@@ -43,6 +43,7 @@ params:
   ShowCodeCopyButtons: true
   hideMeta: false
   ShowReadingTime: true
+  mathjax: true
   params:
   customCSS: ["css/custom.css"]
   params:
