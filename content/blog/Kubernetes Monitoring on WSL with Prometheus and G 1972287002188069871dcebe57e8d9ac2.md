@@ -7,6 +7,7 @@ author: "Agrim Paneru"
 # Set to true if the path is relative to your static folder
 weight: 100
 comments: true
+draft: true
 ---
 # Kubernetes Monitoring on WSL with Prometheus and Grafana
 
