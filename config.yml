@@ -46,7 +46,7 @@ params:
   mathjax: true
   params:
   customCSS: ["css/custom.css"]
-  params:
+  enableNextPrevLinks: true
   comments: true
   commento: true
 

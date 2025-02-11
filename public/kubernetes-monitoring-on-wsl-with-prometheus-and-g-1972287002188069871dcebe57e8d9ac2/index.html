@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agrim Paneru">
+<meta property="og:description" content="Agrim Paneru&#39;s portfolio and blog about machine learning, AI, and software engineering.">
+<meta property="og:url" content="http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/">
+<meta property="og:image" content="">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Agrim Paneru</title>
+<meta name="keywords" content="">
+<meta name="description" content="Kubernetes Monitoring on WSL with Prometheus and Grafana
+This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You&rsquo;ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/">
+<link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.96c7d6443f7296882c1368d79c4a3a4eb0beea7637a5bb0631f2d1dcdee56598.css" integrity="sha256-lsfWRD9ylogsE2jXnEo6TrC&#43;6nY3pbsGMfLR3N7lZZg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/">
+  <meta property="og:site_name" content="Agrim Paneru">
+  <meta property="og:title" content="Agrim Paneru">
+  <meta property="og:description" content="Kubernetes Monitoring on WSL with Prometheus and Grafana This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You’ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="Kubernetes Monitoring on WSL with Prometheus and Grafana
+This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You&rsquo;ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "",
+      "item": "http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "Kubernetes Monitoring on WSL with Prometheus and Grafana This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You\u0026rsquo;ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Kubernetes Monitoring on WSL with Prometheus and Grafana This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You’ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.\nPrerequisites Install Docker – Follow the official Docker documentation to set it up on your machine. Install Kubectl – Use the official guide to install Kubectl for cluster communication. Basic Kubernetes Knowledge – Read the Kubernetes docs or check out Semaphore’s free ebook on CI/CD with Docker and Kubernetes. Set Up a Kubernetes Cluster – This guide uses Minikube, a free local Kubernetes cluster. Introduction to Prometheus Prometheus is an open-source DevOps tool. It provides monitoring and real-time alerting functionality for container orchestration platforms like Kubernetes. It collects and stores the metrics from the platform as time series data.\nThe metrics that Prometheus collects from the Kubernetes cluster are:\nKubernetes cluster health. CPU status. Memory usage. Kubernetes nodes status. Reports on potential performance bottlenecks. Performance metrics. Server resources. Introduction to Grafana Grafana is an open-source data visualization and monitoring tool that helps users analyze and interpret metrics from various data sources. It is widely used for visualizing time-series data, making it ideal for monitoring the performance of infrastructure, applications, and services in real-time.\nGrafana offers:\nReal-Time Data Visualization – Provides dynamic dashboards for real-time monitoring of metrics and logs. Multiple Data Source Integration – Connects to various data sources like Prometheus, InfluxDB, and MySQL. Customizable Dashboards – Allows users to design personalized dashboards with various visualizations such as graphs, charts, and heatmaps. Alerting and Notification – Configures alerts based on specific conditions and sends notifications through Slack, email, and other services. In this Guide, we’ll be using Grafana with Prometheus as a data source.\nArchitecture of Prometheus: This architecture represents a Prometheus-based monitoring system used for collecting, storing, querying, and visualizing metrics from applications and third-party services Key Components of Prometheus:\n****1. Prometheus Server is the core component in the Prometheus architecture. It is where the actual monitoring job occurs. It is responsible for\nPulling metrics from applications and exporters. Storing data in local storage. Running queries using PromQL (Prometheus Query Language). Pushing alerts to Alertmanager. Alert manager alerts users via email and other communication channels. Grafana is used for Data Visualization It does: Queries Prometheus using PromQL. Provides dashboards and visualizations for monitoring. Service discovery is a mechanism that allows Prometheus to dynamically find and scrape metrics from targets (applications, services, or exporters) without manual configuration. It helps automate monitoring in dynamic environments like Kubernetes, cloud platforms, and microservices architectures. Setting Up Prometheus in Ubuntu Here in this tutorial we’ll use HELM for setup. Helm is a package manager for Kubernetes that simplifies the deployment and management of applications using pre-configured Helm charts. Instead of manually writing complex YAML files for Prometheus, Helm allows us to deploy it with a single command while ensuring best practices.\nInstallation Of Helm Before installing Helm lets start our Minikube cluster using:\nminikube start Now run the following commands:\nThis script automatically detects your OS and installs Helm.\ncurl [https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3](https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3) | bash Now Verify Helm Installation, using\nhelm version These commands add the Prometheus and Grafana Helm chart repositories and update the local repository index to fetch the latest available charts.\nhelm repo add prometheus-community https://prometheus-community.github.io/helm-charts helm repo add grafana https://grafana.github.io/helm-charts helm repo update helm install prometheus prometheus-community/kube-prometheus-stack Now after successful installation of Prometheus the services are created for Prometheus.\nWe’ll use the prometheus-kube-prometheus-prometheus Kubernetes service to access the Prometheus application.\nTo access the Prometheus server from the browser, we need to expose the prometheus-kube-prometheus-prometheus service as a NodePort. This allows us to reach Prometheus externally using the node’s IP and a specified port.\nRun command:\nkubectl expose service prometheus-kube-prometheus-prometheus --type=NodePort --target-port=3000 --name=prometheus-nodeport If You’re using it in WSL you may need to run the following command to access it through browser.\nnohup socat TCP-LISTEN:\u003cport number\u003e,fork TCP:\u003cminikubeip\u003e:30860 \u0026 The port 30860 is assigned by Nodeport service. Change it accordingly.\nSince I’ve already done the steps prometheus-nodeport service is created as NodePort.\nNow, the Prometheus Server can be accessed from the Browser using ip\n\u003cminikube ip\u003e:30860 #Remember to change the port number 💡 In case of WSL it can be accessed in localhost:30860.\nThe web interface looks like this. Since I was using WSL the server is available in localhost.\nInstallation Of Grafana Now lets setup Grafana. Run the following command to install grafana.\nhelm install grafana grafana/grafana After successful installation of grafana we need password to login. Run this command :\nkubectl get secret --namespace default grafana -o jsonpath=\"{.data.admin-password}\" | base64 --decode ; echo #Bvc83cKmrlSIs9UBiuuslRjRhnUzeLZ6iliyFMLJ this is returned password Now similarly expose the grafana as Nodeport to access it through browser.\nkubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-nodeport Run this command.\nNow access the grafana web interface from the following ip. If using WSL we need to forward the port similar to Prometheus as above to access it through browser interface\n\u003cminikubeip\u003e:32104 It’ll ask for userid and Password:\n💡 Default ID is admin and password is Bvc83cKmrlSIs9UBiuuslRjRhnUzeLZ6iliyFMLJ\nUse password generated above\nAfter Login the User interface is available from the web browser.\nLets add Prometheus as our data source. Click on Add your first data source\nAdd Prometheus as database source.\nIn Prometheus server URL add the ip minikube and port where the Nodeport is exposed. This ensures Grafana successfully pulls metrics from the Prometheus server running in your Kubernetes cluster\nAfter saving it shows Successful i.e Grafana successfully set up the Prometheus as its data source.\nCreating a dashboard Click on Import Dashboard\nEnter a description for the dashboard, then click Save. Next, navigate to the Import Dashboard section. Instead of creating a new dashboard from scratch, we’ll import a pre-built one using its ID. Simply enter 3662 (or any other relevant dashboard ID), click Load, and follow the prompts to complete the import.\nNow, click LOAD, and Grafana will automatically fetch the predefined dashboard. Once loaded, you’ll see a visualization of your Kubernetes cluster, displaying real-time metrics from Prometheus\nIn this dashboard we have metrics regarding the native Kubernetes services, but let’s say we want to know the staus of a deployment, running replicas, current state of k8s service from Prometheus? This is where the service Prometheus-kube-state-metrics comes into play.\nThis will be covered in the next part of this walkthrough, where we will expose this service and explore how it enables the visualization of more data from the Kubernetes cluster.\n",
+  "wordCount" : "1118",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/prtfoio/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agrim Paneru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/prtfoio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/prtfoio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a></div>
+    <h1 class="post-title entry-hint-parent">
+      
+    </h1>
+    <div class="post-meta">⏱️ 6 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#kubernetes-monitoring-on-wsl-with-prometheus-and-grafana" aria-label="Kubernetes Monitoring on WSL with Prometheus and Grafana">Kubernetes Monitoring on WSL with Prometheus and Grafana</a><ul>
+                        
+                <li>
+                    <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+                <li>
+                    <a href="#introduction-to-prometheus" aria-label="Introduction to Prometheus">Introduction to Prometheus</a></li>
+                <li>
+                    <a href="#introduction-to-grafana" aria-label="Introduction to Grafana">Introduction to Grafana</a></li>
+                <li>
+                    <a href="#architecture-of-prometheus" aria-label="Architecture of Prometheus:">Architecture of Prometheus:</a><ul>
+                        
+                <li>
+                    <a href="#this-architecture-represents-a-prometheus-based-monitoring-system-used-for-collecting-storing-querying-and-visualizing-metrics-from-applications-and-third-party-services" aria-label="This architecture represents a Prometheus-based monitoring system used for collecting, storing, querying, and visualizing metrics from applications and third-party services">This architecture represents a Prometheus-based monitoring system used for collecting, storing, querying, and visualizing metrics from applications and third-party services</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#setting-up-prometheus-in-ubuntu" aria-label="Setting Up Prometheus in Ubuntu">Setting Up Prometheus in Ubuntu</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#installation-of-helm" aria-label="Installation Of Helm">Installation Of Helm</a></li></ul>
+                    
+                <li>
+                    <a href="#installation-of-grafana" aria-label="Installation Of Grafana">Installation Of Grafana</a><ul>
+                        
+                <li>
+                    <a href="#creating-a-dashboard" aria-label="Creating a dashboard">Creating a dashboard</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="kubernetes-monitoring-on-wsl-with-prometheus-and-grafana">Kubernetes Monitoring on WSL with Prometheus and Grafana<a hidden class="anchor" aria-hidden="true" href="#kubernetes-monitoring-on-wsl-with-prometheus-and-grafana">#</a></h1>
+<p>This guide will walk you through integrating Prometheus and Grafana on Kubernetes using Helm. You&rsquo;ll also learn how to set up a basic dashboard in Grafana. As two of the most widely used open-source monitoring tools for Kubernetes, Prometheus and Grafana provide valuable insights into cluster health and performance. By leveraging Helm for integration, you can efficiently monitor your Kubernetes cluster, diagnose issues, and track resource utilization and performance metrics.</p>
+<h2 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h2>
+<ol>
+<li><strong>Install Docker</strong> – Follow the official Docker documentation to set it up on your machine.</li>
+<li><strong>Install Kubectl</strong> – Use the official guide to install Kubectl for cluster communication.</li>
+<li><strong>Basic Kubernetes Knowledge</strong> – Read the Kubernetes docs or check out Semaphore’s free ebook on CI/CD with Docker and Kubernetes.</li>
+<li><strong>Set Up a Kubernetes Cluster</strong> – This guide uses Minikube, a free local Kubernetes cluster.</li>
+</ol>
+<h2 id="introduction-to-prometheus">Introduction to Prometheus<a hidden class="anchor" aria-hidden="true" href="#introduction-to-prometheus">#</a></h2>
+<p><a href="https://prometheus.io/">Prometheus</a> is an open-source DevOps tool. It provides monitoring and real-time alerting functionality for container orchestration platforms like Kubernetes. It collects and stores the metrics from the platform as time series data.</p>
+<p>The metrics that Prometheus collects from the Kubernetes cluster are:</p>
+<ul>
+<li>Kubernetes cluster health.</li>
+<li>CPU status.</li>
+<li>Memory usage.</li>
+<li>Kubernetes nodes status.</li>
+<li>Reports on potential performance bottlenecks.</li>
+<li>Performance metrics.</li>
+<li>Server resources.</li>
+</ul>
+<h2 id="introduction-to-grafana">Introduction to Grafana<a hidden class="anchor" aria-hidden="true" href="#introduction-to-grafana">#</a></h2>
+<p>Grafana is an open-source data visualization and monitoring tool that helps users analyze and interpret metrics from various data sources. It is widely used for visualizing time-series data, making it ideal for monitoring the performance of infrastructure, applications, and services in real-time.</p>
+<p>Grafana offers:</p>
+<ul>
+<li><strong>Real-Time Data Visualization</strong> – Provides dynamic dashboards for real-time monitoring of metrics and logs.</li>
+<li><strong>Multiple Data Source Integration</strong> – Connects to various data sources like Prometheus, InfluxDB, and MySQL.</li>
+<li><strong>Customizable Dashboards</strong> – Allows users to design personalized dashboards with various visualizations such as graphs, charts, and heatmaps.</li>
+<li><strong>Alerting and Notification</strong> – Configures alerts based on specific conditions and sends notifications through Slack, email, and other services.</li>
+</ul>
+<p>In this Guide, we’ll be using Grafana with Prometheus as a data source.</p>
+<h2 id="architecture-of-prometheus">Architecture of Prometheus:<a hidden class="anchor" aria-hidden="true" href="#architecture-of-prometheus">#</a></h2>
+<p><img alt="image.png" loading="lazy" src="image.png"></p>
+<h3 id="this-architecture-represents-a-prometheus-based-monitoring-system-used-for-collecting-storing-querying-and-visualizing-metrics-from-applications-and-third-party-services">This architecture represents a <strong>Prometheus-based monitoring system</strong> used for collecting, storing, querying, and visualizing metrics from applications and third-party services<a hidden class="anchor" aria-hidden="true" href="#this-architecture-represents-a-prometheus-based-monitoring-system-used-for-collecting-storing-querying-and-visualizing-metrics-from-applications-and-third-party-services">#</a></h3>
+<p>Key Components of Prometheus:</p>
+<p>****1. <strong>Prometheus Server</strong> is the core component in the Prometheus architecture. It is where the actual monitoring job <a href="http://occurs.It">occurs. It</a> is responsible for</p>
+<ul>
+<li><strong>Pulling metrics</strong> from applications and exporters.</li>
+<li><strong>Storing data</strong> in local storage.</li>
+<li><strong>Running queries</strong> using <strong>PromQL</strong> (Prometheus Query Language).</li>
+<li><strong>Pushing alerts</strong> to Alertmanager.</li>
+</ul>
+<ol>
+<li><strong>Alert manager</strong> alerts users via email and other communication channels.</li>
+<li><strong>Grafana</strong> is used for Data Visualization It does:
+<ul>
+<li>Queries <strong>Prometheus using PromQL</strong>.</li>
+<li>Provides dashboards and visualizations for monitoring.</li>
+</ul>
+</li>
+<li><strong>Service discovery</strong> is a mechanism that allows Prometheus to dynamically find and scrape metrics from targets (applications, services, or exporters) <strong>without manual configuration</strong>. It helps <strong>automate monitoring</strong> in dynamic environments like <strong>Kubernetes, cloud platforms, and microservices architectures</strong>.</li>
+</ol>
+<h1 id="setting-up-prometheus-in-ubuntu">Setting Up Prometheus in Ubuntu<a hidden class="anchor" aria-hidden="true" href="#setting-up-prometheus-in-ubuntu">#</a></h1>
+<p>Here in this tutorial we’ll use HELM for setup. Helm is a <strong>package manager for Kubernetes</strong> that simplifies the deployment and management of applications using pre-configured <strong>Helm charts</strong>. Instead of manually writing complex YAML files for Prometheus, Helm allows us to deploy it with a single command while ensuring best practices.</p>
+<h3 id="installation-of-helm"><strong>Installation Of Helm</strong><a hidden class="anchor" aria-hidden="true" href="#installation-of-helm">#</a></h3>
+<p>Before installing Helm lets start our Minikube cluster using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>minikube start
+</span></span></code></pre></div><p>Now run the following commands:</p>
+<p>This script automatically detects your OS and installs Helm.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> curl [https:<span style="color:#f92672">//</span>raw<span style="color:#f92672">.</span>githubusercontent<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>helm<span style="color:#f92672">/</span>helm<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>scripts<span style="color:#f92672">/</span>get<span style="color:#f92672">-</span>helm<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>](https:<span style="color:#f92672">//</span>raw<span style="color:#f92672">.</span>githubusercontent<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>helm<span style="color:#f92672">/</span>helm<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>scripts<span style="color:#f92672">/</span>get<span style="color:#f92672">-</span>helm<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">|</span> bash
+</span></span></code></pre></div><p>Now Verify Helm Installation, using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>helm version
+</span></span></code></pre></div><p>These commands add the <strong>Prometheus</strong> and <strong>Grafana</strong> Helm chart repositories and update the local repository index to fetch the latest available charts.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>helm repo add prometheus<span style="color:#f92672">-</span>community https:<span style="color:#f92672">//</span>prometheus<span style="color:#f92672">-</span>community<span style="color:#f92672">.</span>github<span style="color:#f92672">.</span>io<span style="color:#f92672">/</span>helm<span style="color:#f92672">-</span>charts
+</span></span><span style="display:flex;"><span>helm repo add grafana https:<span style="color:#f92672">//</span>grafana<span style="color:#f92672">.</span>github<span style="color:#f92672">.</span>io<span style="color:#f92672">/</span>helm<span style="color:#f92672">-</span>charts
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>helm install prometheus prometheus<span style="color:#f92672">-</span>community<span style="color:#f92672">/</span>kube<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">-</span>stack
+</span></span></code></pre></div><p>Now after successful installation of Prometheus the services are created for Prometheus.</p>
+<p><img alt="image.png" loading="lazy" src="image%201.png"></p>
+<p>We’ll use the <code>prometheus-kube-prometheus-prometheus</code> Kubernetes service to access the Prometheus application.</p>
+<p>To access the <strong>Prometheus server</strong> from the browser, we need to expose the <code>prometheus-kube-prometheus-prometheus</code> service as a <strong>NodePort</strong>. This allows us to reach Prometheus externally using the node’s IP and a specified port.</p>
+<p>Run command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>kubectl expose service prometheus<span style="color:#f92672">-</span>kube<span style="color:#f92672">-</span>prometheus<span style="color:#f92672">-</span>prometheus <span style="color:#f92672">--</span>type<span style="color:#f92672">=</span>NodePort <span style="color:#f92672">--</span>target<span style="color:#f92672">-</span>port<span style="color:#f92672">=</span><span style="color:#ae81ff">3000</span> <span style="color:#f92672">--</span>name<span style="color:#f92672">=</span>prometheus<span style="color:#f92672">-</span>nodeport
+</span></span></code></pre></div><p>If You’re using it in WSL you may need to run the following command to access it through browser.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>nohup socat TCP<span style="color:#f92672">-</span>LISTEN:<span style="color:#f92672">&lt;</span>port number<span style="color:#f92672">&gt;</span>,fork TCP:<span style="color:#f92672">&lt;</span>minikubeip<span style="color:#f92672">&gt;</span>:<span style="color:#ae81ff">30860</span> <span style="color:#f92672">&amp;</span>
+</span></span></code></pre></div><p>The port 30860 is assigned by Nodeport service. Change it accordingly.</p>
+<p>Since I’ve already done the steps prometheus-nodeport service is created as NodePort.</p>
+<p>Now, the Prometheus Server can be accessed from the Browser using ip</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>minikube ip<span style="color:#f92672">&gt;</span>:<span style="color:#ae81ff">30860</span> <span style="color:#75715e">#Remember to change the port number</span>
+</span></span></code></pre></div><aside>
+💡
+<p><em><strong>In case of WSL it can be accessed in localhost:30860.</strong></em></p>
+</aside>
+<p>The web interface looks like this. Since I was using WSL the server is available in <em><strong>localhost.</strong></em></p>
+<p><img alt="image.png" loading="lazy" src="image%202.png"></p>
+<h2 id="installation-of-grafana">Installation Of Grafana<a hidden class="anchor" aria-hidden="true" href="#installation-of-grafana">#</a></h2>
+<p>Now lets setup Grafana. Run the following command to install grafana.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>helm install grafana grafana<span style="color:#f92672">/</span>grafana
+</span></span></code></pre></div><p>After successful installation of grafana we need password to login. Run this command :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>kubectl get secret <span style="color:#f92672">--</span>namespace default grafana <span style="color:#f92672">-</span>o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{.data.admin-password}&#34;</span> <span style="color:#f92672">|</span> base64 <span style="color:#f92672">--</span>decode ; echo
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Bvc83cKmrlSIs9UBiuuslRjRhnUzeLZ6iliyFMLJ this is returned password</span>
+</span></span></code></pre></div><p>Now similarly expose the grafana as Nodeport to access it through browser.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> kubectl expose service grafana <span style="color:#f92672">--</span>type<span style="color:#f92672">=</span>NodePort <span style="color:#f92672">--</span>target<span style="color:#f92672">-</span>port<span style="color:#f92672">=</span><span style="color:#ae81ff">3000</span> <span style="color:#f92672">--</span>name<span style="color:#f92672">=</span>grafana<span style="color:#f92672">-</span>nodeport
+</span></span></code></pre></div><p>Run this command.</p>
+<p>Now access the grafana web interface from the following ip. If using WSL we need to forward the port similar to Prometheus as above to access it through browser interface</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span>minikubeip<span style="color:#f92672">&gt;</span>:<span style="color:#ae81ff">32104</span>
+</span></span></code></pre></div><p>It’ll ask for userid and Password:</p>
+<aside>
+💡
+<p>Default ID is admin and password is Bvc83cKmrlSIs9UBiuuslRjRhnUzeLZ6iliyFMLJ</p>
+<p>Use password generated above</p>
+</aside>
+<p>After Login the User interface is available from the web browser.</p>
+<p>Lets add Prometheus as our data source. Click on Add your first data source</p>
+<p><img alt="image.png" loading="lazy" src="image%203.png"></p>
+<p>Add Prometheus as database source.</p>
+<p><img alt="image.png" loading="lazy" src="image%204.png"></p>
+<p>In Prometheus server URL add the ip minikube and port where the Nodeport is exposed.
+This ensures Grafana successfully pulls metrics from the <strong>Prometheus server</strong> running in your Kubernetes cluster</p>
+<p><img alt="image.png" loading="lazy" src="image%205.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%206.png"></p>
+<p>After saving it shows Successful i.e Grafana successfully set up the Prometheus as its data source.</p>
+<h3 id="creating-a-dashboard">Creating a dashboard<a hidden class="anchor" aria-hidden="true" href="#creating-a-dashboard">#</a></h3>
+<p><strong>Click on Import Dashboard</strong></p>
+<p><img alt="image.png" loading="lazy" src="image%207.png"></p>
+<p>Enter a <strong>description</strong> for the dashboard, then click <strong>Save</strong>. Next, navigate to the <strong>Import Dashboard</strong> section. Instead of creating a new dashboard from scratch, we&rsquo;ll import a pre-built one using its <strong>ID</strong>. Simply enter <strong>3662</strong> (or any other relevant dashboard ID), click <strong>Load</strong>, and follow the prompts to complete the import.</p>
+<p><img alt="image.png" loading="lazy" src="image%208.png"></p>
+<p>Now, click <strong>LOAD</strong>, and Grafana will automatically fetch the predefined dashboard. Once loaded, you&rsquo;ll see a <strong>visualization of your Kubernetes cluster</strong>, displaying real-time metrics from Prometheus</p>
+<p><img alt="image.png" loading="lazy" src="image%209.png"></p>
+<p>In this dashboard we have metrics regarding the native Kubernetes services, but let’s say we want to know the staus of a deployment, running replicas, current state of k8s service from Prometheus? This is where the service Prometheus-kube-state-metrics comes into play.</p>
+<p>This will be covered in the next part of this walkthrough, where we will <strong>expose this service</strong> and explore how it enables the <strong>visualization of more data</strong> from the Kubernetes cluster.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

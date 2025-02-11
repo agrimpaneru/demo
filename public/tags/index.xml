@@ -6,8 +6,43 @@
     <description>Recent content in Tags on Agrim Paneru</description>
     <generator>Hugo -- 0.140.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/prtfoio/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana</title>
+      <link>http://localhost:1313/prtfoio/tags/grafana/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/tags/grafana/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>http://localhost:1313/prtfoio/tags/kubernetes/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Monitoring</title>
+      <link>http://localhost:1313/prtfoio/tags/monitoring/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Prometheus</title>
+      <link>http://localhost:1313/prtfoio/tags/prometheus/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>WSL</title>
+      <link>http://localhost:1313/prtfoio/tags/wsl/</link>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/tags/wsl/</guid>
+      <description></description>
+    </item>
     <item>
       <title>LSTM</title>
       <link>http://localhost:1313/prtfoio/tags/lstm/</link>

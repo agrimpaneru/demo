@@ -4,16 +4,37 @@
   <url>
     <loc>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</loc>
   </url><url>
+    <loc>http://localhost:1313/prtfoio/blog/kubernetes-monitoring-on-wsl-with-prometheus-and-g-1972287002188069871dcebe57e8d9ac/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/blog/i-and-i/</loc>
     <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/</loc>
-    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/prtfoio/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/grafana/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/kubernetes/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/monitoring/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/prometheus/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/wsl/</loc>
+    <lastmod>2025-02-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/blog/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/tags/lstm/</loc>
@@ -23,9 +44,6 @@
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/tags/pytorch/</loc>
-    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/posts/</loc>
