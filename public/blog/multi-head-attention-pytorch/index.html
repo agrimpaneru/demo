@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch">
+<meta property="og:description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
+<meta property="og:url" content="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<meta property="og:image" content="">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch | Agrim Paneru</title>
+<meta name="keywords" content="Multi-Head Attention, Attention Mechanism, PyTorch Implementation, Transformers in AI, Deep Learning Tutorial, NLP Models, Self-Attention">
+<meta name="description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
+<meta name="author" content="Agrim Paneru">
+<link rel="canonical" href="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.96c7d6443f7296882c1368d79c4a3a4eb0beea7637a5bb0631f2d1dcdee56598.css" integrity="sha256-lsfWRD9ylogsE2jXnEo6TrC&#43;6nY3pbsGMfLR3N7lZZg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+  <meta property="og:site_name" content="Agrim Paneru">
+  <meta property="og:title" content="MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch">
+  <meta property="og:description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:tag" content="Multi-Head Attention">
+    <meta property="article:tag" content="Transformers">
+    <meta property="article:tag" content="Deep Learning">
+    <meta property="article:tag" content="PyTorch">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="NLP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch">
+<meta name="twitter:description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "     ",
+      "item": "http://localhost:1313/prtfoio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch",
+      "item": "http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch",
+  "name": "MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch",
+  "description": "Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.",
+  "keywords": [
+    "Multi-Head Attention", "Attention Mechanism", "PyTorch Implementation", "Transformers in AI", "Deep Learning Tutorial", "NLP Models", "Self-Attention"
+  ],
+  "articleBody": "Implementing Multihead attention from scratch with pytorch In our previous article, we built Self-Attention from scratch using PyTorch. If you haven’t checked that out yet, I highly recommend giving it a read before reading this one!\nNow, let’s take things a step further and implement Multi-Head Attention from scratch. This post focuses more on the implementation rather than the theory, so I assume you’re already familiar with how self-attention works.\nLet’s get started!\nMultihead Attention Similar to Self-Attention, Multi-Head Attention also creates a new context vector. But instead of using a single attention mechanism, it uses multiple heads, each learning different relationships between words.\nFor example, consider these two sentences:\n1️⃣ I went to the bank to withdraw cash.\n2️⃣ I went for a picnic by the river bank.\nHere, the word “bank” has different meanings depending on the context. The idea behind Multi-Head Attention is that different heads can focus on different aspects of a word’s meaning, capturing various relationships more effectively.\nIn the above example with a single attention head, the model might have difficulty capturing both the financial and geographical meanings of the word “bank” at the same time. Multi-Head Attention, on the other hand, allows the model to learn both meanings separately—one head could focus on financial context while another focuses on the geographical context. This way, the model learns richer, more nuanced embeddings of the word “bank” based on different contexts.\nFor a more intuitive explanation of Multi-Head Attention, I highly recommend checking out this medium post.\nNow Lets Implement it.\nimport torch torch.manual_seed(42) # Set seed for reproducibility embedding_dim = 8 words = ['the', 'cat', 'sat', 'on', 'mat'] embeddings = [torch.rand(embedding_dim) for word in words] embeddings = torch.stack(embeddings) Similar to our previous Self-Attention implementation, we’ll use the following sentence with a random embedding of dimension 8. However, in real-world applications, embeddings are typically a combination of word embeddings and positional encodings. To keep things simple, we won’t dive into that here. Now, let’s define the Wq, Wk, and Wv matrices. We could use separate smaller weight matrices to get the Query, Key, and Value vectors directly, but a more efficient approach is to use a single large weight matrix and split it afterward for multiple attention heads. This method is more computationally efficient, as it allows for parallel processing across heads.\nWq = torch.rand(embedding_dim, embedding_dim) # (8, 8) Wk = torch.rand(embedding_dim, embedding_dim) # (8, 8) Wv = torch.rand(embedding_dim, embedding_dim) # (8, 8) Lets apply the projection to Get Query Key and Value matrix.\n# Apply projection Q = embeddings @ Wq # Shape: (5, 8) K = embeddings @ Wk # Shape: (5, 8) V = embeddings @ Wv # Shape: (5, 8) Now ,We’ll split the projected vectors into multiple heads . Remember the Embedding dimension must be exactly divisible by head\nd_k = embedding_dim // num_heads Now we obtain the Query Key and Value Matrix for multiple heads.\nQ = Q.view(seq_len, num_heads, d_k).transpose(0, 1) K = K.view(seq_len, num_heads, d_k).transpose(0, 1) V = V.view(seq_len, num_heads, d_k).transpose(0, 1) The output shape of Q, K, and V after the split will be (2, 5, 4), where:\n2 corresponds to the number of heads, 5 corresponds to the sequence length (number of words), and 4 is the new dimension of each vector for each head. We calculate attention matrix by,\nattention_scores=Q @ K.transpose(-2,-1) '''For 3D matrix multiplication, the first dimension of both matrices should match, #while the second dimension of the first matrix must align with the third dimension of the second matrix according to the matrix multiplication rule''' Here, we get two attention scores from each head. We’ll proceed with scaling these scores and applying the softmax activation, just like in Self-Attention. For a detailed explanation of this process, please refer to my previous post on Self-Attention\nBut before applying the scaling and softmax activation, we’ll mask the attention scores. Masking is necessary to ensure that the prediction for a given token only depends on the current and previous tokens. Without masking, the model could “cheat” by looking ahead at future tokens which in not desirable.\nMasked Multi-Head Attention In the decoder of a transformer, we use masked multi-head attention to prevent the model from looking at future tokens when predicting the next one. This ensures that the model can only base its prediction on past tokens, not the future ones. In contrast, the encoder doesn’t need masking because it has access to the entire sequence at once, so it can freely attend to all parts of the input.\nThis masking enables the model to process all tokens in parallel during training, enhancing efficiency.\nWe will implement Masked Multi-Head Attention, ensuring that the model only attends to past words by masking the attention scores. This prevents the decoder from seeing future words, enforcing an autoregressive learning process\nMasking is applied before softmax by setting forbidden positions to−∞ to ensure they receive zero probability after normalization.\nmask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1) mask = mask.bool() mask=mask.unsqueeze(0) attention_scores=attention_scores.masked_fill(mask,-1e11) attention_scores=attention_scores/math.sqrt(d_k) #This is mask i.e Upper triangular matrix tensor([[0., 1., 1., 1., 1.], [0., 0., 1., 1., 1.], [0., 0., 0., 1., 1.], [0., 0., 0., 0., 1.], [0., 0., 0., 0., 0.]]) #Attention Scores before masking tensor([[[24.6185, 22.6470, 19.6726, 10.3703, 23.2266], [25.3424, 23.5643, 20.2438, 10.8568, 24.0848], [20.2856, 18.6674, 16.2010, 8.5272, 19.1661], [11.0366, 10.1522, 8.8451, 4.5771, 10.3952], [23.4003, 21.7570, 18.6598, 10.0209, 22.2936]], [[24.1949, 25.1107, 20.5201, 12.3558, 24.2538], [24.3185, 25.1608, 20.5903, 12.5245, 24.4242], [19.3101, 20.0426, 16.3541, 9.9390, 19.3887], [11.4448, 11.6265, 9.6817, 5.8675, 11.3187], [23.9947, 24.8808, 20.3205, 12.3524, 24.1055]]]) #Attention Scores after masking tensor([[[ 2.4619e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.5342e+01, 2.3564e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.0286e+01, 1.8667e+01, 1.6201e+01, -1.0000e+11, -1.0000e+11], [ 1.1037e+01, 1.0152e+01, 8.8451e+00, 4.5771e+00, -1.0000e+11], [ 2.3400e+01, 2.1757e+01, 1.8660e+01, 1.0021e+01, 2.2294e+01]], [[ 2.4195e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.4318e+01, 2.5161e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 1.9310e+01, 2.0043e+01, 1.6354e+01, -1.0000e+11, -1.0000e+11], [ 1.1445e+01, 1.1626e+01, 9.6817e+00, 5.8675e+00, -1.0000e+11], [ 2.3995e+01, 2.4881e+01, 2.0321e+01, 1.2352e+01, 2.4105e+01]]]) So what we did here was created a lower triangular matrix and applied it as a mask to attention score and scaled it and passed to softmax to ensure each token can only attend to itself and previous tokens.\nAfter softmax, the row sum will be one and this ensures the attention weights are a valid probability distribution, allowing the model to learn proportional contributions from past tokens.\ntensor([[[1.0000, 0.0000, 0.0000, 0.0000, 0.0000], [0.5130, 0.4870, 0.0000, 0.0000, 0.0000], [0.3420, 0.3315, 0.3265, 0.0000, 0.0000], [0.2540, 0.2510, 0.2486, 0.2465, 0.0000], [0.2029, 0.2000, 0.1984, 0.1980, 0.2007]], [[1.0000, 0.0000, 0.0000, 0.0000, 0.0000], [0.4935, 0.5065, 0.0000, 0.0000, 0.0000], [0.3342, 0.3391, 0.3267, 0.0000, 0.0000], [0.2521, 0.2528, 0.2485, 0.2466, 0.0000], [0.2006, 0.2022, 0.1984, 0.1981, 0.2007]]]) Here is what out attention scores looks like.\nNow we multiply out Attention score with Value matrix and concatenate it,\noutput=attention_scores@V output.transpose(0,1).reshape(seq_len,embedding_dim) After Concatenation we achieve the final Contextual embedding of each vectors.\nHere’s a cleaner and more efficient implementation of the Multi-Head Attention module in PyTorch, wrapped in a class:\nimport torch import math class MultiHeadAttention(torch.nn.Module): def __init__(self, num_heads, embedding_dim): super(MultiHeadAttention, self).__init__() self.num_heads = num_heads self.embedding_dim = embedding_dim self.d_k = embedding_dim // num_heads self.Wq = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) self.Wk = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) self.Wv = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) def forward(self, embeddings): seq_len = embeddings.size(0) Q = embeddings @ self.Wq # (seq_len, embedding_dim) K = embeddings @ self.Wk V = embeddings @ self.Wv # Converting to multiheaded attention Q = Q.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) # (num_heads, seq_len, d_k) K = K.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) V = V.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) # Compute attention scores attention_scores = torch.matmul(Q, K.transpose(-2, -1)) # (num_heads, seq_len, seq_len) # Apply mask (upper triangular mask for causal attention) mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool() mask = mask.unsqueeze(0).expand_as(attention_scores) attention_scores = attention_scores.masked_fill(mask, -1e11) # Scale the attention scores attention_scores = attention_scores / math.sqrt(self.d_k) # Apply softmax to get attention weights attention_weights = torch.softmax(attention_scores, dim=-1) # (num_heads, seq_len, seq_len) # Compute the output (weighted sum of values) output = torch.matmul(attention_weights, V) output = output.transpose(0, 1).contiguous().view(seq_len, self.embedding_dim) return output # Example usage torch.manual_seed(42) embedding_dim = 8 num_heads = 2 words = ['the', 'cat', 'sat', 'on', 'mat'] embeddings = [torch.rand(embedding_dim) for word in words] embeddings = torch.stack(embeddings) mha = MultiHeadAttention(num_heads=num_heads, embedding_dim=embedding_dim) # Forward pass through the model output = mha(embeddings) print(\"Output shape:\", output.shape) ",
+  "wordCount" : "1357",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Agrim Paneru"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agrim Paneru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/prtfoio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/prtfoio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/prtfoio/blog/">     </a></div>
+    <h1 class="post-title entry-hint-parent">
+      MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch
+    </h1>
+    <div class="post-description">
+      Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.
+    </div>
+    <div class="post-meta">⏱️ 7 min&nbsp;·&nbsp;Agrim Paneru
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#implementing-multihead-attention-from-scratch-with-pytorch" aria-label="Implementing Multihead attention from scratch with pytorch">Implementing Multihead attention from scratch with pytorch</a><ul>
+                        
+                <li>
+                    <a href="#multihead-attention" aria-label="Multihead Attention">Multihead Attention</a></li>
+                <li>
+                    <a href="#masked-multi-head-attention" aria-label="Masked Multi-Head Attention">Masked Multi-Head Attention</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="implementing-multihead-attention-from-scratch-with-pytorch">Implementing Multihead attention from scratch with pytorch<a hidden class="anchor" aria-hidden="true" href="#implementing-multihead-attention-from-scratch-with-pytorch">#</a></h1>
+<p>In our <a href="https://agrimpaneru.com.np/blog/self-attention-pytorch/">previous article</a>, we built <strong>Self-Attention</strong> from scratch using PyTorch. If you haven’t checked that out yet, I highly recommend giving it a read before reading this one!</p>
+<p>Now, let’s take things a step further and implement <strong>Multi-Head Attention</strong> from scratch. This post focuses more on the <strong>implementation</strong> rather than the theory, so I assume you’re already familiar with how self-attention works.</p>
+<p>Let’s get started!</p>
+<h2 id="multihead-attention">Multihead Attention<a hidden class="anchor" aria-hidden="true" href="#multihead-attention">#</a></h2>
+<p><img alt="image.png" loading="lazy" src="image.png"></p>
+<p>Similar to <strong>Self-Attention</strong>, <strong>Multi-Head Attention</strong> also creates a new context vector. But instead of using a single attention mechanism, it uses multiple heads, each learning different relationships between words.</p>
+<p>For example, consider these two sentences:</p>
+<p>1️⃣ <em>I went to the bank to withdraw cash.</em></p>
+<p>2️⃣ <em>I went for a picnic by the river bank.</em></p>
+<p>Here, the word <strong>&ldquo;bank&rdquo;</strong> has different meanings depending on the context. The idea behind Multi-Head Attention is that different heads can focus on different aspects of a word’s meaning, capturing various relationships more effectively.</p>
+<p>In the above example with a single attention head, the model might have difficulty capturing both the financial and geographical meanings of the word &ldquo;bank&rdquo; at the same time. Multi-Head Attention, on the other hand, allows the model to learn both meanings separately—one head could focus on financial context while another focuses on the geographical context. This way, the model learns richer, more nuanced embeddings of the word &ldquo;bank&rdquo; based on different contexts.</p>
+<p>For a more intuitive explanation of Multi-Head Attention, I highly recommend checking out this <a href="https://medium.com/towards-data-science/transformers-explained-visually-part-2-how-it-works-step-by-step-b49fa4a64f34">medium</a> post.</p>
+<p>Now Lets Implement it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>manual_seed(<span style="color:#ae81ff">42</span>)  <span style="color:#75715e"># Set seed for reproducibility</span>
+</span></span><span style="display:flex;"><span>embedding_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>words <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;the&#39;</span>, <span style="color:#e6db74">&#39;cat&#39;</span>, <span style="color:#e6db74">&#39;sat&#39;</span>, <span style="color:#e6db74">&#39;on&#39;</span>, <span style="color:#e6db74">&#39;mat&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> [torch<span style="color:#f92672">.</span>rand(embedding_dim) <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> words]
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>stack(embeddings)
+</span></span></code></pre></div><p>Similar to our previous <strong>Self-Attention</strong> implementation, we’ll use the following sentence with a random embedding of dimension 8. However, in real-world applications, embeddings are typically a combination of word embeddings and positional encodings. To keep things simple, we won’t dive into that here.
+Now, let’s define the Wq, Wk, and Wv matrices. We could use separate smaller weight matrices to get the Query, Key, and Value vectors directly, but a more efficient approach is to use a single large weight matrix and split it afterward for multiple attention heads. This method is more computationally efficient, as it  allows for parallel processing across heads.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Wq <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim)  <span style="color:#75715e"># (8, 8)</span>
+</span></span><span style="display:flex;"><span>Wk <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim)  <span style="color:#75715e"># (8, 8)</span>
+</span></span><span style="display:flex;"><span>Wv <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim)  <span style="color:#75715e"># (8, 8)</span>
+</span></span></code></pre></div><p>Lets apply the projection to Get Query Key and Value matrix.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Apply projection</span>
+</span></span><span style="display:flex;"><span>Q <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> Wq  <span style="color:#75715e"># Shape: (5, 8)</span>
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> Wk  <span style="color:#75715e"># Shape: (5, 8)</span>
+</span></span><span style="display:flex;"><span>V <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> Wv  <span style="color:#75715e"># Shape: (5, 8)</span>
+</span></span></code></pre></div><p>Now ,We’ll split the projected vectors into multiple heads . Remember the Embedding dimension must be exactly divisible by head</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>d_k <span style="color:#f92672">=</span> embedding_dim <span style="color:#f92672">//</span> num_heads
+</span></span></code></pre></div><p>Now we obtain the Query Key and Value Matrix for multiple heads.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Q <span style="color:#f92672">=</span> Q<span style="color:#f92672">.</span>view(seq_len, num_heads, d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>K <span style="color:#f92672">=</span> K<span style="color:#f92672">.</span>view(seq_len, num_heads, d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>V <span style="color:#f92672">=</span> V<span style="color:#f92672">.</span>view(seq_len, num_heads, d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>The output shape of <strong>Q</strong>, <strong>K</strong>, and <strong>V</strong> after the split will be <strong>(2, 5, 4)</strong>, where:</p>
+<ul>
+<li>2 corresponds to the number of heads,</li>
+<li>5 corresponds to the sequence length (number of words), and</li>
+<li>4 is the new dimension of each vector for each head.</li>
+</ul>
+<p>We calculate attention matrix by,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>attention_scores<span style="color:#f92672">=</span>Q <span style="color:#f92672">@</span> K<span style="color:#f92672">.</span>transpose(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;For 3D matrix multiplication, the first dimension of both matrices should match, 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#while the second dimension of the first matrix must align with the third dimension of 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the second matrix according to the matrix multiplication rule&#39;&#39;&#39;</span>
+</span></span></code></pre></div><p><img alt="image.png" loading="lazy" src="image%201.png"></p>
+<p>Here, we get two attention scores from each head. We’ll proceed with scaling these scores and applying the <strong>softmax</strong> activation, just like in <strong>Self-Attention</strong>. For a detailed explanation of this process, please refer to my previous post on Self-Attention</p>
+<p>But before applying the scaling and softmax activation, we’ll <strong>mask</strong> the attention scores. Masking is necessary to ensure that the prediction for a given token only depends on the current and previous tokens. Without masking, the model could &ldquo;cheat&rdquo; by looking ahead at future tokens which in not desirable.</p>
+<h2 id="masked-multi-head-attention">Masked Multi-Head Attention<a hidden class="anchor" aria-hidden="true" href="#masked-multi-head-attention">#</a></h2>
+<p><img alt="image.png" loading="lazy" src="image%202.png"></p>
+<p>In the decoder of a transformer, we use masked multi-head attention to prevent the model from looking at future tokens when predicting the next one. This ensures that the model can only base its prediction on past tokens, not the future ones. In contrast, the encoder doesn’t need masking because it has access to the entire sequence at once, so it can freely attend to all parts of the input.</p>
+<p>This masking enables the model to process all tokens in parallel during training, enhancing efficiency.</p>
+<p>We will implement <strong>Masked Multi-Head Attention</strong>, ensuring that the model only attends to past words by masking the attention scores. This prevents the decoder from seeing future words, enforcing an autoregressive learning process</p>
+<p>Masking is applied before softmax by setting forbidden positions to−∞ to ensure they receive zero probability after normalization.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>mask <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>triu(torch<span style="color:#f92672">.</span>ones(seq_len, seq_len), diagonal<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>mask <span style="color:#f92672">=</span> mask<span style="color:#f92672">.</span>bool()
+</span></span><span style="display:flex;"><span>mask<span style="color:#f92672">=</span>mask<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>attention_scores<span style="color:#f92672">=</span>attention_scores<span style="color:#f92672">.</span>masked_fill(mask,<span style="color:#f92672">-</span><span style="color:#ae81ff">1e11</span>)
+</span></span><span style="display:flex;"><span>attention_scores<span style="color:#f92672">=</span>attention_scores<span style="color:#f92672">/</span>math<span style="color:#f92672">.</span>sqrt(d_k)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#This is mask i.e Upper triangular matrix</span>
+</span></span><span style="display:flex;"><span>tensor([[<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">1.</span>, <span style="color:#ae81ff">1.</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">1.</span>],
+</span></span><span style="display:flex;"><span>        [<span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>, <span style="color:#ae81ff">0.</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Attention Scores before masking</span>
+</span></span><span style="display:flex;"><span>tensor([[[<span style="color:#ae81ff">24.6185</span>, <span style="color:#ae81ff">22.6470</span>, <span style="color:#ae81ff">19.6726</span>, <span style="color:#ae81ff">10.3703</span>, <span style="color:#ae81ff">23.2266</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">25.3424</span>, <span style="color:#ae81ff">23.5643</span>, <span style="color:#ae81ff">20.2438</span>, <span style="color:#ae81ff">10.8568</span>, <span style="color:#ae81ff">24.0848</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">20.2856</span>, <span style="color:#ae81ff">18.6674</span>, <span style="color:#ae81ff">16.2010</span>,  <span style="color:#ae81ff">8.5272</span>, <span style="color:#ae81ff">19.1661</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">11.0366</span>, <span style="color:#ae81ff">10.1522</span>,  <span style="color:#ae81ff">8.8451</span>,  <span style="color:#ae81ff">4.5771</span>, <span style="color:#ae81ff">10.3952</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">23.4003</span>, <span style="color:#ae81ff">21.7570</span>, <span style="color:#ae81ff">18.6598</span>, <span style="color:#ae81ff">10.0209</span>, <span style="color:#ae81ff">22.2936</span>]],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        [[<span style="color:#ae81ff">24.1949</span>, <span style="color:#ae81ff">25.1107</span>, <span style="color:#ae81ff">20.5201</span>, <span style="color:#ae81ff">12.3558</span>, <span style="color:#ae81ff">24.2538</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">24.3185</span>, <span style="color:#ae81ff">25.1608</span>, <span style="color:#ae81ff">20.5903</span>, <span style="color:#ae81ff">12.5245</span>, <span style="color:#ae81ff">24.4242</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">19.3101</span>, <span style="color:#ae81ff">20.0426</span>, <span style="color:#ae81ff">16.3541</span>,  <span style="color:#ae81ff">9.9390</span>, <span style="color:#ae81ff">19.3887</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">11.4448</span>, <span style="color:#ae81ff">11.6265</span>,  <span style="color:#ae81ff">9.6817</span>,  <span style="color:#ae81ff">5.8675</span>, <span style="color:#ae81ff">11.3187</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">23.9947</span>, <span style="color:#ae81ff">24.8808</span>, <span style="color:#ae81ff">20.3205</span>, <span style="color:#ae81ff">12.3524</span>, <span style="color:#ae81ff">24.1055</span>]]])
+</span></span><span style="display:flex;"><span>         
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">#Attention Scores after masking</span>
+</span></span><span style="display:flex;"><span> tensor([[[ <span style="color:#ae81ff">2.4619e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">2.5342e+01</span>,  <span style="color:#ae81ff">2.3564e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">2.0286e+01</span>,  <span style="color:#ae81ff">1.8667e+01</span>,  <span style="color:#ae81ff">1.6201e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">1.1037e+01</span>,  <span style="color:#ae81ff">1.0152e+01</span>,  <span style="color:#ae81ff">8.8451e+00</span>,  <span style="color:#ae81ff">4.5771e+00</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">2.3400e+01</span>,  <span style="color:#ae81ff">2.1757e+01</span>,  <span style="color:#ae81ff">1.8660e+01</span>,  <span style="color:#ae81ff">1.0021e+01</span>,  <span style="color:#ae81ff">2.2294e+01</span>]],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      [[ <span style="color:#ae81ff">2.4195e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">2.4318e+01</span>,  <span style="color:#ae81ff">2.5161e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">1.9310e+01</span>,  <span style="color:#ae81ff">2.0043e+01</span>,  <span style="color:#ae81ff">1.6354e+01</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">1.1445e+01</span>,  <span style="color:#ae81ff">1.1626e+01</span>,  <span style="color:#ae81ff">9.6817e+00</span>,  <span style="color:#ae81ff">5.8675e+00</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0000e+11</span>],
+</span></span><span style="display:flex;"><span>       [ <span style="color:#ae81ff">2.3995e+01</span>,  <span style="color:#ae81ff">2.4881e+01</span>,  <span style="color:#ae81ff">2.0321e+01</span>,  <span style="color:#ae81ff">1.2352e+01</span>,  <span style="color:#ae81ff">2.4105e+01</span>]]])
+</span></span></code></pre></div><p>So what we did here was created a lower triangular matrix and applied it as a mask to attention score and scaled it and passed to softmax to ensure each token can only attend to itself and previous tokens.</p>
+<p><img alt="image.png" loading="lazy" src="image%203.png"></p>
+<p>After softmax, the row sum will be one and this ensures the attention weights are a valid probability distribution, allowing the model to learn proportional contributions from past tokens.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>tensor([[[<span style="color:#ae81ff">1.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.5130</span>, <span style="color:#ae81ff">0.4870</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.3420</span>, <span style="color:#ae81ff">0.3315</span>, <span style="color:#ae81ff">0.3265</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.2540</span>, <span style="color:#ae81ff">0.2510</span>, <span style="color:#ae81ff">0.2486</span>, <span style="color:#ae81ff">0.2465</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.2029</span>, <span style="color:#ae81ff">0.2000</span>, <span style="color:#ae81ff">0.1984</span>, <span style="color:#ae81ff">0.1980</span>, <span style="color:#ae81ff">0.2007</span>]],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        [[<span style="color:#ae81ff">1.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.4935</span>, <span style="color:#ae81ff">0.5065</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.3342</span>, <span style="color:#ae81ff">0.3391</span>, <span style="color:#ae81ff">0.3267</span>, <span style="color:#ae81ff">0.0000</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.2521</span>, <span style="color:#ae81ff">0.2528</span>, <span style="color:#ae81ff">0.2485</span>, <span style="color:#ae81ff">0.2466</span>, <span style="color:#ae81ff">0.0000</span>],
+</span></span><span style="display:flex;"><span>         [<span style="color:#ae81ff">0.2006</span>, <span style="color:#ae81ff">0.2022</span>, <span style="color:#ae81ff">0.1984</span>, <span style="color:#ae81ff">0.1981</span>, <span style="color:#ae81ff">0.2007</span>]]])
+</span></span></code></pre></div><p>Here is what out attention scores looks like.</p>
+<p>Now we multiply out Attention score with Value matrix and concatenate it,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>output<span style="color:#f92672">=</span>attention_scores<span style="color:#a6e22e">@V</span>
+</span></span><span style="display:flex;"><span>output<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>reshape(seq_len,embedding_dim)
+</span></span></code></pre></div><p><img alt="image.png" loading="lazy" src="image%204.png"></p>
+<p>After Concatenation we achieve the final Contextual embedding of each vectors.</p>
+<p><img alt="image.png" loading="lazy" src="image%205.png"></p>
+<p>Here&rsquo;s a cleaner and more efficient implementation of the Multi-Head Attention module in PyTorch, wrapped in a class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MultiHeadAttention</span>(torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, num_heads, embedding_dim):
+</span></span><span style="display:flex;"><span>        super(MultiHeadAttention, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>num_heads <span style="color:#f92672">=</span> num_heads
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>embedding_dim <span style="color:#f92672">=</span> embedding_dim
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>d_k <span style="color:#f92672">=</span> embedding_dim <span style="color:#f92672">//</span> num_heads
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wq <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wk <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>Wv <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>nn<span style="color:#f92672">.</span>Parameter(torch<span style="color:#f92672">.</span>rand(embedding_dim, embedding_dim))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, embeddings):
+</span></span><span style="display:flex;"><span>        seq_len <span style="color:#f92672">=</span> embeddings<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        Q <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wq  <span style="color:#75715e"># (seq_len, embedding_dim)</span>
+</span></span><span style="display:flex;"><span>        K <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wk  
+</span></span><span style="display:flex;"><span>        V <span style="color:#f92672">=</span> embeddings <span style="color:#f92672">@</span> self<span style="color:#f92672">.</span>Wv  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Converting to multiheaded attention</span>
+</span></span><span style="display:flex;"><span>        Q <span style="color:#f92672">=</span> Q<span style="color:#f92672">.</span>view(seq_len, self<span style="color:#f92672">.</span>num_heads, self<span style="color:#f92672">.</span>d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># (num_heads, seq_len, d_k)</span>
+</span></span><span style="display:flex;"><span>        K <span style="color:#f92672">=</span> K<span style="color:#f92672">.</span>view(seq_len, self<span style="color:#f92672">.</span>num_heads, self<span style="color:#f92672">.</span>d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>        V <span style="color:#f92672">=</span> V<span style="color:#f92672">.</span>view(seq_len, self<span style="color:#f92672">.</span>num_heads, self<span style="color:#f92672">.</span>d_k)<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Compute attention scores</span>
+</span></span><span style="display:flex;"><span>        attention_scores <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>matmul(Q, K<span style="color:#f92672">.</span>transpose(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))  <span style="color:#75715e"># (num_heads, seq_len, seq_len)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Apply mask (upper triangular mask for causal attention)</span>
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>triu(torch<span style="color:#f92672">.</span>ones(seq_len, seq_len), diagonal<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>bool()
+</span></span><span style="display:flex;"><span>        mask <span style="color:#f92672">=</span> mask<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>expand_as(attention_scores)
+</span></span><span style="display:flex;"><span>        attention_scores <span style="color:#f92672">=</span> attention_scores<span style="color:#f92672">.</span>masked_fill(mask, <span style="color:#f92672">-</span><span style="color:#ae81ff">1e11</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Scale the attention scores</span>
+</span></span><span style="display:flex;"><span>        attention_scores <span style="color:#f92672">=</span> attention_scores <span style="color:#f92672">/</span> math<span style="color:#f92672">.</span>sqrt(self<span style="color:#f92672">.</span>d_k)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Apply softmax to get attention weights</span>
+</span></span><span style="display:flex;"><span>        attention_weights <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>softmax(attention_scores, dim<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)  <span style="color:#75715e"># (num_heads, seq_len, seq_len)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Compute the output (weighted sum of values)</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>matmul(attention_weights, V)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> output<span style="color:#f92672">.</span>transpose(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>contiguous()<span style="color:#f92672">.</span>view(seq_len, self<span style="color:#f92672">.</span>embedding_dim)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> output
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example usage</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>manual_seed(<span style="color:#ae81ff">42</span>)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embedding_dim <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>num_heads <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>words <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;the&#39;</span>, <span style="color:#e6db74">&#39;cat&#39;</span>, <span style="color:#e6db74">&#39;sat&#39;</span>, <span style="color:#e6db74">&#39;on&#39;</span>, <span style="color:#e6db74">&#39;mat&#39;</span>]
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> [torch<span style="color:#f92672">.</span>rand(embedding_dim) <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> words]
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>stack(embeddings)  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mha <span style="color:#f92672">=</span> MultiHeadAttention(num_heads<span style="color:#f92672">=</span>num_heads, embedding_dim<span style="color:#f92672">=</span>embedding_dim)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Forward pass through the model</span>
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> mha(embeddings)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Output shape:&#34;</span>, output<span style="color:#f92672">.</span>shape)
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/prtfoio/tags/multi-head-attention/">Multi-Head Attention</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/transformers/">Transformers</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/deep-learning/">Deep Learning</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/pytorch/">PyTorch</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/ai/">AI</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/nlp/">NLP</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/self-attention/">Self-Attention</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/masked-multi-head-attention/">Masked Multi-Head Attention</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

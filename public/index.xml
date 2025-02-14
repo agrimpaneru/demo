@@ -16,6 +16,13 @@
       <description>A beginner-friendly explanation of self-attention and its implementation in PyTorch.</description>
     </item>
     <item>
+      <title>MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch</title>
+      <link>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</guid>
+      <description>Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.</description>
+    </item>
+    <item>
       <title>Implementing LSTM from scratch in PyTorch step-by-step.</title>
       <link>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</link>
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
