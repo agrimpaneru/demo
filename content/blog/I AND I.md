@@ -3,7 +3,7 @@ title: "Internet and Intranet"
 date: 2025-01-12
 description: "Internet and Intranet"
 dateString: May 2020
-draft: false
+draft: true
 tags: ["College Notes"]
 weight: 104
 ---
