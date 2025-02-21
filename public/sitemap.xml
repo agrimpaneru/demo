@@ -4,11 +4,10 @@
   <url>
     <loc>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</loc>
   </url><url>
+    <loc>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</loc>
+  </url><url>
     <loc>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/i-and-i/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/prtfoio/</loc>
     <lastmod>2025-02-11T00:00:00+00:00</lastmod>
@@ -31,22 +30,27 @@
     <loc>http://localhost:1313/prtfoio/posts/</loc>
     <lastmod>2025-01-22T12:59:51+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/college-notes/</loc>
-    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/implementing-multihead-attention-from-scratch-with-19a2287002188023aef3d70f47aca36f/</loc>
-  </url><url>
     <loc>http://localhost:1313/prtfoio/tags/ai/</loc>
   </url><url>
     <loc>http://localhost:1313/prtfoio/categories/artificial-intelligence/</loc>
   </url><url>
     <loc>http://localhost:1313/prtfoio/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/college-notes/</loc>
+  </url><url>
     <loc>http://localhost:1313/prtfoio/tags/deep-learning/</loc>
   </url><url>
     <loc>http://localhost:1313/prtfoio/categories/deep-learning/</loc>
   </url><url>
     <loc>http://localhost:1313/prtfoio/categories/machine-learning/</loc>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/masked-multi-head-attention/</loc>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/multi-head-attention/</loc>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/categories/natural-language-processing/</loc>
+  </url><url>
+    <loc>http://localhost:1313/prtfoio/tags/nlp/</loc>
   </url><url>
     <loc>http://localhost:1313/prtfoio/tags/self-attention/</loc>
   </url><url>

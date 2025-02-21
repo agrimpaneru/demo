@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Integrating Jenkins with Webhooks for Efficient CI/CD Automation">
+<meta property="og:description" content="Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.">
+<meta property="og:url" content="http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/">
+<meta property="og:image" content="">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Integrating Jenkins with Webhooks for Efficient CI/CD Automation | Agrim Paneru</title>
+<meta name="keywords" content="Jenkins, Webhooks, CI/CD Automation, DevOps Workflow, Continuous Integration, CI/CD Pipeline, Automation Tutorial">
+<meta name="description" content="Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.">
+<meta name="author" content="Agrim Paneru">
+<link rel="canonical" href="http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/">
+<link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.96c7d6443f7296882c1368d79c4a3a4eb0beea7637a5bb0631f2d1dcdee56598.css" integrity="sha256-lsfWRD9ylogsE2jXnEo6TrC&#43;6nY3pbsGMfLR3N7lZZg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/">
+  <meta property="og:site_name" content="Agrim Paneru">
+  <meta property="og:title" content="Integrating Jenkins with Webhooks for Efficient CI/CD Automation">
+  <meta property="og:description" content="Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:tag" content="Jenkins">
+    <meta property="article:tag" content="CI/CD">
+    <meta property="article:tag" content="Webhooks">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Continuous Integration">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Integrating Jenkins with Webhooks for Efficient CI/CD Automation">
+<meta name="twitter:description" content="Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "     ",
+      "item": "http://localhost:1313/prtfoio/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Integrating Jenkins with Webhooks for Efficient CI/CD Automation",
+      "item": "http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Integrating Jenkins with Webhooks for Efficient CI/CD Automation",
+  "name": "Integrating Jenkins with Webhooks for Efficient CI\/CD Automation",
+  "description": "Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.",
+  "keywords": [
+    "Jenkins", "Webhooks", "CI/CD Automation", "DevOps Workflow", "Continuous Integration", "CI/CD Pipeline", "Automation Tutorial"
+  ],
+  "articleBody": "Jenkins 🚀 What is Jenkins? Jenkins is an open-source automation server used primarily for continuous integration (CI) and continuous deployment (CD).\nContinuous Integration is an integral part of DevOps, and Jenkins is the most famous Continuous Integration tool. In this article, I will focus on Jenkins architecture then, I’ll walk you through writing a Jenkins pipeline to automate CI/CD for a project.\nIn this Blog, I’ll cover:\nJenkins architecture Writing a Jenkins pipeline for automating CI/CD Setting up webhook to trigger deployments automatically. Jenkins Architecture Jenkins follows a master-agent setup (formerly called master-slave), where the Jenkins server (master) manages everything, and agents (slaves) do the actual work.\nJenkins Server (Master)\nManages jobs, users, security, and plugins. Schedules tasks and decides which agent should run them. Provides the web interface where you monitor and control everything. Jenkins Agent (Slave)\nRun the actual build and deployment tasks. Communicate with the master to receive instructions. Report back with logs and results. 💡Note: Since we’re running Jenkins locally, both the server and agent are on the same machine. The server manages jobs and the web interface, while the agent executes tasks—everything happens on our local system.\n📝 Jenkinsfile A Jenkinsfile defines the automation process using a declarative syntax. It tells Jenkins what to do, when to do it, and how to handle failures This is a Jenkins pipeline file written in Declarative Pipeline Syntax.\npipeline { agent any stages { stage('Checkout') { steps { checkout scm } } stage('Cleanup') { steps { script { // Stop and remove existing containers sh ''' docker-compose down # Additional cleanup in case docker-compose down didn't work docker rm -f mysql-db || true ''' } } } stage('Start MySQL') { steps { script { // Start only MySQL sh 'docker-compose up -d db' // Wait for 1 minute sh 'sleep 60' echo 'Waited 1 minute for MySQL to start' } } } stage('Start Other Services') { steps { script { // Start remaining services sh 'docker-compose up -d' } } } } post { failure { sh 'docker-compose down' echo 'Deployment failed' } success { echo 'Deployment successful' } } } Understanding Jenkinsfile 1. Checkout Stage: It Retrieves the code from the repository (using SCM — Source Code Management) so that the pipeline can work with the latest code. This command checks out the repository, ensuring that the pipeline works with the latest version of the code.\ncheckout scm 2. Cleanup Stage: It Stops and removes any existing containers from a previous deployment to ensure a clean environment before starting fresh\ndocker-compose down docker rm -f mysql-db || true docker-compose down stops all services defined in the docker-compose.yml and removes the containers. docker rm -f mysql-db || true forces the removal of the MySQL container (mysql-db), even if it’s not running. The || true ensures the pipeline doesn’t fail if the container doesn’t exist. 3. Start MySQL Stage: It Starts the MySQL container using docker-compose and waits for it to initialize before starting other services.\ndocker-compose up -d db sleep 60 echo 'Waited 1 minute for MySQL to start' docker-compose up -d db starts the MySQL container (db service) in detached mode (d), allowing the pipeline to continue without waiting for MySQL to be ready. sleep 60 pauses the pipeline for 1 minute, giving MySQL time to start and initialize. 4.Start Other Services Stage: Starts all the remaining services defined in the docker-compose.yml (other than MySQL, which was started separately in the previous stage).This command starts the remaining services (e.g., frontend, backend) in detached mode.\ndocker-compose up -d 5. Post Section: Defines steps that should be executed after the pipeline has completed, regardless of success or failure.\nIf the deployment fails, the docker-compose down command is executed to clean up containers, and a failure message is printed:\ndocker-compose down echo 'Deployment failed' If the deployment is successful, a success message is printed:\necho 'Deployment successful' 🔧 Setting Up Jenkins on Ubuntu Follow this to install Jenkins in Ubuntu.\n1. Add the Jenkins Repository Key Run the following command to download the Jenkins repository key and store it:\nsudo wget -O /usr/share/keyrings/jenkins-keyring.asc \\ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 2. Add the Jenkins Repository Now, add the Jenkins repository to your package sources list using the key you just downloaded:\necho \"deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]\" \\ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \\ /etc/apt/sources.list.d/jenkins.list \u003e /dev/null 3. Update Package Lists Next, update your package list to include the newly added Jenkins repository:\nsudo apt-get update 4. Install Jenkins Now, install Jenkins using the following command:\nsudo apt-get install jenkins 5. Start Jenkins After the installation completes, start Jenkins:\nsudo systemctl start jenkins Visit for web interface.\nhttp://localhost:8080/ After you login to Jenkins, - Run the command to copy the Jenkins Admin Password - sudo cat /var/lib/jenkins/secrets/initialAdminPassword - Enter the Administrator password\n🐳 Grant Docker Permissions to Jenkins Grant Jenkins User permission to use docker daemon. Jenkins User is automatically created when installing Jenkins.\nsudo su - usermod -aG docker jenkins systemctl restart docker Now switch to Jenkins and see if Docker is running inside it\nsu - jenkins docker run hello-world Great. Now lets setup Jenkins from web.\nInstall Docker plugin inside Jenkins to run docker as agent.\nAfter successful installation restart the Jenkins. You can restart by simply adding /restart in URL.\nCreating Jenkins Pipeline For this project I’m using this repo. It has a frontend, backend, and SQL database—a simple to-do list app. The frontend calls the backend, and the backend interacts with the database to fetch, add, and delete list items.\nClick on Pipeline . Here we’ll have Jenkins file in our repo so Jenkins will fetch the file from there.\nNow select on apply and Save.\nGo to dashboard and start the build.\nBuild Success Lets check our application running on port 8000.\nSo this verifies our task running smoothly that is deployed using Jenkins.\nSetting Up Webhook Let’s set up a webhook in Jenkins and GitHub to enable a seamless CI process. When the webhook is enabled, GitHub sends an HTTP POST request to Jenkins with information about the push event. Jenkins listens for this request and triggers the configured pipeline to run, deploying the updated code.\nTo make Jenkins accessible to GitHub, we need to expose Jenkins running on localhost to the public. Since GitHub needs to send an HTTP POST request to a public IP, we’ll use ngrok for port forwarding. Ngrok creates a secure tunnel to your local machine, allowing GitHub to access Jenkins through a public UR\nSetting up ngrok Go to ngrok website and follow the instruction provided there for WSL.\nInstall ngrok via Apt with the following command:\ncurl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \\ | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc \u003e/dev/null \\ \u0026\u0026 echo \"deb https://ngrok-agent.s3.amazonaws.com buster main\" \\ | sudo tee /etc/apt/sources.list.d/ngrok.list \\ \u0026\u0026 sudo apt update \\ \u0026\u0026 sudo apt install ngrok Run the following command to add your authtoken to the default ngrok.yml\nngrok config add-authtoken Now run the command:\nngrok http http://localhost:8080 The command ngrok http http://localhost:8080 creates a secure tunnel to your local Jenkins server running on port 8080, exposing it to the public internet via a unique ngrok URL.\nNow we have can access our port 8080 from any device with the given ngrok URL.\nSetting Up Web Hook Create a new pipeline and In trigger option select this option.\nGo to your GitHub repo’s Settings \u003e Webhooks \u003e Add webhook to configure the webhook.\nNow add URL provided by ngrok appended with /github-webhook.\nThen click on Add Webhook.\nLet’s make a change in our code and push it to GitHub to test if the webhook works:\nLets commit the changes and push it to Github.\nAs soon as i push the changes to GitHub the webhook triggers the Jenkins and runs our pipeline.\nBuild 4 is successful. Now lets check if our changes has been implemented or not.\nHere we can see our changes has been implemented.\nIn this blog, we wrote a Jenkins pipeline and set up a webhook to automate the CI/CD process in our local environment. To make Jenkins accessible to GitHub, we used ngrok to tunnel into our local machine. After pushing code to the repository, we observed Jenkins automatically triggering and running the pipeline, handling the deployment process without any manual intervention.\nThe repo used for this blog is https://github.com/agrimpaneru/dockerized-todo. Feel free to fork it and experiment with it.\n",
+  "wordCount" : "1392",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Agrim Paneru"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Agrim Paneru",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/prtfoio/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/prtfoio/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                    <span>Experience</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                    <span>Search</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/prtfoio/blog/">     </a></div>
+    <h1 class="post-title entry-hint-parent">
+      Integrating Jenkins with Webhooks for Efficient CI/CD Automation
+    </h1>
+    <div class="post-description">
+      Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.
+    </div>
+    <div class="post-meta">⏱️ 7 min&nbsp;·&nbsp;Agrim Paneru
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#jenkins" aria-label="Jenkins">Jenkins</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#-what-is-jenkins" aria-label="🚀 What is Jenkins?">🚀 What is Jenkins?</a></li>
+                <li>
+                    <a href="#jenkins-architecture" aria-label="Jenkins Architecture">Jenkins Architecture</a></li></ul>
+                    
+                <li>
+                    <a href="#-jenkinsfile" aria-label="📝 Jenkinsfile">📝 Jenkinsfile</a></li>
+                <li>
+                    <a href="#understanding-jenkinsfile" aria-label="Understanding Jenkinsfile">Understanding Jenkinsfile</a><ul>
+                        
+                <li>
+                    <a href="#1-checkout-stage" aria-label="1. Checkout Stage:">1. Checkout Stage:</a></li>
+                <li>
+                    <a href="#2-cleanup-stage" aria-label="2. Cleanup Stage:">2. Cleanup Stage:</a></li>
+                <li>
+                    <a href="#3-start-mysql-stage" aria-label="3. Start MySQL Stage:">3. Start MySQL Stage:</a></li>
+                <li>
+                    <a href="#4start-other-services-stage" aria-label="4.Start Other Services Stage:">4.Start Other Services Stage:</a></li>
+                <li>
+                    <a href="#5-post-section" aria-label="5. Post Section:">5. Post Section:</a></li></ul>
+                </li>
+                <li>
+                    <a href="#-setting-up-jenkins-on-ubuntu" aria-label="🔧 Setting Up Jenkins on Ubuntu">🔧 Setting Up Jenkins on Ubuntu</a><ul>
+                        
+                <li>
+                    <a href="#1-add-the-jenkins-repository-key" aria-label="1. Add the Jenkins Repository Key">1. Add the Jenkins Repository Key</a></li>
+                <li>
+                    <a href="#2-add-the-jenkins-repository" aria-label="2. Add the Jenkins Repository">2. Add the Jenkins Repository</a></li>
+                <li>
+                    <a href="#3-update-package-lists" aria-label="3. Update Package Lists">3. Update Package Lists</a></li>
+                <li>
+                    <a href="#4-install-jenkins" aria-label="4. Install Jenkins">4. Install Jenkins</a></li>
+                <li>
+                    <a href="#5-start-jenkins" aria-label="5. Start Jenkins">5. Start Jenkins</a></li>
+                <li>
+                    <a href="#-grant-docker-permissions-to-jenkins" aria-label="🐳 Grant Docker Permissions to Jenkins">🐳 Grant Docker Permissions to Jenkins</a></li></ul>
+                </li>
+                <li>
+                    <a href="#creating-jenkins-pipeline" aria-label="Creating Jenkins Pipeline">Creating Jenkins Pipeline</a><ul>
+                        
+                <li>
+                    <a href="#build-success" aria-label="Build Success">Build Success</a></li></ul>
+                </li>
+                <li>
+                    <a href="#setting-up-webhook" aria-label="Setting Up Webhook">Setting Up Webhook</a><ul>
+                        
+                <li>
+                    <a href="#setting-up-ngrok" aria-label="Setting up ngrok">Setting up ngrok</a></li>
+                <li>
+                    <a href="#setting-up-web-hook" aria-label="Setting Up Web Hook">Setting Up Web Hook</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="jenkins">Jenkins<a hidden class="anchor" aria-hidden="true" href="#jenkins">#</a></h1>
+<p><img alt="image.png" loading="lazy" src="image.png"></p>
+<h3 id="-what-is-jenkins">🚀 <strong>What is Jenkins?</strong><a hidden class="anchor" aria-hidden="true" href="#-what-is-jenkins">#</a></h3>
+<p>Jenkins is an open-source automation server used primarily for <strong>continuous integration (CI) and continuous deployment (CD)</strong>.</p>
+<p>Continuous Integration is an integral part of DevOps, and Jenkins is the most famous Continuous Integration tool. In this article, I will focus on Jenkins architecture then, I&rsquo;ll walk you through writing a <strong>Jenkins pipeline</strong> to automate CI/CD for a project.</p>
+<p>In this Blog, I’ll cover:</p>
+<ul>
+<li>Jenkins architecture</li>
+<li>Writing a <strong>Jenkins pipeline</strong> for automating CI/CD</li>
+<li>Setting up webhook to trigger deployments automatically.</li>
+</ul>
+<h3 id="jenkins-architecture"><strong>Jenkins Architecture</strong><a hidden class="anchor" aria-hidden="true" href="#jenkins-architecture">#</a></h3>
+<p><img alt="image.png" loading="lazy" src="image%201.png"></p>
+<p>Jenkins follows a <strong>master-agent</strong> setup (formerly called master-slave), where the <strong>Jenkins server</strong> (master) manages everything, and <strong>agents</strong> (slaves) do the actual work.</p>
+<p><strong>Jenkins Server (Master)</strong></p>
+<ul>
+<li>Manages jobs, users, security, and plugins.</li>
+<li>Schedules tasks and decides which agent should run them.</li>
+<li>Provides the web interface where you monitor and control everything.</li>
+</ul>
+<p><strong>Jenkins Agent (Slave)</strong></p>
+<ul>
+<li>Run the actual build and deployment tasks.</li>
+<li>Communicate with the master to receive instructions.</li>
+<li>Report back with logs and results.</li>
+</ul>
+<p><strong>💡Note:</strong> Since we&rsquo;re running Jenkins locally, both the <strong>server</strong> and <strong>agent</strong> are on the same machine. The server manages jobs and the web interface, while the agent executes tasks—everything happens on our local system.</p>
+<h2 id="-jenkinsfile">📝 Jenkinsfile<a hidden class="anchor" aria-hidden="true" href="#-jenkinsfile">#</a></h2>
+<p>A <code>Jenkinsfile</code> defines the automation process using a declarative syntax. It tells Jenkins <strong>what</strong> to do, <strong>when</strong> to do it, and <strong>how</strong> to handle failures
+This is a <strong>Jenkins pipeline file</strong> written in <strong>Declarative Pipeline Syntax</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    agent any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Checkout&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                checkout scm
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Cleanup&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                script <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Stop and remove existing containers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    sh <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        docker-compose down
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        # Additional cleanup in case docker-compose down didn&#39;t work
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        docker rm -f mysql-db || true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Start MySQL&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                script <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Start only MySQL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    sh <span style="color:#e6db74">&#39;docker-compose up -d db&#39;</span>
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Wait for 1 minute
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    sh <span style="color:#e6db74">&#39;sleep 60&#39;</span>
+</span></span><span style="display:flex;"><span>                    echo <span style="color:#e6db74">&#39;Waited 1 minute for MySQL to start&#39;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Start Other Services&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                script <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// Start remaining services
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    sh <span style="color:#e6db74">&#39;docker-compose up -d&#39;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        failure <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            sh <span style="color:#e6db74">&#39;docker-compose down&#39;</span>
+</span></span><span style="display:flex;"><span>            echo <span style="color:#e6db74">&#39;Deployment failed&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        success <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            echo <span style="color:#e6db74">&#39;Deployment successful&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="understanding-jenkinsfile">Understanding Jenkinsfile<a hidden class="anchor" aria-hidden="true" href="#understanding-jenkinsfile">#</a></h2>
+<h3 id="1-checkout-stage">1. <strong>Checkout Stage</strong>:<a hidden class="anchor" aria-hidden="true" href="#1-checkout-stage">#</a></h3>
+<p>It Retrieves the code from the repository (using SCM — Source Code Management) so that the pipeline can work with the latest code. This command checks out the repository, ensuring that the pipeline works with the latest version of the code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>checkout scm
+</span></span></code></pre></div><h3 id="2-cleanup-stage">2. <strong>Cleanup Stage</strong>:<a hidden class="anchor" aria-hidden="true" href="#2-cleanup-stage">#</a></h3>
+<p>It Stops and removes any existing containers from a previous deployment to ensure a clean environment before starting fresh</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose down
+</span></span><span style="display:flex;"><span>docker rm <span style="color:#f92672">-</span>f mysql<span style="color:#f92672">-</span>db <span style="color:#f92672">||</span> <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><ul>
+<li><code>docker-compose down</code> stops all services defined in the <code>docker-compose.yml</code> and removes the containers.</li>
+<li><code>docker rm -f mysql-db || true</code> forces the removal of the MySQL container (<code>mysql-db</code>), even if it&rsquo;s not running. The <code>|| true</code> ensures the pipeline doesn&rsquo;t fail if the container doesn&rsquo;t exist.</li>
+</ul>
+<h3 id="3-start-mysql-stage">3. <strong>Start MySQL Stage</strong>:<a hidden class="anchor" aria-hidden="true" href="#3-start-mysql-stage">#</a></h3>
+<p>It Starts the MySQL container using <code>docker-compose</code> and waits for it to initialize before starting other services.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose up <span style="color:#f92672">-</span>d db
+</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;Waited 1 minute for MySQL to start&#39;</span>
+</span></span></code></pre></div><ul>
+<li><code>docker-compose up -d db</code> starts the MySQL container (<code>db</code> service) in detached mode (<code>d</code>), allowing the pipeline to continue without waiting for MySQL to be ready.</li>
+<li><code>sleep 60</code> pauses the pipeline for 1 minute, giving MySQL time to start and initialize.</li>
+</ul>
+<h3 id="4start-other-services-stage"><strong>4.Start Other Services Stage</strong>:<a hidden class="anchor" aria-hidden="true" href="#4start-other-services-stage">#</a></h3>
+<p>Starts all the remaining services defined in the <code>docker-compose.yml</code> (other than MySQL, which was started separately in the previous stage).This command starts the remaining services (e.g., frontend, backend) in detached mode.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose up <span style="color:#f92672">-</span>d
+</span></span></code></pre></div><h3 id="5-post-section">5. <strong>Post Section</strong>:<a hidden class="anchor" aria-hidden="true" href="#5-post-section">#</a></h3>
+<p>Defines steps that should be executed after the pipeline has completed, regardless of success or failure.</p>
+<ul>
+<li>
+<p>If the deployment fails, the <code>docker-compose down</code> command is executed to clean up containers, and a failure message is printed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>docker<span style="color:#f92672">-</span>compose down
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;Deployment failed&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>If the deployment is successful, a success message is printed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;Deployment successful&#39;</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="-setting-up-jenkins-on-ubuntu">🔧 <strong>Setting Up Jenkins on Ubuntu</strong><a hidden class="anchor" aria-hidden="true" href="#-setting-up-jenkins-on-ubuntu">#</a></h2>
+<p>Follow this to install Jenkins in Ubuntu.</p>
+<h3 id="1-add-the-jenkins-repository-key">1. <strong>Add the Jenkins Repository Key</strong><a hidden class="anchor" aria-hidden="true" href="#1-add-the-jenkins-repository-key">#</a></h3>
+<p>Run the following command to download the Jenkins repository key and store it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo wget -O /usr/share/keyrings/jenkins-keyring.asc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+</span></span></code></pre></div><h3 id="2-add-the-jenkins-repository">2. <strong>Add the Jenkins Repository</strong><a hidden class="anchor" aria-hidden="true" href="#2-add-the-jenkins-repository">#</a></h3>
+<p>Now, add the Jenkins repository to your package sources list using the key you just downloaded:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://pkg.jenkins.io/debian-stable binary/ | sudo tee <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /etc/apt/sources.list.d/jenkins.list &gt; /dev/null
+</span></span></code></pre></div><h3 id="3-update-package-lists">3. <strong>Update Package Lists</strong><a hidden class="anchor" aria-hidden="true" href="#3-update-package-lists">#</a></h3>
+<p>Next, update your package list to include the newly added Jenkins repository:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
+</span></span></code></pre></div><h3 id="4-install-jenkins">4. <strong>Install Jenkins</strong><a hidden class="anchor" aria-hidden="true" href="#4-install-jenkins">#</a></h3>
+<p>Now, install Jenkins using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install jenkins
+</span></span></code></pre></div><h3 id="5-start-jenkins">5. <strong>Start Jenkins</strong><a hidden class="anchor" aria-hidden="true" href="#5-start-jenkins">#</a></h3>
+<p>After the installation completes, start Jenkins:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl start jenkins
+</span></span></code></pre></div><p>Visit for web interface.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#a6e22e">http</span><span style="color:#f92672">:</span><span style="color:#75715e">//localhost:8080/
+</span></span></span></code></pre></div><p>After you login to Jenkins, - Run the command to copy the Jenkins Admin Password - <code>sudo cat /var/lib/jenkins/secrets/initialAdminPassword</code> - Enter the Administrator password</p>
+<p><img alt="image.png" loading="lazy" src="image%202.png"></p>
+<h3 id="-grant-docker-permissions-to-jenkins">🐳 <strong>Grant Docker Permissions to Jenkins</strong><a hidden class="anchor" aria-hidden="true" href="#-grant-docker-permissions-to-jenkins">#</a></h3>
+<p>Grant Jenkins User permission to use docker daemon. Jenkins User is automatically created when installing Jenkins.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#a6e22e">sudo</span> <span style="color:#a6e22e">su</span> <span style="color:#f92672">-</span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">usermod</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">aG</span> <span style="color:#a6e22e">docker</span> <span style="color:#a6e22e">jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">systemctl</span> <span style="color:#a6e22e">restart</span> <span style="color:#a6e22e">docker</span>
+</span></span></code></pre></div><p>Now switch to Jenkins and see if Docker is running inside it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#a6e22e">su</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">jenkins</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">docker</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">hello</span><span style="color:#f92672">-</span><span style="color:#a6e22e">world</span>
+</span></span></code></pre></div><p>Great. Now lets setup Jenkins from web.</p>
+<p>Install Docker plugin inside Jenkins to run docker as agent.</p>
+<p><img alt="image.png" loading="lazy" src="image%203.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%204.png"></p>
+<p>After successful installation restart the Jenkins. You can restart by simply adding /restart in URL.</p>
+<h2 id="creating-jenkins-pipeline">Creating Jenkins Pipeline<a hidden class="anchor" aria-hidden="true" href="#creating-jenkins-pipeline">#</a></h2>
+<p>For this project I&rsquo;m using this <a href="https://github.com/agrimpaneru/dockerized-todo">repo</a>. It has a <strong>frontend, backend, and SQL database</strong>—a simple to-do list app. The frontend calls the backend, and the backend interacts with the database to fetch, add, and delete list items.</p>
+<p>Click on Pipeline . Here we’ll have Jenkins file in our repo so Jenkins will fetch the file from there.</p>
+<p><img alt="image.png" loading="lazy" src="image%205.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%206.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%207.png"></p>
+<p>Now select on apply and Save.</p>
+<p><strong>Go to dashboard and start the build.</strong></p>
+<p><img alt="image.png" loading="lazy" src="image%208.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%209.png"></p>
+<h3 id="build-success">Build Success<a hidden class="anchor" aria-hidden="true" href="#build-success">#</a></h3>
+<p><img alt="image.png" loading="lazy" src="image%2010.png"></p>
+<p><img alt="image.png" loading="lazy" src="a4eb153e-95ee-42f9-8e36-cfdc4f9e5947.png"></p>
+<p><img alt="image.png" loading="lazy" src="177c4992-cdbf-44a5-964e-7a27a41a9a51.png"></p>
+<p><img alt="image.png" loading="lazy" src="003a2173-52b6-4e6e-a4ae-d76637b782ec.png"></p>
+<p><img alt="image.png" loading="lazy" src="0ad79829-21b1-4aa3-962f-1f219b3b5fe2.png"></p>
+<p><img alt="image.png" loading="lazy" src="image%2011.png"></p>
+<p>Lets check our application running on port 8000.</p>
+<p><img alt="image.png" loading="lazy" src="image%2012.png"></p>
+<p>So this verifies our task running smoothly that is deployed using Jenkins.</p>
+<h2 id="setting-up-webhook">Setting Up Webhook<a hidden class="anchor" aria-hidden="true" href="#setting-up-webhook">#</a></h2>
+<p>Let&rsquo;s set up a webhook in Jenkins and GitHub to enable a seamless CI process. When the webhook is enabled, GitHub sends an HTTP POST request to Jenkins with information about the push event. Jenkins listens for this request and triggers the configured pipeline to run, deploying the updated code.</p>
+<p>To make Jenkins accessible to GitHub, we need to expose Jenkins running on localhost to the public. Since GitHub needs to send an HTTP POST request to a public IP, we’ll use <strong>ngrok</strong> for port forwarding. Ngrok creates a secure tunnel to your local machine, allowing GitHub to access Jenkins through a public UR</p>
+<h3 id="setting-up-ngrok">Setting up ngrok<a hidden class="anchor" aria-hidden="true" href="#setting-up-ngrok">#</a></h3>
+<p>Go to ngrok website and follow the instruction provided there for WSL.</p>
+<p>Install ngrok via Apt with the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	| sudo tee /etc/apt/trusted.gpg.d/ngrok.asc &gt;/dev/null <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	<span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34;deb https://ngrok-agent.s3.amazonaws.com buster main&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	| sudo tee /etc/apt/sources.list.d/ngrok.list <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	<span style="color:#f92672">&amp;&amp;</span> sudo apt update <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>	<span style="color:#f92672">&amp;&amp;</span> sudo apt install ngrok
+</span></span></code></pre></div><p>Run the following command to add your authtoken to the default <strong>ngrok.yml</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ngrok config add-authtoken &lt;your_auth_token&gt;
+</span></span></code></pre></div><p>Now run the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ngrok http http://localhost:8080
+</span></span></code></pre></div><p>The command <code>ngrok http http://localhost:8080</code> creates a secure tunnel to your local Jenkins server running on port 8080, exposing it to the public internet via a unique ngrok URL.</p>
+<p><img alt="image.png" loading="lazy" src="image%2013.png"></p>
+<p>Now we have can access our port 8080 from any device with the given ngrok URL.</p>
+<h3 id="setting-up-web-hook">Setting Up Web Hook<a hidden class="anchor" aria-hidden="true" href="#setting-up-web-hook">#</a></h3>
+<p>Create a new pipeline and In trigger option select this option.</p>
+<p><img alt="image.png" loading="lazy" src="image%2014.png"></p>
+<p>Go to your GitHub repo&rsquo;s <strong>Settings</strong> &gt; <strong>Webhooks</strong> &gt; <strong>Add webhook</strong> to configure the webhook.</p>
+<p><img alt="image.png" loading="lazy" src="image%2015.png"></p>
+<p>Now add URL provided by ngrok appended with /github-webhook.</p>
+<p><img alt="image.png" loading="lazy" src="image%2016.png"></p>
+<p>Then click on Add Webhook.</p>
+<p><img alt="image.png" loading="lazy" src="image%2017.png"></p>
+<p>Let&rsquo;s make a change in our code and push it to GitHub to test if the webhook works:</p>
+<p><img alt="image.png" loading="lazy" src="image%2018.png"></p>
+<p>Lets commit the changes and push it to Github.</p>
+<p><img alt="image.png" loading="lazy" src="image%2019.png"></p>
+<p>As soon as i push the changes to GitHub the webhook triggers the Jenkins and runs our pipeline.</p>
+<p><img alt="image.png" loading="lazy" src="image%2020.png"></p>
+<p>Build 4 is successful. Now lets check if our changes has been implemented or not.</p>
+<p><img alt="image.png" loading="lazy" src="image%2021.png"></p>
+<p>Here we can see our changes has been implemented.</p>
+<p>In this blog, we wrote a Jenkins pipeline and set up a webhook to automate the CI/CD process in our local environment. To make Jenkins accessible to GitHub, we used ngrok to tunnel into our local machine. After pushing code to the repository, we observed Jenkins automatically triggering and running the pipeline,  handling the deployment process without any manual intervention.</p>
+<p>The repo used for this blog is <a href="https://github.com/agrimpaneru/dockerized-todo">https://github.com/agrimpaneru/dockerized-todo</a>. Feel free to fork it and experiment with it.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/prtfoio/tags/jenkins/">Jenkins</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/ci/cd/">CI/CD</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/webhooks/">Webhooks</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/devops/">DevOps</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/automation/">Automation</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/continuous-integration/">Continuous Integration</a></li>
+      <li><a href="http://localhost:1313/prtfoio/tags/continuous-deployment/">Continuous Deployment</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+
+    
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
