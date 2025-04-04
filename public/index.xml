@@ -6,8 +6,15 @@
     <description>Recent content on Agrim Paneru</description>
     <generator>Hugo -- 0.144.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/prtfoio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Integrating Jenkins with Webhooks for Efficient CI/CD Automation</title>
+      <link>http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/</link>
+      <pubDate>Fri, 21 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/</guid>
+      <description>Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.</description>
+    </item>
     <item>
       <title>Self-Attention Explained: Implementing Scaled Dot-Product Attention with PyTorch</title>
       <link>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</link>
@@ -18,7 +25,7 @@
     <item>
       <title>MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch</title>
       <link>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 14 Feb 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</guid>
       <description>Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.</description>
     </item>
@@ -28,13 +35,6 @@
       <pubDate>Mon, 27 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</guid>
       <description>A step-by-step guide to building an LSTM model from scratch in PyTorch.</description>
-    </item>
-    <item>
-      <title>Integrating Jenkins with Webhooks for Efficient CI/CD Automation</title>
-      <link>http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/prtfoio/blog/jenkins-webhooks-cicd/</guid>
-      <description>Learn how to integrate Jenkins with webhooks to streamline your CI/CD pipeline with this step-by-step guide.</description>
     </item>
   </channel>
 </rss>

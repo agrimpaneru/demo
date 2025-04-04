@@ -1,7 +1,7 @@
 ---
 title: "MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch"
 description: "Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation."
-dateString: "February 14, 2025"
+date: "2025-02-14"
 draft: false
 tags: ["Multi-Head Attention", "Transformers", "Deep Learning", "PyTorch", "AI", "NLP", "Self-Attention","Masked Multi-Head Attention"]
 weight: 91

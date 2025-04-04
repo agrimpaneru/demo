@@ -25,17 +25,9 @@ menu:
       name: Search
       url: /search
       weight: 50
-    # - identifier: tags
-    #   name: Tags
-    #   url: /tags
-    #   weight: 60
-    # - identifier: notes
-    #   name: Notes
-    #   url: https://notes.arkalim.org
-    #   weight: 70
 
 params:
-  # theme
+  # Theme settings
   DateFormat: "January 2, 2006"
   showToc: true
   TocOpen: false
@@ -44,45 +36,37 @@ params:
   hideMeta: false
   ShowReadingTime: true
   mathjax: true
-  params:
   customCSS: ["css/custom.css"]
   enableNextPrevLinks: true
   comments: true
   commento: true
 
-  Title: "Agrim Paneru"
+  # SEO and site metadata
+  title: "Agrim Paneru"
   description: "Agrim Paneru's portfolio and blog about machine learning, AI, and software engineering."
   og_title: "Agrim Paneru"
   og_description: "Explore Agrim Paneru's projects, blogs, and experience in the world of technology and machine learning."
   og_url: "https://agrim.github.io/prtfoio/"
- # Same image as OG
-  
-
-  # for enchanced SEO
   env: production
 
   # Home Page
   profileMode:
     enabled: true
     title: "Agrim Paneru"
-    subtitle: Hi, I’m Agrim, a final-year Computer Engineering student at Pulchowk Campus, IOE. I have a strong passion for machine learning and enjoy exploring its diverse applications
-
- 
-    # imageUrl: "home/IMG_3893.jpeg"
+    subtitle: "Hi, I’m Agrim, a final-year Computer Engineering student at Pulchowk Campus, IOE. I have a strong passion for machine learning and enjoy exploring its diverse applications."
     imageWidth: 250
     imageHeight: 250
     buttons:
       - name: Resume
         url: "https://drive.google.com/file/d/1HIN6M2OoNCBzqWh7X6ytdg9dwSC361ki/view?usp=sharing"
 
-  # List View
+  # Post settings
   hideDescriptionInList: false
-
-  # cover image for posts
   cover:
-    hiddenInList: false # hide on list pages and home
-    hiddenInSingle: false # hide on single page
+    hiddenInList: false
+    hiddenInSingle: false
 
+  # Social Icons
   socialIcons:
     - name: "email"
       url: "https://mail.google.com/mail/?view=cm&to=agrimpaneru00@gmail.com"
@@ -91,8 +75,7 @@ params:
     - name: "github"
       url: "https://github.com/agrimpaneru"
 
-
-  # text search
+  # Search configuration (Fuse.js)
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
@@ -102,14 +85,14 @@ params:
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
 
-# for search using Fuse.js
+# Output formats
 outputs:
   home:
     - HTML
     - RSS
     - JSON
 
-# allow HTML in MD
+# Allow HTML in Markdown
 markup:
   goldmark:
     renderer:

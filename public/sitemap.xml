@@ -2,58 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/prtfoio/blog/self-attention-pytorch/</loc>
+    <loc>http://localhost:64952/prtfoio/blog/self-attention-pytorch/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/</loc>
+    <loc>http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/lstm-from-scratch/</loc>
+    <loc>http://localhost:64952/prtfoio/blog/lstm-from-scratch/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/</loc>
+    <loc>http://localhost:64952/prtfoio/blog/jenkins-webhooks-cicd/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/</loc>
     <lastmod>2025-02-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/blog/</loc>
+    <loc>http://localhost:64952/prtfoio/blog/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/lstm/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/lstm/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/machine-learning/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/machine-learning/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/pytorch/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/pytorch/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/</loc>
     <lastmod>2025-01-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/posts/</loc>
+    <loc>http://localhost:64952/prtfoio/posts/</loc>
     <lastmod>2025-01-22T12:59:51+05:45</lastmod>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/ai/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/ai/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/artificial-intelligence/</loc>
+    <loc>http://localhost:64952/prtfoio/categories/artificial-intelligence/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/automation/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/college-notes/</loc>
+    <loc>http://localhost:64952/prtfoio/categories/automation/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/deep-learning/</loc>
+    <loc>http://localhost:64952/prtfoio/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/deep-learning/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/ci/cd/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/machine-learning/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/college-notes/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/masked-multi-head-attention/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/continuous-deployment/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/multi-head-attention/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/continuous-integration/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/categories/natural-language-processing/</loc>
+    <loc>http://localhost:64952/prtfoio/categories/continuous-integration/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/nlp/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/deep-learning/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/self-attention/</loc>
+    <loc>http://localhost:64952/prtfoio/categories/deep-learning/</loc>
   </url><url>
-    <loc>http://localhost:1313/prtfoio/tags/transformers/</loc>
+    <loc>http://localhost:64952/prtfoio/tags/devops/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/categories/devops/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/jenkins/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/categories/machine-learning/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/masked-multi-head-attention/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/multi-head-attention/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/categories/natural-language-processing/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/nlp/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/self-attention/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/categories/software-development/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/transformers/</loc>
+  </url><url>
+    <loc>http://localhost:64952/prtfoio/tags/webhooks/</loc>
   </url>
 </urlset>

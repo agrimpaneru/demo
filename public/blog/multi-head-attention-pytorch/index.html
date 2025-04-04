@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=prtfoio/livereload" data-no-instant defer></script>
+<head><script src="/prtfoio/livereload.js?mindelay=10&amp;v=2&amp;port=64952&amp;path=prtfoio/livereload" data-no-instant defer></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch">
 <meta property="og:description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
-<meta property="og:url" content="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<meta property="og:url" content="http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/">
 <meta property="og:image" content="">
 
 <meta charset="utf-8">
@@ -16,19 +16,19 @@
 <meta name="keywords" content="Multi-Head Attention, Attention Mechanism, PyTorch Implementation, Transformers in AI, Deep Learning Tutorial, NLP Models, Self-Attention">
 <meta name="description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
 <meta name="author" content="Agrim Paneru">
-<link rel="canonical" href="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<link rel="canonical" href="http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/">
 <link crossorigin="anonymous" href="/prtfoio/assets/css/stylesheet.96c7d6443f7296882c1368d79c4a3a4eb0beea7637a5bb0631f2d1dcdee56598.css" integrity="sha256-lsfWRD9ylogsE2jXnEo6TrC&#43;6nY3pbsGMfLR3N7lZZg=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/prtfoio/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/prtfoio/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/prtfoio/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/prtfoio/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/prtfoio/safari-pinned-tab.svg">
+<link rel="icon" href="http://localhost:64952/prtfoio/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:64952/prtfoio/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:64952/prtfoio/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:64952/prtfoio/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:64952/prtfoio/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
-<link rel="alternate" hreflang="en" href="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+<link rel="alternate" hreflang="en" href="http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/">
 <noscript>
     <style>
         #theme-toggle,
@@ -65,13 +65,15 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/">
+</noscript><meta property="og:url" content="http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/">
   <meta property="og:site_name" content="Agrim Paneru">
   <meta property="og:title" content="MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch">
   <meta property="og:description" content="Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-02-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-14T00:00:00+00:00">
     <meta property="article:tag" content="Multi-Head Attention">
     <meta property="article:tag" content="Transformers">
     <meta property="article:tag" content="Deep Learning">
@@ -92,13 +94,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": " ",
-      "item": "http://localhost:1313/prtfoio/blog/"
+      "item": "http://localhost:64952/prtfoio/blog/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch",
-      "item": "http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/"
+      "item": "http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/"
     }
   ]
 }
@@ -116,22 +118,22 @@
   "articleBody": "Implementing Multihead attention from scratch with pytorch In our previous article, we built Self-Attention from scratch using PyTorch. If you haven’t checked that out yet, I highly recommend giving it a read before reading this one!\nNow, let’s take things a step further and implement Multi-Head Attention from scratch. This post focuses more on the implementation rather than the theory, so I assume you’re already familiar with how self-attention works.\nLet’s get started!\nMultihead Attention Similar to Self-Attention, Multi-Head Attention also creates a new context vector. But instead of using a single attention mechanism, it uses multiple heads, each learning different relationships between words.\nFor example, consider these two sentences:\n1️⃣ I went to the bank to withdraw cash.\n2️⃣ I went for a picnic by the river bank.\nHere, the word “bank” has different meanings depending on the context. The idea behind Multi-Head Attention is that different heads can focus on different aspects of a word’s meaning, capturing various relationships more effectively.\nIn the above example with a single attention head, the model might have difficulty capturing both the financial and geographical meanings of the word “bank” at the same time. Multi-Head Attention, on the other hand, allows the model to learn both meanings separately—one head could focus on financial context while another focuses on the geographical context. This way, the model learns richer, more nuanced embeddings of the word “bank” based on different contexts.\nFor a more intuitive explanation of Multi-Head Attention, I highly recommend checking out this medium post.\nNow Lets Implement it.\nimport torch torch.manual_seed(42) # Set seed for reproducibility embedding_dim = 8 words = ['the', 'cat', 'sat', 'on', 'mat'] embeddings = [torch.rand(embedding_dim) for word in words] embeddings = torch.stack(embeddings) Similar to our previous Self-Attention implementation, we’ll use the following sentence with a random embedding of dimension 8. However, in real-world applications, embeddings are typically a combination of word embeddings and positional encodings. To keep things simple, we won’t dive into that here. Now, let’s define the Wq, Wk, and Wv matrices. We could use separate smaller weight matrices to get the Query, Key, and Value vectors directly, but a more efficient approach is to use a single large weight matrix and split it afterward for multiple attention heads. This method is more computationally efficient, as it allows for parallel processing across heads.\nWq = torch.rand(embedding_dim, embedding_dim) # (8, 8) Wk = torch.rand(embedding_dim, embedding_dim) # (8, 8) Wv = torch.rand(embedding_dim, embedding_dim) # (8, 8) Lets apply the projection to Get Query Key and Value matrix.\n# Apply projection Q = embeddings @ Wq # Shape: (5, 8) K = embeddings @ Wk # Shape: (5, 8) V = embeddings @ Wv # Shape: (5, 8) Now ,We’ll split the projected vectors into multiple heads . Remember the Embedding dimension must be exactly divisible by head\nd_k = embedding_dim // num_heads Now we obtain the Query Key and Value Matrix for multiple heads.\nQ = Q.view(seq_len, num_heads, d_k).transpose(0, 1) K = K.view(seq_len, num_heads, d_k).transpose(0, 1) V = V.view(seq_len, num_heads, d_k).transpose(0, 1) The output shape of Q, K, and V after the split will be (2, 5, 4), where:\n2 corresponds to the number of heads, 5 corresponds to the sequence length (number of words), and 4 is the new dimension of each vector for each head. We calculate attention matrix by,\nattention_scores=Q @ K.transpose(-2,-1) '''For 3D matrix multiplication, the first dimension of both matrices should match, #while the second dimension of the first matrix must align with the third dimension of the second matrix according to the matrix multiplication rule''' Here, we get two attention scores from each head. We’ll proceed with scaling these scores and applying the softmax activation, just like in Self-Attention. For a detailed explanation of this process, please refer to my previous post on Self-Attention\nBut before applying the scaling and softmax activation, we’ll mask the attention scores. Masking is necessary to ensure that the prediction for a given token only depends on the current and previous tokens. Without masking, the model could “cheat” by looking ahead at future tokens which in not desirable.\nMasked Multi-Head Attention In the decoder of a transformer, we use masked multi-head attention to prevent the model from looking at future tokens when predicting the next one. This ensures that the model can only base its prediction on past tokens, not the future ones. In contrast, the encoder doesn’t need masking because it has access to the entire sequence at once, so it can freely attend to all parts of the input.\nThis masking enables the model to process all tokens in parallel during training, enhancing efficiency.\nWe will implement Masked Multi-Head Attention, ensuring that the model only attends to past words by masking the attention scores. This prevents the decoder from seeing future words, enforcing an autoregressive learning process\nMasking is applied before softmax by setting forbidden positions to−∞ to ensure they receive zero probability after normalization.\nmask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1) mask = mask.bool() mask=mask.unsqueeze(0) attention_scores=attention_scores.masked_fill(mask,-1e11) attention_scores=attention_scores/math.sqrt(d_k) #This is mask i.e Upper triangular matrix tensor([[0., 1., 1., 1., 1.], [0., 0., 1., 1., 1.], [0., 0., 0., 1., 1.], [0., 0., 0., 0., 1.], [0., 0., 0., 0., 0.]]) #Attention Scores before masking tensor([[[24.6185, 22.6470, 19.6726, 10.3703, 23.2266], [25.3424, 23.5643, 20.2438, 10.8568, 24.0848], [20.2856, 18.6674, 16.2010, 8.5272, 19.1661], [11.0366, 10.1522, 8.8451, 4.5771, 10.3952], [23.4003, 21.7570, 18.6598, 10.0209, 22.2936]], [[24.1949, 25.1107, 20.5201, 12.3558, 24.2538], [24.3185, 25.1608, 20.5903, 12.5245, 24.4242], [19.3101, 20.0426, 16.3541, 9.9390, 19.3887], [11.4448, 11.6265, 9.6817, 5.8675, 11.3187], [23.9947, 24.8808, 20.3205, 12.3524, 24.1055]]]) #Attention Scores after masking tensor([[[ 2.4619e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.5342e+01, 2.3564e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.0286e+01, 1.8667e+01, 1.6201e+01, -1.0000e+11, -1.0000e+11], [ 1.1037e+01, 1.0152e+01, 8.8451e+00, 4.5771e+00, -1.0000e+11], [ 2.3400e+01, 2.1757e+01, 1.8660e+01, 1.0021e+01, 2.2294e+01]], [[ 2.4195e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 2.4318e+01, 2.5161e+01, -1.0000e+11, -1.0000e+11, -1.0000e+11], [ 1.9310e+01, 2.0043e+01, 1.6354e+01, -1.0000e+11, -1.0000e+11], [ 1.1445e+01, 1.1626e+01, 9.6817e+00, 5.8675e+00, -1.0000e+11], [ 2.3995e+01, 2.4881e+01, 2.0321e+01, 1.2352e+01, 2.4105e+01]]]) So what we did here was created a lower triangular matrix and applied it as a mask to attention score and scaled it and passed to softmax to ensure each token can only attend to itself and previous tokens.\nAfter softmax, the row sum will be one and this ensures the attention weights are a valid probability distribution, allowing the model to learn proportional contributions from past tokens.\ntensor([[[1.0000, 0.0000, 0.0000, 0.0000, 0.0000], [0.5130, 0.4870, 0.0000, 0.0000, 0.0000], [0.3420, 0.3315, 0.3265, 0.0000, 0.0000], [0.2540, 0.2510, 0.2486, 0.2465, 0.0000], [0.2029, 0.2000, 0.1984, 0.1980, 0.2007]], [[1.0000, 0.0000, 0.0000, 0.0000, 0.0000], [0.4935, 0.5065, 0.0000, 0.0000, 0.0000], [0.3342, 0.3391, 0.3267, 0.0000, 0.0000], [0.2521, 0.2528, 0.2485, 0.2466, 0.0000], [0.2006, 0.2022, 0.1984, 0.1981, 0.2007]]]) Here is what out attention scores looks like.\nNow we multiply out Attention score with Value matrix and concatenate it,\noutput=attention_scores@V output.transpose(0,1).reshape(seq_len,embedding_dim) After Concatenation we achieve the final Contextual embedding of each vectors.\nHere’s a cleaner and more efficient implementation of the Multi-Head Attention module in PyTorch, wrapped in a class:\nimport torch import math class MultiHeadAttention(torch.nn.Module): def __init__(self, num_heads, embedding_dim): super(MultiHeadAttention, self).__init__() self.num_heads = num_heads self.embedding_dim = embedding_dim self.d_k = embedding_dim // num_heads self.Wq = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) self.Wk = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) self.Wv = torch.nn.Parameter(torch.rand(embedding_dim, embedding_dim)) def forward(self, embeddings): seq_len = embeddings.size(0) Q = embeddings @ self.Wq # (seq_len, embedding_dim) K = embeddings @ self.Wk V = embeddings @ self.Wv # Converting to multiheaded attention Q = Q.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) # (num_heads, seq_len, d_k) K = K.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) V = V.view(seq_len, self.num_heads, self.d_k).transpose(0, 1) # Compute attention scores attention_scores = torch.matmul(Q, K.transpose(-2, -1)) # (num_heads, seq_len, seq_len) # Apply mask (upper triangular mask for causal attention) mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).bool() mask = mask.unsqueeze(0).expand_as(attention_scores) attention_scores = attention_scores.masked_fill(mask, -1e11) # Scale the attention scores attention_scores = attention_scores / math.sqrt(self.d_k) # Apply softmax to get attention weights attention_weights = torch.softmax(attention_scores, dim=-1) # (num_heads, seq_len, seq_len) # Compute the output (weighted sum of values) output = torch.matmul(attention_weights, V) output = output.transpose(0, 1).contiguous().view(seq_len, self.embedding_dim) return output # Example usage torch.manual_seed(42) embedding_dim = 8 num_heads = 2 words = ['the', 'cat', 'sat', 'on', 'mat'] embeddings = [torch.rand(embedding_dim) for word in words] embeddings = torch.stack(embeddings) mha = MultiHeadAttention(num_heads=num_heads, embedding_dim=embedding_dim) # Forward pass through the model output = mha(embeddings) print(\"Output shape:\", output.shape) ",
   "wordCount" : "1357",
   "inLanguage": "en",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
+  "datePublished": "2025-02-14T00:00:00Z",
+  "dateModified": "2025-02-14T00:00:00Z",
   "author":{
     "@type": "Person",
     "name": "Agrim Paneru"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://localhost:1313/prtfoio/blog/multi-head-attention-pytorch/"
+    "@id": "http://localhost:64952/prtfoio/blog/multi-head-attention-pytorch/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Agrim Paneru",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://localhost:1313/prtfoio/favicon.ico"
+      "url": "http://localhost:64952/prtfoio/favicon.ico"
     }
   }
 }
@@ -153,7 +155,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
+            <a href="http://localhost:64952/prtfoio/" accesskey="h" title="Agrim Paneru (Alt + H)">Agrim Paneru</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -179,27 +181,27 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/prtfoio/" title="Home">
+                <a href="http://localhost:64952/prtfoio/" title="Home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/prtfoio/blog" title="Blog">
+                <a href="http://localhost:64952/prtfoio/blog" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/prtfoio/projects" title="Projects">
+                <a href="http://localhost:64952/prtfoio/projects" title="Projects">
                     <span>Projects</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/prtfoio/experience" title="Experience">
+                <a href="http://localhost:64952/prtfoio/experience" title="Experience">
                     <span>Experience</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/prtfoio/search" title="Search">
+                <a href="http://localhost:64952/prtfoio/search" title="Search">
                     <span>Search</span>
                 </a>
             </li>
@@ -210,14 +212,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/prtfoio/blog/"> </a></div>
+    <div class="breadcrumbs"><a href="http://localhost:64952/prtfoio/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:64952/prtfoio/blog/"> </a></div>
     <h1 class="post-title entry-hint-parent">
       MultiHead Attention Explained:Implementing Masked Multihead attention from Scratch in PyTorch
     </h1>
     <div class="post-description">
       Learn Multi-Head Attention in transformers with an intuitive explanation and PyTorch implementation.
     </div>
-    <div class="post-meta">⏱️ 7 min&nbsp;·&nbsp;Agrim Paneru
+    <div class="post-meta"><span title='2025-02-14 00:00:00 +0000 UTC'>February 14, 2025</span>&nbsp;·&nbsp;⏱️ 7 min&nbsp;·&nbsp;Agrim Paneru
 
 </div>
   </header> <div class="toc">
@@ -431,21 +433,21 @@ Now, let’s define the Wq, Wk, and Wv matrices. We could use separate smaller w
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/prtfoio/tags/multi-head-attention/">Multi-Head Attention</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/transformers/">Transformers</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/deep-learning/">Deep Learning</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/pytorch/">PyTorch</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/ai/">AI</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/nlp/">NLP</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/self-attention/">Self-Attention</a></li>
-      <li><a href="http://localhost:1313/prtfoio/tags/masked-multi-head-attention/">Masked Multi-Head Attention</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/multi-head-attention/">Multi-Head Attention</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/transformers/">Transformers</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/deep-learning/">Deep Learning</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/pytorch/">PyTorch</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/ai/">AI</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/nlp/">NLP</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/self-attention/">Self-Attention</a></li>
+      <li><a href="http://localhost:64952/prtfoio/tags/masked-multi-head-attention/">Masked Multi-Head Attention</a></li>
     </ul>
   </footer>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/prtfoio/">Agrim Paneru</a></span> · 
+        <span>&copy; 2025 <a href="http://localhost:64952/prtfoio/">Agrim Paneru</a></span> · 
 
     
 </footer>
